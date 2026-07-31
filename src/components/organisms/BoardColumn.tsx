@@ -1,0 +1,30 @@
+import { useBoardStore } from '../../store/useBoardStore';
+import type { Column } from '../../store/useBoardStore';
+import { TaskInput } from '../molecules/TaskInput';
+import { TaskCard } from './TaskCard';
+
+interface Props {
+  column: Column;
+  index: number;
+}
+
+export const BoardColumn = ({ column, index }: Props) => {
+  const tasks = useBoardStore((state) =>
+    state.tasks.filter((t) => t.columnId === column.id)
+  );
+  const addTask = useBoardStore((state) => state.addTask);
+
+  return (
+    <div style={{ minWidth: '350px', maxWidth: '350px', display: 'flex', flexDirection: 'column' }}>
+      <div style={{ padding: '8px', fontWeight: 'bold', borderBottom: '2px solid #000', marginBottom: '8px', fontSize: '18px' }}>
+        {column.title}
+      </div>
+      <div style={{ flex: 1, overflowY: 'auto', paddingRight: '4px' }}>
+        {tasks.map((task) => (
+          <TaskCard key={task.id} task={task} columnIndex={index} />
+        ))}
+      </div>
+      <TaskInput onSubmit={(title) => addTask(column.id, title)} placeholder="New task..." />
+    </div>
+  );
+};
