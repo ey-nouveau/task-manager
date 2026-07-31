@@ -22,15 +22,15 @@ app.get('/api/tasks', async (req, res) => {
   res.status(200).send(data);
 });
 
-app.post('/api/tasks', async (req: Request<{}, {}, { createdBy: string; assignedTo?: string; title: string, description: string; }>, res) => {
-  const { createdBy, assignedTo = createdBy, title, description } = req.body;
+app.post('/api/tasks', async (req: Request<{}, {}, { createdBy: string; status: 'todo' | 'in-progress' | 'done'; assignedTo?: string; title: string, description: string; }>, res) => {
+  const { createdBy, assignedTo = createdBy, status = 'todo', title, description } = req.body;
 
   const { data, error } = await dbClient
     .from('tasks')
     .insert({
       created_by: createdBy,
       assigned_to: assignedTo,
-      status: 'Created',
+      status,
       title,
       description
     })
@@ -44,6 +44,20 @@ app.post('/api/tasks', async (req: Request<{}, {}, { createdBy: string; assigned
   res.status(200).send(data);
 });
 
+app.delete('/api/tasks/:taskId', async (req, res) => {
+  const { taskId } = req.params;
+
+  const { error } = await dbClient
+    .from('tasks')
+    .delete()
+    .eq('id', taskId);
+
+  if (error) {
+    throw error;
+  }
+
+  res.status(204);
+});
 
 app.listen(port, (error) => {
   if (error) {
