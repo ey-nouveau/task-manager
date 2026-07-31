@@ -1,10 +1,110 @@
-body {
-  margin: 0;
-  padding: 0;
-  font-family: sans-serif;
-  background-color: #ffffff;
-  color: #000000;
+:root {
+  --color-bg-outer: #3C3843;
+  --color-purple: #8f5ff1;
+  --color-dark: #0E0E0E;
+  --color-orange: #f18b6e;
+  --color-yellow: #ebd560;
+  --color-green: #7fce89;
+  --color-light-grey: #a5ada4;
+  --color-dark-grey: #272528;
+  --color-text-muted: #8E8E8E;
+  --color-text-dark: #121212;
+  --color-text-light: #FFFFFF;
+  
+  --radius-app: 24px;
+  --radius-card: 16px;
 }
+
 * {
   box-sizing: border-box;
+}
+
+body {
+  background-color: var(--color-bg-outer);
+  font-family: 'Inter', sans-serif;
+  margin: 0;
+  padding: 0;
+  color: var(--color-text-light);
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.app-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 24px;
+}
+
+.app-window {
+  width: 100%;
+  max-width: 1200px;
+  height: 90vh;
+  max-height: 850px;
+  background: var(--color-dark);
+  border-radius: var(--radius-app);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 24px 48px rgba(0,0,0,0.4);
+}
+
+.top-section {
+  background: var(--color-purple);
+  color: var(--color-text-dark);
+  flex: 0 0 30%;
+  padding: 32px 48px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+}
+
+.bottom-section {
+  flex: 1;
+  padding: 40px 48px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  background: var(--color-dark);
+}
+
+.section-title {
+  font-size: 16px;
+  color: var(--color-text-muted);
+  margin-bottom: 8px;
+  font-weight: 400;
+}
+
+@media (max-width: 1024px) {
+  .app-window {
+    height: auto;
+    min-height: 90vh;
+  }
+  .top-section {
+    flex: 0 0 auto;
+    min-height: 250px;
+  }
+  .hidden-mobile {
+    display: none !important;
+  }
+}
+
+@media (max-width: 600px) {
+  .top-section, .bottom-section {
+    padding: 24px;
+  }
 }

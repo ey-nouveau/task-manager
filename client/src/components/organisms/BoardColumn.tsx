@@ -19,7 +19,7 @@ export const BoardColumn = ({ column, index }: Props) => {
 
   return (
     <div style={{ minWidth: '350px', maxWidth: '350px', display: 'flex', flexDirection: 'column' }}>
-      <div style={{ padding: '8px', fontWeight: 'bold', borderBottom: '2px solid #000', marginBottom: '8px', fontSize: '18px' }}>
+      <div style={{ padding: '8px', fontWeight: 'bold', borderBottom: '2px solid var(--color-light-grey)', marginBottom: '8px', fontSize: '18px', color: 'var(--color-text-light)' }}>
         {column.title}
       </div>
       <div style={{ flex: 1, overflowY: 'auto', paddingRight: '4px' }}>

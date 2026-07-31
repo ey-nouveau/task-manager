@@ -14,7 +14,7 @@ export const BoardPage = () => {
 
   if (isLoading && tasks.length === 0) {
     return (
-      <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
+      <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100%' }}>
         <Spin size="large" />
       </div>
     );
@@ -25,8 +25,7 @@ export const BoardPage = () => {
       style={{
         display: "flex",
         gap: "24px",
-        padding: "24px",
-        height: "100vh",
+        height: "100%",
         boxSizing: "border-box",
         overflowX: "auto",
         alignItems: "flex-start",

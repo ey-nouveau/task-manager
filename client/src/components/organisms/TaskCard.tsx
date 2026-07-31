@@ -26,7 +26,7 @@ export const TaskCard = ({ task, columnIndex }: Props) => {
       size="small"
       hoverable
       onClick={() => setActiveTask(task.id)}
-      style={{ marginBottom: '8px', cursor: 'pointer', border: '1px solid #000', borderRadius: 0 }}
+      style={{ marginBottom: '8px', cursor: 'pointer', borderRadius: 'var(--radius-card)' }}
       title={task.title}
       extra={
         <TaskActions
