@@ -11,7 +11,7 @@ import { useState } from 'react';
 const navItems = [
   { path: '/', label: 'Home', icon: <HomeOutlined /> },
   { path: '/', label: 'Dashboard', icon: <AppstoreOutlined /> },
-  { path: '/board', label: 'Task Board', icon: <AppstoreOutlined /> }, // We use Appstore for board as well or similar
+  { path: '/board', label: 'Task Board', icon: <AppstoreOutlined /> },
   { path: '#', label: 'Integrations', icon: <LinkOutlined /> },
   { path: '#', label: 'Preferences', icon: <SettingOutlined /> },
 ];
@@ -26,21 +26,15 @@ export const MainLayout = () => {
   const location = useLocation();
   const [isDarkMode, setIsDarkMode] = useState(true);
 
-  // We are cheating the "Home" vs "Dashboard" highlight a bit
-  // Since both point to '/', let's just highlight Dashboard if path is '/'
-  
   return (
     <div className="app-container">
       <div className="app-window">
-        {/* Top 30% */}
         <div className="top-section">
-          {/* Header */}
           <div className="main-header">
             <div style={{ fontSize: '24px' }}>
               <CodeSandboxOutlined />
             </div>
 
-            {/* Navigation Pill */}
             <div className="nav-pill-container">
               {navItems.map((item) => {
                 const isActive = item.path === '/' && item.label === 'Dashboard' 
@@ -65,7 +59,6 @@ export const MainLayout = () => {
               })}
             </div>
 
-            {/* Theme Toggle */}
             <div 
               style={{
                 width: '64px',
@@ -98,16 +91,13 @@ export const MainLayout = () => {
             </div>
           </div>
 
-          {/* Title & Chart */}
           <div className="title-chart-container">
             <h1 className="main-title">
               {location.pathname === '/board' ? 'Task Board' : 'Dashboard'}
             </h1>
             
-            {/* Chart visualization */}
             {location.pathname === '/' && (
               <div className="chart-container">
-                {/* Tooltip */}
                 <div style={{
                   position: 'absolute',
                   top: '-40px',
@@ -133,7 +123,6 @@ export const MainLayout = () => {
           </div>
         </div>
 
-        {/* Bottom 70% */}
         <div className="bottom-section">
           <Outlet />
         </div>

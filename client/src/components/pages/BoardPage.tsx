@@ -1,7 +1,7 @@
-import { Spin } from "antd";
 import { useBoardStore } from "../../store/useBoardStore";
 import { BoardColumn } from "../organisms/BoardColumn";
 import { TaskDetailsModal } from "../organisms/TaskDetailsModal";
+import { Spin } from "antd";
 
 export const BoardPage = () => {
   const columns = useBoardStore((state) => state.columns);

@@ -11,10 +11,10 @@ interface Props {
 export const BoardColumn = ({ column, index }: Props) => {
   const allTasks = useBoardStore((state) => state.tasks);
   
-  // Если у таски пустой статус из БД, закидываем ее в первую колонку ('todo')
   const tasks = allTasks.filter((t) => 
     t.status === column.id || (!t.status && column.id === 'todo')
   );
+  
   const addTask = useBoardStore((state) => state.addTask);
 
   return (

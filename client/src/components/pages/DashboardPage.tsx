@@ -74,7 +74,6 @@ export const DashboardPage = () => {
           width: "100%",
         }}
       >
-        {/* Row 1 cards (conceptually) */}
         <Card
           title="Visits"
           value="8,920"
@@ -104,7 +103,6 @@ export const DashboardPage = () => {
           icon={<EllipsisOutlined />}
         />
         
-        {/* Row 2 cards (conceptually) */}
         <Card
           title="Avg time on page"
           value="4m"
