@@ -10,6 +10,10 @@
   --color-text-muted: #8E8E8E;
   --color-text-dark: #121212;
   --color-text-light: #FFFFFF;
+  --color-pink: #f1b3d6;
+  --color-blue: #a3c4f3;
+  --color-mint: #9ce6d4;
+  --color-peach: #ffdca8;
   
   --radius-app: 24px;
   --radius-card: 16px;
@@ -19,11 +23,16 @@
   box-sizing: border-box;
 }
 
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  overflow: hidden;
+}
+
 body {
   background-color: var(--color-bg-outer);
   font-family: 'Inter', sans-serif;
-  margin: 0;
-  padding: 0;
   color: var(--color-text-light);
 }
 
@@ -46,13 +55,13 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: 100vh;
+  height: 100vh;
   padding: 0;
 }
 
 .app-window {
   width: 100%;
-  height: 100vh;
+  height: 100%;
   background: var(--color-dark);
   overflow: hidden;
   display: flex;
