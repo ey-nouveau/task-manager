@@ -59,6 +59,36 @@ app.delete('/api/tasks/:taskId', async (req, res) => {
   res.status(204);
 });
 
+app.put('/api/tasks/:taskId', async (req, res) => {
+  const { taskId } = req.params;
+  const { title, status, description } = req.body;
+
+  const updatedData: { status?: string; title?: string; description?: string; } = {};
+
+  if (title) {
+    updatedData.title = title;
+  }
+
+  if (description) {
+    updatedData.description = description;
+  }
+
+  if (status) {
+    updatedData.status = status;
+  }
+
+  const { error } = await dbClient
+    .from('tasks')
+    .update(updatedData)
+    .eq('id', taskId);
+
+  if (error) {
+    throw error;
+  }
+
+  res.status(204);
+});
+
 app.listen(port, (error) => {
   if (error) {
     console.log(error);
