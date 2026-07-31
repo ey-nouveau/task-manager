@@ -1,0 +1,9 @@
+#!/bin/sh
+# Deploy to GitHub Pages only when pushing to the main branch
+BRANCH=$(git branch --show-current)
+if [ "$BRANCH" = "main" ]; then
+  echo "🚀 Pushing to 'main' branch detected. Starting GitHub Pages deploy..."
+  cd client && npm run deploy
+else
+  echo "⚡ Not on 'main' branch. Skipping GitHub Pages deploy."
+fi
