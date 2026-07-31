@@ -38,7 +38,7 @@ const Card = ({
 
 export const DashboardPage = () => {
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: '32px', maxWidth: '100%', height: '100%' }}>
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', maxWidth: '100%', height: '100%' }}>
       
       {/* Row 1: Analytics */}
       <div style={{ display: 'flex', gap: '16px', flexWrap: 'wrap' }}>
