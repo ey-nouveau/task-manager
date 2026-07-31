@@ -1,11 +1,14 @@
 import { create } from 'zustand';
-import { v4 as uuidv4 } from 'uuid';
+import { apiClient } from '../api/api';
 
 export interface Task {
-  id: string;
+  id: string | number;
   title: string;
   description: string;
-  columnId: string;
+  status: string;
+  created_at?: string;
+  created_by?: string;
+  assigned_to?: string;
 }
 
 export interface Column {
@@ -16,15 +19,16 @@ export interface Column {
 interface BoardState {
   columns: Column[];
   tasks: Task[];
-  activeTaskId: string | null;
-  addTask: (columnId: string, title: string) => void;
-  updateTask: (taskId: string, updates: Partial<Task>) => void;
-  deleteTask: (taskId: string) => void;
-  moveTask: (taskId: string, targetColumnId: string) => void;
-  setActiveTask: (id: string | null) => void;
+  activeTaskId: string | number | null;
+  fetchTasks: () => Promise<void>;
+  addTask: (status: string, title: string) => Promise<void>;
+  updateTask: (taskId: string | number, updates: Partial<Task>) => Promise<void>;
+  deleteTask: (taskId: string | number) => Promise<void>;
+  moveTask: (taskId: string | number, targetStatus: string) => Promise<void>;
+  setActiveTask: (id: string | number | null) => void;
 }
 
-export const useBoardStore = create<BoardState>((set) => ({
+export const useBoardStore = create<BoardState>((set, get) => ({
   columns: [
     { id: 'todo', title: 'To Do' },
     { id: 'in-progress', title: 'In Progress' },
@@ -32,22 +36,64 @@ export const useBoardStore = create<BoardState>((set) => ({
   ],
   tasks: [],
   activeTaskId: null,
-  addTask: (columnId, title) =>
-    set((state) => ({
-      tasks: [...state.tasks, { id: uuidv4(), title, description: '', columnId }],
-    })),
-  updateTask: (taskId, updates) =>
+
+  fetchTasks: async () => {
+    try {
+      const tasks = await apiClient.get<Task[]>('/tasks');
+      set({ tasks });
+    } catch (error) {
+      console.error('Failed to fetch tasks:', error);
+    }
+  },
+
+  addTask: async (status, title) => {
+    try {
+      const newTask = await apiClient.post<Task>('/tasks', { title, status, description: '' });
+      set((state) => ({
+        tasks: [...state.tasks, newTask],
+      }));
+    } catch (error) {
+      console.error('Failed to add task:', error);
+    }
+  },
+
+  updateTask: async (taskId, updates) => {
+    // Optimistic update
     set((state) => ({
       tasks: state.tasks.map((t) => (t.id === taskId ? { ...t, ...updates } : t)),
-    })),
-  deleteTask: (taskId) =>
+    }));
+    try {
+      await apiClient.put(`/tasks/${taskId}`, updates); // Assuming you'll add this PUT route
+    } catch (error) {
+      console.error('Failed to update task:', error);
+      get().fetchTasks(); // Revert on failure
+    }
+  },
+
+  deleteTask: async (taskId) => {
     set((state) => ({
       tasks: state.tasks.filter((t) => t.id !== taskId),
       activeTaskId: state.activeTaskId === taskId ? null : state.activeTaskId,
-    })),
-  moveTask: (taskId, targetColumnId) =>
+    }));
+    try {
+      await apiClient.delete(`/tasks/${taskId}`); // Assuming you'll add this DELETE route
+    } catch (error) {
+      console.error('Failed to delete task:', error);
+      get().fetchTasks();
+    }
+  },
+
+  moveTask: async (taskId, targetStatus) => {
     set((state) => ({
-      tasks: state.tasks.map((t) => (t.id === taskId ? { ...t, columnId: targetColumnId } : t)),
-    })),
+      tasks: state.tasks.map((t) => (t.id === taskId ? { ...t, status: targetStatus } : t)),
+    }));
+    try {
+      await apiClient.put(`/tasks/${taskId}`, { status: targetStatus }); 
+    } catch (error) {
+      console.error('Failed to move task:', error);
+      get().fetchTasks();
+    }
+  },
+
   setActiveTask: (id) => set({ activeTaskId: id }),
 }));

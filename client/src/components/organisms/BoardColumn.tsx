@@ -10,7 +10,7 @@ interface Props {
 
 export const BoardColumn = ({ column, index }: Props) => {
   const allTasks = useBoardStore((state) => state.tasks);
-  const tasks = allTasks.filter((t) => t.columnId === column.id);
+  const tasks = allTasks.filter((t) => t.status === column.id);
   const addTask = useBoardStore((state) => state.addTask);
 
   return (

@@ -1,27 +1,14 @@
 import { ConfigProvider } from "antd";
 import { BoardPage } from "./components/pages/BoardPage";
-import { useEffect, useState } from "react";
-import { apiClient } from "./api/api";
+import { useEffect } from "react";
+import { useBoardStore } from "./store/useBoardStore";
 
 export const App = () => {
-  const [tasks, setTasks] = useState([]);
+  const fetchTasks = useBoardStore((state) => state.fetchTasks);
 
   useEffect(() => {
-    apiClient.get("/tasks").then(setTasks);
-  }, []);
-
-  useEffect(() => {
-    setTimeout(() => {
-      apiClient
-        .post("/tasks", {
-          title: "Title",
-          description: "Description",
-          createdBy: "Petr",
-          assignedTo: "Sergey",
-        })
-        .then(console.log);
-    }, 2000);
-  }, []);
+    fetchTasks();
+  }, [fetchTasks]);
 
   return (
     <ConfigProvider
@@ -34,7 +21,7 @@ export const App = () => {
         },
       }}
     >
-      <BoardPage tasks={tasks} />
+      <BoardPage />
     </ConfigProvider>
   );
 };

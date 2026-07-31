@@ -2,10 +2,11 @@ import { useBoardStore } from "../../store/useBoardStore";
 import { BoardColumn } from "../organisms/BoardColumn";
 import { TaskDetailsModal } from "../organisms/TaskDetailsModal";
 
-export const BoardPage = ({ tasks }: { tasks: any[] }) => {
+export const BoardPage = () => {
   const columns = useBoardStore((state) => state.columns);
   const activeTaskId = useBoardStore((state) => state.activeTaskId);
   const setActiveTask = useBoardStore((state) => state.setActiveTask);
+  const tasks = useBoardStore((state) => state.tasks);
 
   const activeTask = tasks.find((t) => t.id === activeTaskId) || null;
 
