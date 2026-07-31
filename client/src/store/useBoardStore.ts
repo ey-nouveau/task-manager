@@ -62,15 +62,14 @@ export const useBoardStore = create<BoardState>((set, get) => ({
   },
 
   updateTask: async (taskId, updates) => {
-    // Optimistic update
     set((state) => ({
       tasks: state.tasks.map((t) => (t.id === taskId ? { ...t, ...updates } : t)),
     }));
     try {
-      await apiClient.put(`/tasks/${taskId}`, updates); // Assuming you'll add this PUT route
+      await apiClient.put(`/tasks/${taskId}`, updates);
     } catch (error) {
       console.error('Failed to update task:', error);
-      get().fetchTasks(); // Revert on failure
+      get().fetchTasks(); 
     }
   },
 
@@ -83,7 +82,7 @@ export const useBoardStore = create<BoardState>((set, get) => ({
       await apiClient.delete(`/tasks/${taskId}`);
     } catch (error) {
       console.error('Failed to delete task:', error);
-      get().fetchTasks(); // Оптимистичный откат в случае ошибки
+      get().fetchTasks();
     }
   },
 
