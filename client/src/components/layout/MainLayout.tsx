@@ -7,6 +7,7 @@ import {
   CodeSandboxOutlined 
 } from '@ant-design/icons';
 import { useState } from 'react';
+import { Responsive } from './Responsive';
 
 const navItems = [
   { path: '/', label: 'Home', icon: <HomeOutlined /> },
@@ -35,29 +36,57 @@ export const MainLayout = () => {
               <CodeSandboxOutlined />
             </div>
 
-            <div className="nav-pill-container">
-              {navItems.map((item) => {
-                const isActive = item.path === '/' && item.label === 'Dashboard' 
-                                  ? location.pathname === '/' 
-                                  : item.path === '/board'
-                                  ? location.pathname === '/board'
-                                  : false;
-                
-                return (
-                  <Link 
-                    key={item.label} 
-                    to={item.path}
-                    className="nav-pill-item"
-                    style={{
-                      background: isActive ? 'rgba(0,0,0,0.05)' : 'transparent'
-                    }}
-                  >
-                    {item.icon}
-                    {item.label}
-                  </Link>
-                );
-              })}
-            </div>
+            <Responsive layout="desktop">
+              <div className="nav-pill-container">
+                {navItems.map((item) => {
+                  const isActive = item.path === '/' && item.label === 'Dashboard' 
+                                    ? location.pathname === '/' 
+                                    : item.path === '/board'
+                                    ? location.pathname === '/board'
+                                    : false;
+                  
+                  return (
+                    <Link 
+                      key={item.label} 
+                      to={item.path}
+                      className="nav-pill-item"
+                      style={{
+                        background: isActive ? 'rgba(0,0,0,0.05)' : 'transparent'
+                      }}
+                    >
+                      {item.icon}
+                      {item.label}
+                    </Link>
+                  );
+                })}
+              </div>
+            </Responsive>
+
+            <Responsive layout="mobile">
+              <div className="nav-pill-container" style={{ width: '100%', marginTop: '16px' }}>
+                {navItems.slice(0, 3).map((item) => {
+                  const isActive = item.path === '/' && item.label === 'Dashboard' 
+                                    ? location.pathname === '/' 
+                                    : item.path === '/board'
+                                    ? location.pathname === '/board'
+                                    : false;
+                  
+                  return (
+                    <Link 
+                      key={item.label} 
+                      to={item.path}
+                      className="nav-pill-item"
+                      style={{
+                        background: isActive ? 'rgba(0,0,0,0.05)' : 'transparent'
+                      }}
+                    >
+                      {item.icon}
+                      {item.label}
+                    </Link>
+                  );
+                })}
+              </div>
+            </Responsive>
 
             <div 
               style={{
@@ -96,30 +125,32 @@ export const MainLayout = () => {
               {location.pathname === '/board' ? 'Task Board' : 'Dashboard'}
             </h1>
             
-            {location.pathname === '/' && (
-              <div className="chart-container">
-                <div style={{
-                  position: 'absolute',
-                  top: '-40px',
-                  left: '40%',
-                  background: 'var(--color-dark)',
-                  color: 'white',
-                  padding: '4px 12px',
-                  borderRadius: '20px',
-                  fontSize: '12px',
-                  fontWeight: 500,
-                  whiteSpace: 'nowrap',
-                  zIndex: 10
-                }}>
-                  1345 transactions
-                  <div style={{ position: 'absolute', bottom: '-4px', left: '50%', transform: 'translateX(-50%)', borderTop: '4px solid var(--color-dark)', borderLeft: '4px solid transparent', borderRight: '4px solid transparent' }} />
+            <Responsive layout="desktop">
+              {location.pathname === '/' && (
+                <div className="chart-container">
+                  <div style={{
+                    position: 'absolute',
+                    top: '-40px',
+                    left: '40%',
+                    background: 'var(--color-dark)',
+                    color: 'white',
+                    padding: '4px 12px',
+                    borderRadius: '20px',
+                    fontSize: '12px',
+                    fontWeight: 500,
+                    whiteSpace: 'nowrap',
+                    zIndex: 10
+                  }}>
+                    1345 transactions
+                    <div style={{ position: 'absolute', bottom: '-4px', left: '50%', transform: 'translateX(-50%)', borderTop: '4px solid var(--color-dark)', borderLeft: '4px solid transparent', borderRight: '4px solid transparent' }} />
+                  </div>
+                  
+                  {chartBars.map((h, i) => (
+                    <div key={i} className="chart-bar" style={{ height: `${h}%` }} />
+                  ))}
                 </div>
-                
-                {chartBars.map((h, i) => (
-                  <div key={i} className="chart-bar" style={{ height: `${h}%` }} />
-                ))}
-              </div>
-            )}
+              )}
+            </Responsive>
           </div>
         </div>
 
