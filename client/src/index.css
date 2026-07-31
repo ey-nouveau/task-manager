@@ -200,9 +200,6 @@ body {
     flex: 0 0 auto;
     min-height: 250px;
   }
-  .hidden-mobile {
-    display: none !important;
-  }
   .main-title {
     font-size: 48px;
   }
