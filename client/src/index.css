@@ -85,6 +85,80 @@ body {
   font-weight: 400;
 }
 
+/* Layout adjustments */
+.main-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.nav-pill-container {
+  display: flex;
+  align-items: center;
+  border: 1px solid rgba(0,0,0,0.2);
+  border-radius: 40px;
+  padding: 4px;
+  overflow-x: auto;
+  max-width: 100%;
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+.nav-pill-container::-webkit-scrollbar {
+  display: none; /* Chrome, Safari and Opera */
+}
+
+.nav-pill-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  border-radius: 40px;
+  color: var(--color-text-dark);
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 14px;
+  transition: background 0.2s;
+  white-space: nowrap;
+}
+
+.title-chart-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-top: 24px;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.main-title {
+  font-size: 64px;
+  font-weight: 500;
+  margin: 0;
+  letter-spacing: -0.02em;
+  line-height: 1;
+}
+
+.chart-container {
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  gap: 4px;
+  height: 60px;
+  margin-bottom: 8px;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+.chart-bar {
+  width: 3px;
+  background: rgba(0,0,0,0.4);
+  border-radius: 2px;
+  transition: height 0.3s ease;
+  flex-shrink: 0;
+}
+
 @media (max-width: 1024px) {
   .app-window {
     height: auto;
@@ -97,10 +171,35 @@ body {
   .hidden-mobile {
     display: none !important;
   }
+  .main-title {
+    font-size: 48px;
+  }
 }
 
 @media (max-width: 600px) {
-  .top-section, .bottom-section {
+  .top-section {
     padding: 24px;
   }
+  .bottom-section {
+    padding: 24px;
+  }
+  .main-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .nav-pill-container {
+    width: 100%;
+  }
+  .title-chart-container {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .chart-container {
+    width: 100%;
+  }
+  .nav-pill-item {
+    padding: 8px 12px;
+    font-size: 13px;
+  }
 }
+

@@ -35,19 +35,13 @@ export const MainLayout = () => {
         {/* Top 30% */}
         <div className="top-section">
           {/* Header */}
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+          <div className="main-header">
             <div style={{ fontSize: '24px' }}>
               <CodeSandboxOutlined />
             </div>
 
             {/* Navigation Pill */}
-            <div style={{ 
-              display: 'flex', 
-              alignItems: 'center', 
-              border: '1px solid rgba(0,0,0,0.2)', 
-              borderRadius: '40px',
-              padding: '4px'
-            }}>
+            <div className="nav-pill-container">
               {navItems.map((item) => {
                 const isActive = item.path === '/' && item.label === 'Dashboard' 
                                   ? location.pathname === '/' 
@@ -59,18 +53,9 @@ export const MainLayout = () => {
                   <Link 
                     key={item.label} 
                     to={item.path}
+                    className="nav-pill-item"
                     style={{
-                      display: 'flex',
-                      alignItems: 'center',
-                      gap: '8px',
-                      padding: '8px 16px',
-                      borderRadius: '40px',
-                      color: 'var(--color-text-dark)',
-                      textDecoration: 'none',
-                      fontWeight: 500,
-                      fontSize: '14px',
-                      background: isActive ? 'rgba(0,0,0,0.05)' : 'transparent',
-                      transition: 'background 0.2s'
+                      background: isActive ? 'rgba(0,0,0,0.05)' : 'transparent'
                     }}
                   >
                     {item.icon}
@@ -90,7 +75,8 @@ export const MainLayout = () => {
                 padding: '4px',
                 cursor: 'pointer',
                 display: 'flex',
-                alignItems: 'center'
+                alignItems: 'center',
+                flexShrink: 0
               }}
               onClick={() => setIsDarkMode(!isDarkMode)}
             >
@@ -113,20 +99,14 @@ export const MainLayout = () => {
           </div>
 
           {/* Title & Chart */}
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginTop: '24px' }}>
-            <h1 style={{ 
-              fontSize: '64px', 
-              fontWeight: 500, 
-              margin: 0, 
-              letterSpacing: '-0.02em',
-              lineHeight: 1
-            }}>
+          <div className="title-chart-container">
+            <h1 className="main-title">
               {location.pathname === '/board' ? 'Task Board' : 'Dashboard'}
             </h1>
             
             {/* Chart visualization */}
             {location.pathname === '/' && (
-              <div style={{ position: 'relative', display: 'flex', alignItems: 'flex-end', gap: '4px', height: '60px', marginBottom: '8px' }}>
+              <div className="chart-container">
                 {/* Tooltip */}
                 <div style={{
                   position: 'absolute',
@@ -138,20 +118,15 @@ export const MainLayout = () => {
                   borderRadius: '20px',
                   fontSize: '12px',
                   fontWeight: 500,
-                  whiteSpace: 'nowrap'
+                  whiteSpace: 'nowrap',
+                  zIndex: 10
                 }}>
                   1345 transactions
                   <div style={{ position: 'absolute', bottom: '-4px', left: '50%', transform: 'translateX(-50%)', borderTop: '4px solid var(--color-dark)', borderLeft: '4px solid transparent', borderRight: '4px solid transparent' }} />
                 </div>
                 
                 {chartBars.map((h, i) => (
-                  <div key={i} style={{ 
-                    width: '3px', 
-                    height: `${h}%`, 
-                    background: 'rgba(0,0,0,0.4)', 
-                    borderRadius: '2px',
-                    transition: 'height 0.3s ease'
-                  }} />
+                  <div key={i} className="chart-bar" style={{ height: `${h}%` }} />
                 ))}
               </div>
             )}
