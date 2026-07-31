@@ -80,10 +80,10 @@ export const useBoardStore = create<BoardState>((set, get) => ({
       activeTaskId: state.activeTaskId === taskId ? null : state.activeTaskId,
     }));
     try {
-      await apiClient.delete(`/tasks/${taskId}`); // Assuming you'll add this DELETE route
+      await apiClient.delete(`/tasks/${taskId}`);
     } catch (error) {
       console.error('Failed to delete task:', error);
-      get().fetchTasks();
+      get().fetchTasks(); // Оптимистичный откат в случае ошибки
     }
   },
 
