@@ -9,9 +9,8 @@ interface Props {
 }
 
 export const BoardColumn = ({ column, index }: Props) => {
-  const tasks = useBoardStore((state) =>
-    state.tasks.filter((t) => t.columnId === column.id)
-  );
+  const allTasks = useBoardStore((state) => state.tasks);
+  const tasks = allTasks.filter((t) => t.columnId === column.id);
   const addTask = useBoardStore((state) => state.addTask);
 
   return (
