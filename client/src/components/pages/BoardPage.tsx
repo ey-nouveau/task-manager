@@ -1,3 +1,4 @@
+import { Spin } from "antd";
 import { useBoardStore } from "../../store/useBoardStore";
 import { BoardColumn } from "../organisms/BoardColumn";
 import { TaskDetailsModal } from "../organisms/TaskDetailsModal";
@@ -7,8 +8,17 @@ export const BoardPage = () => {
   const activeTaskId = useBoardStore((state) => state.activeTaskId);
   const setActiveTask = useBoardStore((state) => state.setActiveTask);
   const tasks = useBoardStore((state) => state.tasks);
+  const isLoading = useBoardStore((state) => state.isLoading);
 
   const activeTask = tasks.find((t) => t.id === activeTaskId) || null;
+
+  if (isLoading && tasks.length === 0) {
+    return (
+      <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
+        <Spin size="large" />
+      </div>
+    );
+  }
 
   return (
     <div

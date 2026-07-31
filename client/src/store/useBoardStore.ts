@@ -20,6 +20,7 @@ interface BoardState {
   columns: Column[];
   tasks: Task[];
   activeTaskId: string | number | null;
+  isLoading: boolean;
   fetchTasks: () => Promise<void>;
   addTask: (status: string, title: string) => Promise<void>;
   updateTask: (taskId: string | number, updates: Partial<Task>) => Promise<void>;
@@ -36,13 +37,16 @@ export const useBoardStore = create<BoardState>((set, get) => ({
   ],
   tasks: [],
   activeTaskId: null,
+  isLoading: false,
 
   fetchTasks: async () => {
+    set({ isLoading: true });
     try {
       const tasks = await apiClient.get<Task[]>('/tasks');
-      set({ tasks });
+      set({ tasks: tasks || [], isLoading: false });
     } catch (error) {
       console.error('Failed to fetch tasks:', error);
+      set({ isLoading: false });
     }
   },
 
