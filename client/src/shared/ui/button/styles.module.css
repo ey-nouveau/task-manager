@@ -1,0 +1,78 @@
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border-radius: 8px;
+  font-weight: 500;
+  font-family: inherit;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+  outline: none;
+}
+
+.button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.size-small {
+  height: 24px;
+  padding: 0 7px;
+  font-size: 13px;
+  border-radius: 6px;
+}
+
+.size-medium {
+  height: 32px;
+  padding: 4px 15px;
+  font-size: 14px;
+}
+
+.size-large {
+  height: 40px;
+  padding: 6px 15px;
+  font-size: 14px;
+}
+
+/* Variant: Default (Outlined) */
+.variant-default {
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: var(--color-text-light);
+}
+.variant-default:hover:not(:disabled) {
+  border-color: var(--color-purple);
+  color: var(--color-purple);
+}
+
+/* Variant: Primary */
+.variant-primary {
+  background: var(--color-purple);
+  border: 1px solid var(--color-purple);
+  color: var(--color-text-dark);
+}
+.variant-primary:hover:not(:disabled) {
+  opacity: 0.8;
+}
+
+/* Variant: Text */
+.variant-text {
+  background: transparent;
+  border: 1px solid transparent;
+  color: var(--color-text-light);
+}
+.variant-text:hover:not(:disabled) {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+/* Variant: Danger */
+.variant-danger {
+  background: transparent;
+  border: 1px solid var(--color-salmon);
+  color: var(--color-salmon);
+}
+.variant-danger:hover:not(:disabled) {
+  background: color-mix(in srgb, var(--color-salmon) 10%, transparent);
+}
