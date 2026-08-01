@@ -21,7 +21,7 @@ export const BoardPage = () => {
   }
 
   return (
-    <div style={{ display: "flex", height: "100%", width: "100%", overflow: "hidden" }}>
+    <div style={{ display: "flex", height: "100%", width: "100%", overflow: "hidden", background: "var(--color-dark)" }}>
       {/* Board Scrollable Area */}
       <div
         style={{
@@ -30,8 +30,8 @@ export const BoardPage = () => {
           height: "100%",
           flex: 1,
           overflowX: "auto",
-          paddingBottom: "24px",
-          paddingRight: "24px" // padding before the sidebar
+          padding: "32px 24px 32px 48px",
+          boxSizing: "border-box"
         }}
       >
         {columns.map((col, index) => (
