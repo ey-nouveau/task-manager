@@ -1,7 +1,7 @@
 [build]
-  command = "npm run build"
+  command = "npm install && cd client && npm install && npm run build"
   publish = "client/dist"
-  functions = "server/functions"
+  functions = "netlify/functions"
 
 [functions]
   node_bundle = true
