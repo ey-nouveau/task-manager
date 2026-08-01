@@ -9,6 +9,8 @@ const port = 3002;
 app.use(cors());
 app.use(express.json());
 
+// Export app for serverless use
+export default app;
 
 app.get('/api/tasks', async (req, res) => {
   const { data, error } = await dbClient
@@ -89,8 +91,8 @@ app.put('/api/tasks/:taskId', async (req, res) => {
   res.status(204);
 });
 
-app.listen(port, (error) => {
-  if (error) {
-    console.log(error);
-  }
-});
+if (process.env.NODE_ENV !== 'production') {
+  app.listen(port, () => {
+    console.log(`Server is running on http://localhost:${port}`);
+  });
+}
