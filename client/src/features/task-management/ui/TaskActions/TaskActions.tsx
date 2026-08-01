@@ -1,4 +1,5 @@
-import { Button, Space } from 'antd';
+import { Button } from '@/shared/ui/button';
+import { Row } from '@/shared/ui/row';
 import { ArrowLeftOutlined, ArrowRightOutlined, DeleteOutlined } from '@ant-design/icons';
 import type { MouseEvent } from 'react';
 
@@ -15,10 +16,10 @@ export const TaskActions = ({ onMoveLeft, onMoveRight, onDelete }: Props) => {
   };
 
   return (
-    <Space size="small">
-      {onMoveLeft && <Button type="text" size="small" icon={<ArrowLeftOutlined style={{ color: 'var(--color-text-muted)' }}/>} onClick={handle(onMoveLeft)} />}
-      {onMoveRight && <Button type="text" size="small" icon={<ArrowRightOutlined style={{ color: 'var(--color-text-muted)' }}/>} onClick={handle(onMoveRight)} />}
-      <Button type="text" size="small" danger icon={<DeleteOutlined />} onClick={handle(onDelete)} />
-    </Space>
+    <Row >
+      {onMoveLeft && <Button variant="text"  icon={<ArrowLeftOutlined style={{ color: 'var(--color-text-muted)' }}/>} onClick={handle(onMoveLeft)} />}
+      {onMoveRight && <Button variant="text"  icon={<ArrowRightOutlined style={{ color: 'var(--color-text-muted)' }}/>} onClick={handle(onMoveRight)} />}
+      <Button variant="text"  danger icon={<DeleteOutlined />} onClick={handle(onDelete)} />
+    </Row>
   );
 };

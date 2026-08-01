@@ -1,6 +1,6 @@
 import { useState } from "react";
 import type { KeyboardEvent } from "react";
-import { Button } from "antd";
+import { Button } from "@/shared/ui/button";
 import { Input } from "@/shared/ui/input";
 import { Row } from "@/shared/ui/row";
 import styles from "./styles.module.css";
@@ -32,7 +32,7 @@ export const AddTask = ({ onSubmit }: Props) => {
         placeholder="Add new task..."
         style={{ flex: 1 }}
       />
-      <Button type="default" onClick={handleSubmit} className={styles.button}>
+      <Button variant="default" onClick={handleSubmit} className={styles.button}>
         Add
       </Button>
     </Row>
