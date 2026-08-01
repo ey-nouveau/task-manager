@@ -60,11 +60,17 @@ export const WidgetModal = () => {
   };
 
   const handleAdd = () => {
-    if (!title.trim()) return;
+    // If iframe, title and url are required. Otherwise we use a default title or skip it.
+    let finalTitle = title.trim();
+    if (selectedType === 'clock') finalTitle = 'World Clock';
+    if (selectedType === 'native_chart') finalTitle = 'Native Chart';
+    if (selectedType === 'text_note') finalTitle = 'Sticky Note';
+
+    if (selectedType === 'iframe' && !finalTitle) return;
 
     addWidget({
       type: selectedType as any,
-      title: title.trim(),
+      title: finalTitle,
       url: selectedType === "iframe" ? url.trim() : undefined,
     });
 
@@ -171,31 +177,33 @@ export const WidgetModal = () => {
           <div
             style={{ display: "flex", flexDirection: "column", gap: "16px" }}
           >
-            <div>
-              <div
-                style={{
-                  fontSize: "12px",
-                  color: "var(--color-text-muted)",
-                  marginBottom: "6px",
-                }}
-              >
-                Widget Title
+            {selectedType !== "clock" && selectedType !== "native_chart" && selectedType !== "text_note" && (
+              <div>
+                <div
+                  style={{
+                    fontSize: "12px",
+                    color: "var(--color-text-muted)",
+                    marginBottom: "6px",
+                  }}
+                >
+                  Widget Title
+                </div>
+                <Input
+                  value={title}
+                  onChange={(e) => setTitle(e.target.value)}
+                  placeholder="e.g. Analytics, Weather..."
+                  variant="borderless"
+                  style={{
+                    background: "rgba(0,0,0,0.3)",
+                    borderRadius: "10px",
+                    padding: "8px 12px",
+                    color: "var(--color-text-light)",
+                    fontSize: "14px",
+                    height: "40px",
+                  }}
+                />
               </div>
-              <Input
-                value={title}
-                onChange={(e) => setTitle(e.target.value)}
-                placeholder="e.g. Analytics, Weather..."
-                variant="borderless"
-                style={{
-                  background: "rgba(0,0,0,0.3)",
-                  borderRadius: "10px",
-                  padding: "8px 12px",
-                  color: "var(--color-text-light)",
-                  fontSize: "14px",
-                  height: "40px",
-                }}
-              />
-            </div>
+            )}
 
             {selectedType === "iframe" && (
               <div>
@@ -242,7 +250,7 @@ export const WidgetModal = () => {
               <Button
                 type="default"
                 onClick={handleAdd}
-                disabled={!title}
+                disabled={selectedType === 'iframe' ? (!title || !url) : false}
                 style={{
                   flex: 1,
                   height: "40px",
