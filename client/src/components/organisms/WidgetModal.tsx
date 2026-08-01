@@ -69,7 +69,8 @@ export const WidgetModal = () => {
         body: { padding: '24px' },
         mask: { backdropFilter: 'blur(4px)', background: 'rgba(0,0,0,0.4)' }
       }}
-      wrapClassName="glass-modal"
+      className="glass-modal"
+      wrapClassName="glass-modal-wrap"
       rootClassName="glass-modal-root"
     >
       <div style={{ color: 'var(--color-text-light)' }}>

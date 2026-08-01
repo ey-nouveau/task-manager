@@ -139,9 +139,12 @@ body {
 }
 
 /* Glass Modal Custom Overrides */
+.ant-modal .ant-modal-content,
 .glass-modal .ant-modal-content,
-.glass-modal-root .ant-modal-content {
+.glass-modal-root .ant-modal-content,
+.glass-modal-wrap .ant-modal-content {
   background-color: transparent !important;
+  background: transparent !important;
   box-shadow: none !important;
 }
 
