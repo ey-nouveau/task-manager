@@ -1,6 +1,6 @@
 import { useBoardStore } from "../../store/useBoardStore";
 import { BoardColumn } from "../organisms/BoardColumn";
-import { TaskDetailsModal } from "../organisms/TaskDetailsModal";
+import { TaskDetailsSidebar } from "../organisms/TaskDetailsSidebar";
 import { Spin } from "antd";
 
 export const BoardPage = () => {
@@ -29,13 +29,14 @@ export const BoardPage = () => {
         boxSizing: "border-box",
         overflowX: "auto",
         alignItems: "flex-start",
+        paddingBottom: "24px"
       }}
     >
       {columns.map((col, index) => (
         <BoardColumn key={col.id} column={col} index={index} />
       ))}
 
-      <TaskDetailsModal
+      <TaskDetailsSidebar
         task={activeTask}
         isOpen={!!activeTaskId}
         onClose={() => setActiveTask(null)}
