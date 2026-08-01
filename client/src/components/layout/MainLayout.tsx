@@ -11,7 +11,7 @@ import { Responsive } from './Responsive';
 
 const navItems = [
   { path: '/', label: 'Home', icon: <HomeOutlined /> },
-  { path: '/', label: 'Dashboard', icon: <AppstoreOutlined /> },
+  { path: '/dashboard', label: 'Dashboard', icon: <AppstoreOutlined /> },
   { path: '/board', label: 'Task Board', icon: <AppstoreOutlined /> },
   { path: '#', label: 'Integrations', icon: <LinkOutlined /> },
   { path: '#', label: 'Preferences', icon: <SettingOutlined /> },
@@ -30,7 +30,7 @@ export const MainLayout = () => {
   return (
     <div className="app-container">
       <div className="app-window">
-        <div className={location.pathname === '/' ? "top-section dashboard" : "top-section mini"}>
+        <div className={location.pathname === '/dashboard' ? "top-section dashboard" : "top-section mini"}>
           <div className="main-header">
             <div style={{ fontSize: '24px' }}>
               <CodeSandboxOutlined />
@@ -39,8 +39,10 @@ export const MainLayout = () => {
             <Responsive layout="desktop">
               <div className="nav-pill-container">
                 {navItems.map((item) => {
-                  const isActive = item.path === '/' && item.label === 'Dashboard' 
+                  const isActive = item.path === '/' && item.label === 'Home' 
                                     ? location.pathname === '/' 
+                                    : item.path === '/dashboard'
+                                    ? location.pathname === '/dashboard'
                                     : item.path === '/board'
                                     ? location.pathname === '/board'
                                     : false;
@@ -65,8 +67,10 @@ export const MainLayout = () => {
             <Responsive layout="mobile">
               <div className="nav-pill-container" style={{ width: '100%', marginTop: '16px' }}>
                 {navItems.slice(0, 3).map((item) => {
-                  const isActive = item.path === '/' && item.label === 'Dashboard' 
+                  const isActive = item.path === '/' && item.label === 'Home' 
                                     ? location.pathname === '/' 
+                                    : item.path === '/dashboard'
+                                    ? location.pathname === '/dashboard'
                                     : item.path === '/board'
                                     ? location.pathname === '/board'
                                     : false;
@@ -121,12 +125,14 @@ export const MainLayout = () => {
           </div>
 
           <div className="title-chart-container">
-            <h1 className="main-title">
-              {location.pathname === '/board' ? 'Task Board' : 'Dashboard'}
-            </h1>
+            {location.pathname !== '/' && (
+              <h1 className="main-title">
+                {location.pathname === '/board' ? 'Task Board' : 'Dashboard'}
+              </h1>
+            )}
             
             <Responsive layout="desktop">
-              {location.pathname === '/' && (
+              {location.pathname === '/dashboard' && (
                 <div className="chart-container">
                   <div style={{
                     position: 'absolute',
@@ -154,7 +160,7 @@ export const MainLayout = () => {
           </div>
         </div>
 
-        <div className="bottom-section">
+        <div className={`bottom-section ${location.pathname === '/' ? 'no-padding' : ''}`}>
           <Outlet />
         </div>
       </div>

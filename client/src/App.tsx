@@ -2,6 +2,7 @@ import { ConfigProvider } from "antd";
 import { HashRouter, Routes, Route } from "react-router-dom";
 import { BoardPage } from "./components/pages/BoardPage";
 import { DashboardPage } from "./components/pages/DashboardPage";
+import { HomePage } from "./components/pages/HomePage";
 import { MainLayout } from "./components/layout/MainLayout";
 import { useEffect } from "react";
 import { useBoardStore } from "./store/useBoardStore";
@@ -27,7 +28,8 @@ export const App = () => {
       <HashRouter>
         <Routes>
           <Route element={<MainLayout />}>
-            <Route path="/" element={<DashboardPage />} />
+            <Route path="/" element={<HomePage />} />
+            <Route path="/dashboard" element={<DashboardPage />} />
             <Route path="/board" element={<BoardPage />} />
           </Route>
         </Routes>
