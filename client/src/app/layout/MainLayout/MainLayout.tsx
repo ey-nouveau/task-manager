@@ -7,7 +7,7 @@ import {
   CodeSandboxOutlined 
 } from '@ant-design/icons';
 import { useState } from 'react';
-import { Responsive } from '@/shared/ui/Responsive/Responsive';
+import { Responsive } from '@/shared/ui/responsive';
 import styles from './MainLayout.module.css';
 
 const navItems = [

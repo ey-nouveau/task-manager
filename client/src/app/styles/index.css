@@ -1,15 +1,15 @@
 :root {
-  --color-bg-outer: #3C3843;
+  --color-bg-outer: #3c3843;
   --color-purple: #8f5ff1;
-  --color-dark: #0E0E0E;
+  --color-dark: #0e0e0e;
   --color-orange: #f18b6e;
   --color-yellow: #ebd560;
   --color-green: #7fce89;
   --color-light-grey: #a5ada4;
   --color-dark-grey: #272528;
-  --color-text-muted: #8E8E8E;
+  --color-text-muted: #8e8e8e;
   --color-text-dark: #121212;
-  --color-text-light: #FFFFFF;
+  --color-text-light: #ffffff;
   --color-pink: #f1b3d6;
   --color-blue: #a3c4f3;
   --color-mint: #9ce6d4;
@@ -34,16 +34,19 @@
   --color-stone: #d4cfcc;
   --color-dusty-blue: #93a8c1;
   --color-crepe: #f6dfcd;
-  
+
   --radius-app: 24px;
   --radius-card: 16px;
 }
 
 * {
   box-sizing: border-box;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.1) transparent;
 }
 
-html, body {
+html,
+body {
   margin: 0;
   padding: 0;
   height: 100vh;
@@ -52,30 +55,12 @@ html, body {
 
 body {
   background-color: var(--color-bg-outer);
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
   color: var(--color-text-light);
 }
 
-::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
-}
-
-::-webkit-scrollbar-track {
-  background: transparent;
-}
-
-::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: 4px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: rgba(255, 255, 255, 0.2);
-}
-
-/* Glass Modal Custom Overrides */
 .ant-modal .ant-modal-content,
+.ant-modal .ant-modal-container,
 .glass-modal .ant-modal-content,
 .glass-modal-root .ant-modal-content,
 .glass-modal-wrap .ant-modal-content {

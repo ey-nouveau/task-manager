@@ -1,2 +1,2 @@
 export { TaskActions } from './TaskActions/TaskActions';
-export { TaskInput } from './TaskInput/TaskInput';
+export { AddTask } from './add-task/add-task';

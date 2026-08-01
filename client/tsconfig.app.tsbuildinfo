@@ -1,1 +1,36 @@
-{"root":["./src/main.tsx","./src/vite-env.d.ts","./src/app/App.tsx","./src/app/layout/MainLayout/MainLayout.tsx","./src/entities/task/model/store.ts","./src/entities/task/ui/TaskCard/TaskCard.tsx","./src/entities/task/ui/TaskCard/index.ts","./src/entities/widget/model/store.ts","./src/entities/widget/ui/ClockWidget/ClockWidget.tsx","./src/entities/widget/ui/ClockWidget/index.ts","./src/entities/widget/ui/WidgetCard/WidgetCard.tsx","./src/entities/widget/ui/WidgetCard/index.ts","./src/features/task-management/ui/index.ts","./src/features/task-management/ui/TaskActions/TaskActions.tsx","./src/features/task-management/ui/TaskActions/index.ts","./src/features/task-management/ui/TaskInput/TaskInput.tsx","./src/features/task-management/ui/TaskInput/index.ts","./src/features/widget-management/ui/index.ts","./src/features/widget-management/ui/WidgetModal/WidgetModal.tsx","./src/pages/board/ui/BoardPage.tsx","./src/pages/dashboard/ui/DashboardPage.tsx","./src/pages/home/ui/HomePage.tsx","./src/shared/api/api-client.ts","./src/shared/lib/hooks/useIsMobile.ts","./src/shared/lib/hooks/useTime.ts","./src/shared/lib/utils/mockData.ts","./src/shared/ui/Responsive/Responsive.tsx","./src/widgets/board-column/ui/index.ts","./src/widgets/board-column/ui/BoardColumn/BoardColumn.tsx","./src/widgets/task-sidebar/ui/index.ts","./src/widgets/task-sidebar/ui/TaskDetailsSidebar/TaskDetailsSidebar.tsx"],"version":"6.0.3"}
+{
+  "root": [
+    "./src/main.tsx",
+    "./src/vite-env.d.ts",
+    "./src/app/App.tsx",
+    "./src/app/layout/MainLayout/MainLayout.tsx",
+    "./src/entities/task/model/store.ts",
+    "./src/entities/task/ui/TaskCard/TaskCard.tsx",
+    "./src/entities/task/ui/TaskCard/index.ts",
+    "./src/entities/widget/model/store.ts",
+    "./src/entities/widget/ui/ClockWidget/ClockWidget.tsx",
+    "./src/entities/widget/ui/ClockWidget/index.ts",
+    "./src/entities/widget/ui/WidgetCard/WidgetCard.tsx",
+    "./src/entities/widget/ui/WidgetCard/index.ts",
+    "./src/features/task-management/ui/index.ts",
+    "./src/features/task-management/ui/TaskActions/TaskActions.tsx",
+    "./src/features/task-management/ui/TaskActions/index.ts",
+    "./src/features/task-management/ui/AddTask/AddTask.tsx",
+    "./src/features/task-management/ui/AddTask/index.ts",
+    "./src/features/widget-management/ui/index.ts",
+    "./src/features/widget-management/ui/WidgetModal/WidgetModal.tsx",
+    "./src/pages/board/ui/BoardPage.tsx",
+    "./src/pages/dashboard/ui/DashboardPage.tsx",
+    "./src/pages/home/ui/HomePage.tsx",
+    "./src/shared/api/api-client.ts",
+    "./src/shared/lib/hooks/useIsMobile.ts",
+    "./src/shared/lib/hooks/useTime.ts",
+    "./src/shared/lib/utils/mockData.ts",
+    "./src/shared/ui/Responsive/Responsive.tsx",
+    "./src/widgets/board-column/ui/index.ts",
+    "./src/widgets/board-column/ui/BoardColumn/BoardColumn.tsx",
+    "./src/widgets/task-sidebar/ui/index.ts",
+    "./src/widgets/task-sidebar/ui/TaskDetailsSidebar/TaskDetailsSidebar.tsx"
+  ],
+  "version": "6.0.3"
+}
