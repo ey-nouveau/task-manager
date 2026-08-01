@@ -4,11 +4,28 @@ import { WidgetModal } from "@/features/widget-management/ui/WidgetModal/WidgetM
 import { WidgetCard } from "@/entities/widget/ui/WidgetCard/WidgetCard";
 import styles from "./HomePage.module.css";
 import { useTheme } from "@/shared/stores/theme/selectors";
+import { useEffect, useState } from "react";
+import { getRandomImage } from "../lib/get-random-image";
+
+const BG_IMAGE_CHANGE_INTERVAL = 1000 * 60;
 
 export const HomePage = () => {
   const theme = useTheme();
-  const bgPath = theme === "dark" ? "vibey-bg-dark.png" : "vibey-bg.png";
-  const bgUrl = import.meta.env.BASE_URL + bgPath;
+  const [bgImage, setBgImage] = useState(() => getRandomImage(theme));
+
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      setBgImage(getRandomImage(theme));
+    }, BG_IMAGE_CHANGE_INTERVAL);
+
+    return () => clearInterval(intervalId);
+  }, []);
+
+  useEffect(() => {
+    setBgImage(getRandomImage(theme));
+  }, [theme]);
+
+  const bgUrl = import.meta.env.BASE_URL + bgImage;
   const { widgets, setModalOpen } = useWidgetStore();
 
   return (

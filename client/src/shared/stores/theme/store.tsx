@@ -1,7 +1,6 @@
 import { createStore } from "zustand";
 import { persist } from "zustand/middleware";
-
-type Theme = "light" | "dark";
+import { Theme } from "./types";
 
 export type ThemeStore = {
   theme: Theme;

@@ -97,41 +97,6 @@
   text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
 }
 
-.themeToggle {
-  width: 64px;
-  height: 32px;
-  background: rgba(20, 20, 20, 0.45);
-  backdrop-filter: blur(24px);
-  -webkit-backdrop-filter: blur(24px);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  border-radius: 40px;
-  padding: 3px;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  flex-shrink: 0;
-  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3);
-}
-
-.themeThumb {
-  width: 24px;
-  height: 24px;
-  background: rgba(255, 255, 255, 0.15);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: transform 0.3s ease;
-  color: var(--color-text-light);
-  font-size: 12px;
-}
-
-.themeThumbDark {
-  transform: translateX(32px);
-}
-
 .titleChartContainer {
   display: flex;
   justify-content: space-between;

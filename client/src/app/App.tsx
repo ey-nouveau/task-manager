@@ -2,7 +2,7 @@ import { HashRouter, Routes, Route } from "react-router-dom";
 import { BoardPage } from "@/pages/board/ui/BoardPage";
 import { DashboardPage } from "@/pages/dashboard/ui";
 import { HomePage } from "@/pages/home/ui/HomePage";
-import { MainLayout } from "@/app/layout/MainLayout/MainLayout";
+import { MainLayout } from "@/app/layout/main-layout";
 import { useEffect } from "react";
 import { useBoardStore } from "@/entities/task/model/store";
 import { ThemeProvider } from "@/shared/stores/theme/provider";

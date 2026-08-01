@@ -1,4 +1,5 @@
 import { Link, Outlet, useLocation } from "react-router-dom";
+
 import {
   LayoutGrid,
   Home,
@@ -6,12 +7,13 @@ import {
   Settings,
   Box,
 } from "lucide-react";
-import { useState } from "react";
+
 import { Responsive } from "@/shared/ui/responsive";
 import { Row } from "@/shared/ui/row";
 import { Col } from "@/shared/ui/col";
-import styles from "./MainLayout.module.css";
+import styles from "./styles.module.css";
 import { useTheme, useToggleTheme } from "@/shared/stores/theme/selectors";
+import { ThemeToggle } from "@/shared/ui/toggle";
 
 const navItems = [
   { path: "/", label: "Home", icon: <Home size={18} /> },
@@ -104,19 +106,7 @@ export const MainLayout = () => {
               </Row>
             </Responsive>
 
-            <Row
-              align="center"
-              className={styles.themeToggle}
-              onClick={toggleTheme}
-            >
-              <Row
-                align="center"
-                justify="center"
-                className={`${styles.themeThumb} ${isDarkMode ? styles.themeThumbDark : ""}`}
-              >
-                {isDarkMode ? "🌙" : "☀️"}
-              </Row>
-            </Row>
+            <ThemeToggle isActive={isDarkMode} onToggle={toggleTheme} />
           </Row>
 
           <Row
