@@ -98,7 +98,7 @@ export const WidgetModal = () => {
       wrapClassName="glass-modal-wrap"
       rootClassName="glass-modal-root"
     >
-      <div style={{ color: "var(--color-text-light)" }}>
+      <div className={styles.content}>
         <h2 className={styles.title}>
           {step === 1 ? "Select Widget" : "Configure"}
         </h2>
@@ -110,9 +110,9 @@ export const WidgetModal = () => {
                 key={type.id} 
                 placement="bottom" 
                 title={
-                  <div style={{ textAlign: 'center' }}>
-                    <div style={{ fontWeight: 600, marginBottom: '2px' }}>{type.label}</div>
-                    <div style={{ opacity: 0.8, fontSize: '12px' }}>{type.desc}</div>
+                  <div className={styles.tooltipContainer}>
+                    <div className={styles.tooltipLabel}>{type.label}</div>
+                    <div className={styles.tooltipDesc}>{type.desc}</div>
                   </div>
                 }
                 color="rgba(0,0,0,0.8)"
@@ -130,7 +130,7 @@ export const WidgetModal = () => {
         )}
 
         {step === 2 && (
-          <div style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
+          <div className={styles.formContainer}>
             {selectedType !== "clock" && selectedType !== "native_chart" && selectedType !== "text_note" && (
               <div>
                 <div className={styles.label}>Widget Title</div>
@@ -157,7 +157,7 @@ export const WidgetModal = () => {
               </div>
             )}
 
-            <div style={{ display: "flex", gap: "8px", marginTop: "8px" }}>
+            <div className={styles.buttonsRow}>
               <Button
                 type="default"
                 onClick={() => setStep(1)}
