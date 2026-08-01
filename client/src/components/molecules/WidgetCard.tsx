@@ -6,6 +6,50 @@ import { ClockWidget } from "../widgets/clock";
 export const WidgetCard = ({ widget }: { widget: Widget }) => {
   const { removeWidget } = useWidgetStore();
 
+  // "Seamless" widgets like Clock don't need the default glass wrapper with a header.
+  // They are fully self-contained visually.
+  if (widget.type === "clock") {
+    return (
+      <div style={{ position: 'relative', width: '100%', height: '350px' }}>
+        <ClockWidget />
+        {/* Hover delete button overlaid on seamless widgets */}
+        <div
+          onClick={() => removeWidget(widget.id)}
+          style={{
+            position: 'absolute',
+            top: '16px',
+            right: '16px',
+            cursor: "pointer",
+            color: "var(--color-text-muted)",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            width: "32px",
+            height: "32px",
+            borderRadius: "50%",
+            background: "rgba(0,0,0,0.4)",
+            transition: "all 0.2s",
+            opacity: 0.5,
+            zIndex: 10
+          }}
+          onMouseEnter={(e) => {
+            e.currentTarget.style.opacity = '1';
+            e.currentTarget.style.background = "rgba(255,0,0,0.6)";
+            e.currentTarget.style.color = "white";
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.opacity = '0.5';
+            e.currentTarget.style.background = "rgba(0,0,0,0.4)";
+            e.currentTarget.style.color = "var(--color-text-muted)";
+          }}
+        >
+          <DeleteOutlined style={{ fontSize: "14px" }} />
+        </div>
+      </div>
+    );
+  }
+
+  // Standard containerized widgets (Iframe, Note, etc) that need a visible header
   return (
     <div
       style={{
@@ -81,8 +125,6 @@ export const WidgetCard = ({ widget }: { widget: Widget }) => {
             loading="lazy"
             referrerPolicy="no-referrer-when-downgrade"
           />
-        ) : widget.type === "clock" ? (
-          <ClockWidget />
         ) : (
           <div
             style={{
