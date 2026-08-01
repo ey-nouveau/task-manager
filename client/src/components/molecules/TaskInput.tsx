@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import type { KeyboardEvent } from 'react';
-import { Input, Button, Space } from 'antd';
+import { Input, Button } from 'antd';
 
 interface Props {
   onSubmit: (value: string) => void;
@@ -22,14 +22,22 @@ export const TaskInput = ({ onSubmit, placeholder }: Props) => {
   };
 
   return (
-    <Space.Compact style={{ width: '100%', marginTop: '8px' }}>
+    <div style={{ display: 'flex', gap: '8px' }}>
       <Input
+        variant="filled"
+        style={{ background: 'var(--color-dark)', color: 'var(--color-text-light)', border: '1px solid rgba(255,255,255,0.08)' }}
         value={value}
         onChange={(e) => setValue(e.target.value)}
         onKeyDown={onKeyDown}
         placeholder={placeholder}
       />
-      <Button onClick={handleSubmit}>Add</Button>
-    </Space.Compact>
+      <Button 
+        type="primary" 
+        onClick={handleSubmit}
+        style={{ background: 'var(--color-purple)', border: 'none' }}
+      >
+        Add
+      </Button>
+    </div>
   );
 };

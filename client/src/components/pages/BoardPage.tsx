@@ -1,6 +1,6 @@
 import { useBoardStore } from "../../store/useBoardStore";
 import { BoardColumn } from "../organisms/BoardColumn";
-import { TaskDetailsModal } from "../organisms/TaskDetailsModal";
+import { TaskDetailsSidebar } from "../organisms/TaskDetailsSidebar";
 import { Spin } from "antd";
 
 export const BoardPage = () => {
@@ -21,21 +21,26 @@ export const BoardPage = () => {
   }
 
   return (
-    <div
-      style={{
-        display: "flex",
-        gap: "24px",
-        height: "100%",
-        boxSizing: "border-box",
-        overflowX: "auto",
-        alignItems: "flex-start",
-      }}
-    >
-      {columns.map((col, index) => (
-        <BoardColumn key={col.id} column={col} index={index} />
-      ))}
+    <div style={{ display: "flex", height: "100%", width: "100%", overflow: "hidden" }}>
+      {/* Board Scrollable Area */}
+      <div
+        style={{
+          display: "flex",
+          gap: "24px",
+          height: "100%",
+          flex: 1,
+          overflowX: "auto",
+          paddingBottom: "24px",
+          paddingRight: "24px" // padding before the sidebar
+        }}
+      >
+        {columns.map((col, index) => (
+          <BoardColumn key={col.id} column={col} index={index} />
+        ))}
+      </div>
 
-      <TaskDetailsModal
+      {/* Embedded Notion-style Sidebar */}
+      <TaskDetailsSidebar
         task={activeTask}
         isOpen={!!activeTaskId}
         onClose={() => setActiveTask(null)}

@@ -16,9 +16,9 @@ export const TaskActions = ({ onMoveLeft, onMoveRight, onDelete }: Props) => {
 
   return (
     <Space size="small">
-      {onMoveLeft && <Button size="small" icon={<ArrowLeftOutlined />} onClick={handle(onMoveLeft)} />}
-      {onMoveRight && <Button size="small" icon={<ArrowRightOutlined />} onClick={handle(onMoveRight)} />}
-      <Button size="small" danger icon={<DeleteOutlined />} onClick={handle(onDelete)} />
+      {onMoveLeft && <Button type="text" size="small" icon={<ArrowLeftOutlined style={{ color: 'var(--color-text-muted)' }}/>} onClick={handle(onMoveLeft)} />}
+      {onMoveRight && <Button type="text" size="small" icon={<ArrowRightOutlined style={{ color: 'var(--color-text-muted)' }}/>} onClick={handle(onMoveRight)} />}
+      <Button type="text" size="small" danger icon={<DeleteOutlined />} onClick={handle(onDelete)} />
     </Space>
   );
 };
