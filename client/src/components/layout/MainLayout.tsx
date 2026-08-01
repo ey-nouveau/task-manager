@@ -102,30 +102,36 @@ export const MainLayout = () => {
               style={{
                 width: '64px',
                 height: '32px',
-                background: 'var(--color-dark)',
+                background: 'rgba(20, 20, 20, 0.45)',
+                backdropFilter: 'blur(24px)',
+                WebkitBackdropFilter: 'blur(24px)',
+                border: '1px solid rgba(255, 255, 255, 0.15)',
                 borderRadius: '40px',
-                padding: '4px',
+                padding: '3px',
                 cursor: 'pointer',
                 display: 'flex',
                 alignItems: 'center',
-                flexShrink: 0
+                flexShrink: 0,
+                boxShadow: 'inset 0 2px 4px rgba(0,0,0,0.3)'
               }}
               onClick={() => setIsDarkMode(!isDarkMode)}
             >
               <div style={{
                 width: '24px',
                 height: '24px',
-                background: 'var(--color-purple)',
+                background: 'rgba(255, 255, 255, 0.15)',
+                border: '1px solid rgba(255, 255, 255, 0.2)',
+                boxShadow: '0 2px 8px rgba(0,0,0,0.2)',
                 borderRadius: '50%',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
                 transform: isDarkMode ? 'translateX(32px)' : 'translateX(0)',
                 transition: 'transform 0.3s ease',
-                color: 'var(--color-dark)',
+                color: 'var(--color-text-light)',
                 fontSize: '12px'
               }}>
-                🌙
+                {isDarkMode ? '🌙' : '☀️'}
               </div>
             </div>
           </div>

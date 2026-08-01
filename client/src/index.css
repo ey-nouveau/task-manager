@@ -138,10 +138,10 @@ body {
   pointer-events: auto;
 }
 
-.bottom-section.home {
-  padding: 0 !important;
-  background: transparent;
-  flex: 1;
+/* Glass Modal Custom Overrides */
+.glass-modal .ant-modal-content {
+  background-color: transparent !important;
+  box-shadow: none !important;
 }
 
 .section-title {
