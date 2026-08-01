@@ -1,0 +1,76 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: 32px 48px;
+  overflow-y: auto;
+  box-sizing: border-box;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 12px;
+  width: 100%;
+}
+
+.card {
+  border-radius: 16px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 160px;
+  position: relative;
+}
+
+.cardHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.cardTitle {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.cardIcon {
+  opacity: 0.8;
+  cursor: pointer;
+}
+
+.cardValue {
+  font-size: 40px;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  margin-top: 16px;
+}
+
+.incomeIcon {
+  display: flex;
+  gap: 8px;
+  border: 1px solid rgba(0,0,0,0.2);
+  border-radius: 20px;
+  padding: 2px 8px;
+  font-size: 10px;
+}
+
+.daily {
+  font-weight: 500;
+}
+
+.weekly {
+  opacity: 0.5;
+}
+
+.addIcon {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: var(--color-orange);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-dark);
+}
