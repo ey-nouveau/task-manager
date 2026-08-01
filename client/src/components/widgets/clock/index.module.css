@@ -1,64 +1,49 @@
-.container {
-  -webkit-box-shadow: 5px 5px 15px 5px #000000;
-  box-shadow: 5px 5px 15px 5px #000000;
-  border: 1px solid black;
-  border-radius: 100%;
-  height: 180px;
-  width: 180px;
+.widgetContainer {
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  position: relative;
-}
-
-.number {
-  position: absolute;
-  transform: translate(-50%, -50%);
-}
-
-.hand {
-  width: 60%;
   height: 100%;
-  position: absolute;
-  transform-origin: center;
+  width: 100%;
+  gap: 24px;
+}
+
+.cityTitle {
+  font-size: 14px;
+  color: var(--color-text-muted);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+.clockFace {
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  /* The key to Neumorphism Concave effect */
+  background: rgba(10, 10, 10, 0.4);
+  box-shadow: inset 8px 8px 24px rgba(0, 0, 0, 0.9), 
+              inset -8px -8px 24px rgba(255, 255, 255, 0.03);
+  position: relative;
   display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
 }
 
-.half {
-  width: 50%;
-  height: 4px;
-  background-color: transparent;
-  border-radius: 12px;
-}
-
-.hoursHand,
-.minutesHand,
-.secondsHand {
+.centerPivot {
   position: absolute;
-  right: 50%;
-  background-color: black;
-  border-radius: 12px;
+  top: calc(50% - 4px);
+  left: calc(50% - 4px);
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--color-text-light);
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.5);
+  z-index: 10;
 }
 
-.hoursHand {
-  height: 6px;
-  width: 30%;
-  background: #222;
-  border-radius: 10px;
-}
-
-.minutesHand {
-  height: 4px;
-  width: 42%;
-  background: #333;
-  border-radius: 10px;
-}
-
-.secondsHand {
-  height: 2px;
-  width: 50%;
-  background: #e53935;
-  border-radius: 10px;
+.dateSubtitle {
+  font-size: 15px;
+  color: var(--color-text-light);
+  font-weight: 500;
 }

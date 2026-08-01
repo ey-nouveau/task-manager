@@ -1,102 +1,66 @@
-import { useEffect, useState } from "react";
+import { useTime } from "../../../hooks/useTime";
 import s from "./index.module.css";
 
-const NUMBERS = Array.from({ length: 12 }).map((_, i) => i + 1);
-
-const getPositionStyles = (width: number, number: number) => {
-  const radius = width / 2 - 20;
-  const center = width / 2;
-  const angle = (number * 30 - 90) * (Math.PI / 180);
-
-  return {
-    left: center + radius * Math.cos(angle),
-    top: center + radius * Math.sin(angle),
-  };
-};
-
-const getRotation = (base: number, value: number) => {
-  const rotation = (value / base) * 360 - 90;
-
-  return {
-    transform: `rotate(${rotation}deg)`,
-  };
-};
-
 const Hand = ({
-  base,
-  value,
-  children,
+  width,
+  height,
+  color,
+  rotation,
 }: {
-  base: number;
-  value: number;
-  children: React.ReactNode;
+  width: number;
+  height: number;
+  color: string;
+  rotation: number;
 }) => {
   return (
-    <div style={getRotation(base, value)} className={s.hand}>
-      {children}
-      <div className={s.half} />
-    </div>
-  );
-};
-
-const SecondsHand = ({ second }: { second: number }) => {
-  return (
-    <Hand base={60} value={second}>
-      <div className={s.secondsHand} />
-    </Hand>
-  );
-};
-
-const MinutesHand = ({ minute }: { minute: number }) => {
-  return (
-    <Hand base={60} value={minute}>
-      <div className={s.minutesHand} />
-    </Hand>
-  );
-};
-
-const HoursHand = ({ hour }: { hour: number }) => {
-  return (
-    <Hand base={12} value={hour % 12}>
-      <div className={s.hoursHand} />
-    </Hand>
-  );
-};
-
-const Hands = ({ time }: { time: Date }) => {
-  return (
-    <>
-      <SecondsHand second={time.getSeconds()} />
-      <MinutesHand minute={time.getMinutes()} />
-      <HoursHand hour={time.getHours()} />
-    </>
+    <div
+      style={{
+        position: "absolute",
+        bottom: "50%",
+        left: `calc(50% - ${width / 2}px)`,
+        width: `${width}px`,
+        height: `${height}px`,
+        backgroundColor: color,
+        borderRadius: `${width}px`,
+        transformOrigin: "bottom center",
+        transform: `rotate(${rotation}deg)`,
+        transition: "transform 0.1s cubic-bezier(0.4, 2.08, 0.55, 0.44)",
+      }}
+    />
   );
 };
 
 export const ClockWidget = () => {
-  const [time, setTime] = useState(new Date());
+  const time = useTime();
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setTime(new Date());
-    }, 1000);
+  const hours = time.getHours();
+  const minutes = time.getMinutes();
+  const seconds = time.getSeconds();
 
-    return () => clearInterval(interval);
-  }, []);
+  const hrRotation = (hours % 12) * 30 + minutes * 0.5;
+  const minRotation = minutes * 6 + seconds * 0.1;
+  const secRotation = seconds * 6;
+
+  const dateString = time.toLocaleDateString("en-US", {
+    weekday: "long",
+    month: "long",
+    day: "numeric",
+  });
 
   return (
-    <div className={s.container}>
-      {NUMBERS.map((number) => (
-        <div
-          style={getPositionStyles(180, number)}
-          key={number}
-          className={s.number}
-        >
-          {number}
-        </div>
-      ))}
+    <div className={s.widgetContainer}>
+      <div className={s.cityTitle}>New York</div>
+      
+      <div className={s.clockFace}>
+        <Hand width={4} height={40} color="var(--color-text-light)" rotation={hrRotation} />
+        <Hand width={3} height={60} color="var(--color-text-light)" rotation={minRotation} />
+        <Hand width={2} height={70} color="var(--color-purple)" rotation={secRotation} />
+        
+        {/* Center Pivot */}
+        <div className={s.centerPivot} />
+      </div>
 
-      <Hands time={time} />
+      <div className={s.dateSubtitle}>{dateString}</div>
     </div>
   );
 };

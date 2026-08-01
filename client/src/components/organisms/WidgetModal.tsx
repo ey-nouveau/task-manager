@@ -5,9 +5,16 @@ import {
   GlobalOutlined,
   LineChartOutlined,
   FileTextOutlined,
+  ClockCircleOutlined,
 } from "@ant-design/icons";
 
 const WIDGET_TYPES = [
+  {
+    id: "clock",
+    label: "World Clock",
+    icon: <ClockCircleOutlined />,
+    desc: "Neumorphic minimalist clock",
+  },
   {
     id: "iframe",
     label: "Web Embed",

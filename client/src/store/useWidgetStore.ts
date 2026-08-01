@@ -1,6 +1,6 @@
 import { create } from 'zustand';
 
-export type WidgetType = 'iframe' | 'native_chart' | 'text_note';
+export type WidgetType = 'iframe' | 'native_chart' | 'text_note' | 'clock';
 
 export interface Widget {
   id: string;
