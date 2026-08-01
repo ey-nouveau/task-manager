@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Modal, Input, Button } from "antd";
+import { Modal, Input, Button, Tooltip } from "antd";
 import { useWidgetStore } from "../../store/useWidgetStore";
 import {
   GlobalOutlined,
@@ -108,80 +108,61 @@ export const WidgetModal = () => {
             fontSize: "20px",
             fontWeight: 500,
             letterSpacing: "-0.02em",
+            textAlign: "center"
           }}
         >
-          {step === 1 ? "Add Widget" : "Configure"}
+          {step === 1 ? "Select Widget" : "Configure"}
         </h2>
 
         {step === 1 && (
-          <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
+          <div style={{ 
+            display: 'grid', 
+            gridTemplateColumns: 'repeat(4, 1fr)', 
+            gap: '12px',
+            paddingTop: '8px'
+          }}>
             {WIDGET_TYPES.map((type) => (
-              <div
-                key={type.id}
-                onClick={() => handleTypeSelect(type.id)}
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  gap: "12px",
-                  padding: "8px 12px",
-                  borderRadius: "12px",
-                  background: "rgba(255,255,255,0.03)",
-                  border: "1px solid rgba(255,255,255,0.05)",
-                  cursor: "pointer",
-                  transition: "all 0.2s ease",
-                  minHeight: "48px",
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.background = "rgba(255,255,255,0.08)";
-                  e.currentTarget.style.borderColor = "var(--color-purple)";
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.background = "rgba(255,255,255,0.03)";
-                  e.currentTarget.style.borderColor = "rgba(255,255,255,0.05)";
-                }}
+              <Tooltip 
+                key={type.id} 
+                placement="bottom" 
+                title={
+                  <div style={{ textAlign: 'center' }}>
+                    <div style={{ fontWeight: 600, marginBottom: '2px' }}>{type.label}</div>
+                    <div style={{ opacity: 0.8, fontSize: '12px' }}>{type.desc}</div>
+                  </div>
+                }
+                color="rgba(0,0,0,0.8)"
+                overlayInnerStyle={{ backdropFilter: 'blur(12px)', borderRadius: '8px', border: '1px solid rgba(255,255,255,0.1)' }}
               >
                 <div
+                  onClick={() => handleTypeSelect(type.id)}
                   style={{
-                    width: "32px",
-                    height: "32px",
-                    borderRadius: "8px",
-                    background: "rgba(255,255,255,0.1)",
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "center",
-                    fontSize: "16px",
-                    color: "var(--color-text-light)",
+                    aspectRatio: "1",
+                    borderRadius: "16px",
+                    background: "rgba(255,255,255,0.03)",
+                    border: "1px solid rgba(255,255,255,0.05)",
+                    cursor: "pointer",
+                    transition: "all 0.2s cubic-bezier(0.4, 0, 0.2, 1)",
+                    fontSize: "28px",
+                    color: "var(--color-text-light)"
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.background = "rgba(255,255,255,0.1)";
+                    e.currentTarget.style.borderColor = "var(--color-purple)";
+                    e.currentTarget.style.transform = "scale(1.05) translateY(-2px)";
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.background = "rgba(255,255,255,0.03)";
+                    e.currentTarget.style.borderColor = "rgba(255,255,255,0.05)";
+                    e.currentTarget.style.transform = "scale(1) translateY(0)";
                   }}
                 >
                   {type.icon}
                 </div>
-                <div
-                  style={{
-                    display: "flex",
-                    flexDirection: "column",
-                    justifyContent: "center",
-                  }}
-                >
-                  <div
-                    style={{
-                      fontWeight: 500,
-                      fontSize: "14px",
-                      lineHeight: 1.2,
-                    }}
-                  >
-                    {type.label}
-                  </div>
-                  <div
-                    style={{
-                      color: "var(--color-text-muted)",
-                      fontSize: "12px",
-                      lineHeight: 1.2,
-                    }}
-                  >
-                    {type.desc}
-                  </div>
-                </div>
-              </div>
+              </Tooltip>
             ))}
           </div>
         )}
