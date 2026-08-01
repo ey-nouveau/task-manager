@@ -17,7 +17,7 @@ export const HomePage = () => {
       backgroundRepeat: 'no-repeat',
       position: 'relative',
       overflowY: 'auto',
-      padding: '120px 48px 48px 48px' // offset for header
+      padding: '120px 48px 48px 48px' 
     }}>
       
       {widgets.length > 0 && (

@@ -60,13 +60,13 @@ export const WidgetModal = () => {
   };
 
   const handleAdd = () => {
-    // If iframe, title and url are required. Otherwise we use a default title or skip it.
     let finalTitle = title.trim();
-    if (selectedType === 'clock') finalTitle = 'World Clock';
-    if (selectedType === 'native_chart') finalTitle = 'Native Chart';
-    if (selectedType === 'text_note') finalTitle = 'Sticky Note';
 
-    if (selectedType === 'iframe' && !finalTitle) return;
+    if (selectedType === "clock") finalTitle = "World Clock";
+    if (selectedType === "native_chart") finalTitle = "Native Chart";
+    if (selectedType === "text_note") finalTitle = "Sticky Note";
+
+    if (selectedType === "iframe" && !finalTitle) return;
 
     addWidget({
       type: selectedType as any,
@@ -114,34 +114,44 @@ export const WidgetModal = () => {
             fontSize: "20px",
             fontWeight: 500,
             letterSpacing: "-0.02em",
-            textAlign: "center"
+            textAlign: "center",
           }}
         >
           {step === 1 ? "Select Widget" : "Configure"}
         </h2>
 
         {step === 1 && (
-          <div style={{ 
-            display: 'grid', 
-            gridTemplateColumns: 'repeat(4, 1fr)', 
-            gap: '12px',
-            paddingTop: '8px'
-          }}>
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: "repeat(4, 1fr)",
+              gap: "12px",
+              paddingTop: "8px",
+            }}
+          >
             {WIDGET_TYPES.map((type) => (
-              <Tooltip 
-                key={type.id} 
-                placement="bottom" 
+              <Tooltip
+                key={type.id}
+                placement="bottom"
                 title={
-                  <div style={{ textAlign: 'center' }}>
-                    <div style={{ fontWeight: 600, marginBottom: '2px' }}>{type.label}</div>
-                    <div style={{ opacity: 0.8, fontSize: '12px' }}>{type.desc}</div>
+                  <div style={{ textAlign: "center" }}>
+                    <div style={{ fontWeight: 600, marginBottom: "2px" }}>
+                      {type.label}
+                    </div>
+                    <div style={{ opacity: 0.8, fontSize: "12px" }}>
+                      {type.desc}
+                    </div>
                   </div>
                 }
                 color="rgba(0,0,0,0.8)"
-                overlayInnerStyle={{ backdropFilter: 'blur(12px)', borderRadius: '8px', border: '1px solid rgba(255,255,255,0.1)' }}
+                overlayInnerStyle={{
+                  backdropFilter: "blur(12px)",
+                  borderRadius: "8px",
+                  border: "1px solid rgba(255,255,255,0.1)",
+                }}
               >
                 <div
-                  onClick={() => handleTypeSelect(type.id)}
+                  onClick={() => type.onClick()}
                   style={{
                     display: "flex",
                     alignItems: "center",
@@ -153,16 +163,18 @@ export const WidgetModal = () => {
                     cursor: "pointer",
                     transition: "all 0.2s cubic-bezier(0.4, 0, 0.2, 1)",
                     fontSize: "28px",
-                    color: "var(--color-text-light)"
+                    color: "var(--color-text-light)",
                   }}
                   onMouseEnter={(e) => {
                     e.currentTarget.style.background = "rgba(255,255,255,0.1)";
                     e.currentTarget.style.borderColor = "var(--color-purple)";
-                    e.currentTarget.style.transform = "scale(1.05) translateY(-2px)";
+                    e.currentTarget.style.transform =
+                      "scale(1.05) translateY(-2px)";
                   }}
                   onMouseLeave={(e) => {
                     e.currentTarget.style.background = "rgba(255,255,255,0.03)";
-                    e.currentTarget.style.borderColor = "rgba(255,255,255,0.05)";
+                    e.currentTarget.style.borderColor =
+                      "rgba(255,255,255,0.05)";
                     e.currentTarget.style.transform = "scale(1) translateY(0)";
                   }}
                 >
@@ -177,33 +189,35 @@ export const WidgetModal = () => {
           <div
             style={{ display: "flex", flexDirection: "column", gap: "16px" }}
           >
-            {selectedType !== "clock" && selectedType !== "native_chart" && selectedType !== "text_note" && (
-              <div>
-                <div
-                  style={{
-                    fontSize: "12px",
-                    color: "var(--color-text-muted)",
-                    marginBottom: "6px",
-                  }}
-                >
-                  Widget Title
+            {selectedType !== "clock" &&
+              selectedType !== "native_chart" &&
+              selectedType !== "text_note" && (
+                <div>
+                  <div
+                    style={{
+                      fontSize: "12px",
+                      color: "var(--color-text-muted)",
+                      marginBottom: "6px",
+                    }}
+                  >
+                    Widget Title
+                  </div>
+                  <Input
+                    value={title}
+                    onChange={(e) => setTitle(e.target.value)}
+                    placeholder="e.g. Analytics, Weather..."
+                    variant="borderless"
+                    style={{
+                      background: "rgba(0,0,0,0.3)",
+                      borderRadius: "10px",
+                      padding: "8px 12px",
+                      color: "var(--color-text-light)",
+                      fontSize: "14px",
+                      height: "40px",
+                    }}
+                  />
                 </div>
-                <Input
-                  value={title}
-                  onChange={(e) => setTitle(e.target.value)}
-                  placeholder="e.g. Analytics, Weather..."
-                  variant="borderless"
-                  style={{
-                    background: "rgba(0,0,0,0.3)",
-                    borderRadius: "10px",
-                    padding: "8px 12px",
-                    color: "var(--color-text-light)",
-                    fontSize: "14px",
-                    height: "40px",
-                  }}
-                />
-              </div>
-            )}
+              )}
 
             {selectedType === "iframe" && (
               <div>
@@ -242,7 +256,7 @@ export const WidgetModal = () => {
                   height: "40px",
                   color: "var(--color-text-light)",
                   background: "transparent",
-                  border: "1px solid rgba(255,255,255,0.2)"
+                  border: "1px solid rgba(255,255,255,0.2)",
                 }}
               >
                 Back
@@ -250,13 +264,13 @@ export const WidgetModal = () => {
               <Button
                 type="default"
                 onClick={handleAdd}
-                disabled={selectedType === 'iframe' ? (!title || !url) : false}
+                disabled={selectedType === "iframe" ? !title || !url : false}
                 style={{
                   flex: 1,
                   height: "40px",
                   background: "transparent",
                   border: "1px solid var(--color-purple)",
-                  color: "var(--color-purple)"
+                  color: "var(--color-purple)",
                 }}
               >
                 Create Widget
