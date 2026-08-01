@@ -1,4 +1,4 @@
-const API_URL = "http://localhost:3002/api";
+const API_URL = "/api";
 
 type RequestOptions = {
   method?: "GET" | "POST" | "PUT" | "DELETE";
