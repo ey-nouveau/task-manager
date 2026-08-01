@@ -30,7 +30,7 @@ export const MainLayout = () => {
   return (
     <div className="app-container">
       <div className="app-window">
-        <div className="top-section">
+        <div className={location.pathname === '/' ? "top-section dashboard" : "top-section mini"}>
           <div className="main-header">
             <div style={{ fontSize: '24px' }}>
               <CodeSandboxOutlined />

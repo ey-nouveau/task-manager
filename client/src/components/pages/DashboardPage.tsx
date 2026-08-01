@@ -64,6 +64,9 @@ export const DashboardPage = () => {
         display: "flex",
         flexDirection: "column",
         height: "100%",
+        padding: "32px 48px",
+        overflowY: "auto",
+        boxSizing: "border-box"
       }}
     >
       <div

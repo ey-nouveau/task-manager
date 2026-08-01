@@ -94,20 +94,31 @@ body {
 .top-section {
   background: var(--color-purple);
   color: var(--color-text-dark);
-  flex: 0 0 35%;
-  padding: 48px;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
   position: relative;
+  transition: all 0.3s ease;
+}
+
+.top-section.dashboard {
+  flex: 0 0 35%;
+  padding: 48px;
+  justify-content: space-between;
+}
+
+.top-section.mini {
+  flex: 0 0 auto;
+  padding: 24px 48px;
+  justify-content: flex-start;
+  gap: 20px;
 }
 
 .bottom-section {
   flex: 1;
-  padding: 20px 48px;
-  overflow-y: auto;
-  overflow-x: hidden;
   background: var(--color-dark);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden; /* Only the pages inside should scroll */
 }
 
 .section-title {
@@ -170,6 +181,14 @@ body {
   margin: 0;
   letter-spacing: -0.02em;
   line-height: 1;
+}
+
+.top-section.mini .title-chart-container {
+  margin-top: 0;
+}
+
+.top-section.mini .main-title {
+  font-size: 32px;
 }
 
 .chart-container {
