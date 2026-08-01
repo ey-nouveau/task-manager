@@ -27,10 +27,16 @@ export const MainLayout = () => {
   const location = useLocation();
   const [isDarkMode, setIsDarkMode] = useState(true);
 
+  const getTopSectionClass = () => {
+    if (location.pathname === '/') return 'top-section home';
+    if (location.pathname === '/dashboard') return 'top-section dashboard';
+    return 'top-section mini';
+  };
+
   return (
     <div className="app-container">
       <div className="app-window">
-        <div className={location.pathname === '/dashboard' ? "top-section dashboard" : "top-section mini"}>
+        <div className={getTopSectionClass()}>
           <div className="main-header">
             <div style={{ fontSize: '24px' }}>
               <CodeSandboxOutlined />
@@ -160,7 +166,7 @@ export const MainLayout = () => {
           </div>
         </div>
 
-        <div className={`bottom-section ${location.pathname === '/' ? 'no-padding' : ''}`}>
+        <div className={`bottom-section ${location.pathname === '/' ? 'home' : ''}`}>
           <Outlet />
         </div>
       </div>
