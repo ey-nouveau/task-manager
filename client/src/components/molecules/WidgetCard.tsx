@@ -47,8 +47,10 @@ export const WidgetCard = ({ widget }: { widget: Widget }) => {
           <iframe 
             src={widget.url} 
             title={widget.title}
-            style={{ width: '100%', height: '100%', border: 'none' }}
-            sandbox="allow-scripts allow-same-origin"
+            style={{ width: '100%', height: '100%', border: 'none', background: 'transparent' }}
+            allow="fullscreen; clipboard-read; clipboard-write"
+            loading="lazy"
+            referrerPolicy="no-referrer-when-downgrade"
           />
         ) : (
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100%', color: 'var(--color-text-muted)', fontSize: '13px' }}>
