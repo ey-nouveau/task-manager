@@ -139,7 +139,7 @@ export const WidgetModal = () => {
                 <div className={styles.label}>Widget Title</div>
                 <Input
                   value={title}
-                  onChange={(e) => setTitle(e.target.value)}
+                  onChange={(e: any) => setTitle(e.target.value)}
                   placeholder="e.g. Analytics, Weather..."
                 />
               </Col>
@@ -150,7 +150,7 @@ export const WidgetModal = () => {
                 <div className={styles.label}>Embed URL</div>
                 <Input
                   value={url}
-                  onChange={(e) => setUrl(e.target.value)}
+                  onChange={(e: any) => setUrl(e.target.value)}
                   placeholder="https://..."
                 />
               </Col>
