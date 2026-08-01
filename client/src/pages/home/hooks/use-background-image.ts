@@ -22,5 +22,5 @@ export const useBackgroundImage = () => {
 
   const bgUrl = import.meta.env.BASE_URL + bgImage;
 
-  return bgUrl;
+  return `url("${bgUrl}")`;
 };

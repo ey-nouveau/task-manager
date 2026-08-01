@@ -7,12 +7,10 @@ import { useBackgroundImage } from "../hooks/use-background-image";
 
 export const HomePage = () => {
   const { widgets, setModalOpen } = useWidgetStore();
-  const bgUrl = useBackgroundImage();
+  const backgroundImage = useBackgroundImage();
+
   return (
-    <div
-      className={styles.container}
-      style={{ backgroundImage: `url("${bgUrl}")` }}
-    >
+    <div className={styles.container} style={{ backgroundImage }}>
       {widgets.length > 0 && (
         <div className={styles.grid}>
           {widgets.map((w) => (
