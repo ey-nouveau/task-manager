@@ -1,5 +1,5 @@
 export const HomePage = () => {
-  const bgUrl = import.meta.env.BASE_URL + 'vibey-bg.jpg';
+  const bgUrl = import.meta.env.BASE_URL + 'vibey-bg.png';
 
   return (
     <div style={{
