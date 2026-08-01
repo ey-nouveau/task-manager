@@ -121,6 +121,10 @@ body {
   overflow: hidden; /* Only the pages inside should scroll */
 }
 
+.bottom-section.no-padding {
+  padding: 0 !important;
+}
+
 .section-title {
   font-size: 16px;
   color: var(--color-text-muted);
