@@ -8,6 +8,8 @@ import {
 } from '@ant-design/icons';
 import { useState } from 'react';
 import { Responsive } from '@/shared/ui/responsive';
+import { Row } from '@/shared/ui/row';
+import { Col } from '@/shared/ui/col';
 import styles from './MainLayout.module.css';
 
 const navItems = [
@@ -43,15 +45,15 @@ export const MainLayout = () => {
 
   return (
     <div className={styles.appContainer}>
-      <div className={styles.appWindow}>
+      <Col className={styles.appWindow}>
         <div className={getTopSectionClass()}>
-          <div className={styles.mainHeader}>
+          <Row justify="between" align="center" wrap className={styles.mainHeader}>
             <div style={{ fontSize: '24px' }}>
               <CodeSandboxOutlined />
             </div>
 
             <Responsive layout="desktop">
-              <div className={styles.navPillContainer}>
+              <Row align="center" className={styles.navPillContainer}>
                 {navItems.map((item) => {
                   const isActive = isNavActive(item);
                   return (
@@ -65,11 +67,11 @@ export const MainLayout = () => {
                     </Link>
                   );
                 })}
-              </div>
+              </Row>
             </Responsive>
 
             <Responsive layout="mobile">
-              <div className={styles.navPillContainer} style={{ width: '100%', marginTop: '16px' }}>
+              <Row align="center" className={styles.navPillContainer} style={{ width: '100%', marginTop: '16px' }}>
                 {navItems.slice(0, 3).map((item) => {
                   const isActive = isNavActive(item);
                   return (
@@ -83,20 +85,21 @@ export const MainLayout = () => {
                     </Link>
                   );
                 })}
-              </div>
+              </Row>
             </Responsive>
 
-            <div 
+            <Row 
+              align="center"
               className={styles.themeToggle}
               onClick={() => setIsDarkMode(!isDarkMode)}
             >
-              <div className={`${styles.themeThumb} ${isDarkMode ? styles.themeThumbDark : ''}`}>
+              <Row align="center" justify="center" className={`${styles.themeThumb} ${isDarkMode ? styles.themeThumbDark : ''}`}>
                 {isDarkMode ? '🌙' : '☀️'}
-              </div>
-            </div>
-          </div>
+              </Row>
+            </Row>
+          </Row>
 
-          <div className={styles.titleChartContainer}>
+          <Row justify="between" align="end" wrap className={styles.titleChartContainer}>
             {location.pathname !== '/' && (
               <h1 className={styles.mainTitle}>
                 {location.pathname === '/board' ? 'Task Board' : 'Dashboard'}
@@ -105,7 +108,7 @@ export const MainLayout = () => {
             
             <Responsive layout="desktop">
               {location.pathname === '/dashboard' && (
-                <div className={styles.chartContainer}>
+                <Row align="end" gap={4} className={styles.chartContainer}>
                   <div className={styles.chartTooltip}>
                     1345 transactions
                     <div className={styles.chartTooltipArrow} />
@@ -114,16 +117,16 @@ export const MainLayout = () => {
                   {chartBars.map((h, i) => (
                     <div key={i} className={styles.chartBar} style={{ height: `${h}%` }} />
                   ))}
-                </div>
+                </Row>
               )}
             </Responsive>
-          </div>
+          </Row>
         </div>
 
         <div className={`${styles.bottomSection} ${location.pathname === '/' ? styles.bottomSectionHome : ''}`}>
           <Outlet />
         </div>
-      </div>
+      </Col>
     </div>
   );
 };

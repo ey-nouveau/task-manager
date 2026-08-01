@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Modal, Input, Button, Tooltip } from "antd";
+import { Modal, Button, Tooltip } from "antd";
 import { useWidgetStore } from "@/entities/widget/model/store";
 import {
   GlobalOutlined,
@@ -7,6 +7,9 @@ import {
   FileTextOutlined,
   ClockCircleOutlined,
 } from "@ant-design/icons";
+import { Col } from "@/shared/ui/col";
+import { Row } from "@/shared/ui/row";
+import { Input } from "@/shared/ui/input";
 import styles from './WidgetModal.module.css';
 
 const WIDGET_TYPES = [
@@ -130,34 +133,30 @@ export const WidgetModal = () => {
         )}
 
         {step === 2 && (
-          <div className={styles.formContainer}>
+          <Col gap={16}>
             {selectedType !== "clock" && selectedType !== "native_chart" && selectedType !== "text_note" && (
-              <div>
+              <Col gap={6}>
                 <div className={styles.label}>Widget Title</div>
                 <Input
                   value={title}
                   onChange={(e) => setTitle(e.target.value)}
                   placeholder="e.g. Analytics, Weather..."
-                  variant="borderless"
-                  className={styles.input}
                 />
-              </div>
+              </Col>
             )}
 
             {selectedType === "iframe" && (
-              <div>
+              <Col gap={6}>
                 <div className={styles.label}>Embed URL</div>
                 <Input
                   value={url}
                   onChange={(e) => setUrl(e.target.value)}
                   placeholder="https://..."
-                  variant="borderless"
-                  className={styles.input}
                 />
-              </div>
+              </Col>
             )}
 
-            <div className={styles.buttonsRow}>
+            <Row gap={8} style={{ marginTop: '8px' }}>
               <Button
                 type="default"
                 onClick={() => setStep(1)}
@@ -173,8 +172,8 @@ export const WidgetModal = () => {
               >
                 Create Widget
               </Button>
-            </div>
-          </div>
+            </Row>
+          </Col>
         )}
       </div>
     </Modal>

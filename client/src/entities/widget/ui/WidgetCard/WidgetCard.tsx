@@ -3,6 +3,8 @@ import type { Widget } from '@/entities/widget/model/store';
 import { DeleteOutlined } from '@ant-design/icons';
 import { ClockWidget } from '@/entities/widget/ui/ClockWidget';
 import styles from './WidgetCard.module.css';
+import { Row } from '@/shared/ui/row';
+import { Col } from '@/shared/ui/col';
 
 export const WidgetCard = ({ widget }: { widget: Widget }) => {
   const { removeWidget } = useWidgetStore();
@@ -11,24 +13,26 @@ export const WidgetCard = ({ widget }: { widget: Widget }) => {
     return (
       <div className={styles.seamlessContainer}>
         <ClockWidget />
-        <div
+        <Row
+          align="center"
+          justify="center"
           onClick={() => removeWidget(widget.id)}
           className={styles.seamlessDelete}
         >
           <DeleteOutlined style={{ fontSize: "14px" }} />
-        </div>
+        </Row>
       </div>
     );
   }
 
   return (
-    <div className={styles.container}>
-      <div className={styles.header}>
+    <Col justify="between" className={styles.container}>
+      <Row justify="between" align="center" className={styles.header}>
         <div className={styles.title}>{widget.title}</div>
-        <div onClick={() => removeWidget(widget.id)} className={styles.delete}>
+        <Row align="center" justify="center" onClick={() => removeWidget(widget.id)} className={styles.delete}>
           <DeleteOutlined style={{ fontSize: "13px" }} />
-        </div>
-      </div>
+        </Row>
+      </Row>
 
       <div className={styles.body}>
         {widget.type === "iframe" && widget.url ? (
@@ -41,13 +45,13 @@ export const WidgetCard = ({ widget }: { widget: Widget }) => {
             referrerPolicy="no-referrer-when-downgrade"
           />
         ) : (
-          <div className={styles.placeholder}>
+          <Row align="center" justify="center" className={styles.placeholder}>
             {widget.type === "native_chart"
               ? "Chart Placeholder"
               : "Note Placeholder"}
-          </div>
+          </Row>
         )}
       </div>
-    </div>
+    </Col>
   );
 };

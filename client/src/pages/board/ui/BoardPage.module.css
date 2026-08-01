@@ -17,9 +17,8 @@
 .columnsArea {
   display: flex;
   gap: 24px;
-  height: 100%;
   flex: 1;
   overflow-x: auto;
-  padding: 32px 24px 32px 48px;
+  padding: 16px 24px 32px 48px;
   box-sizing: border-box;
 }

@@ -1,11 +1,12 @@
 import { useBoardStore } from "@/entities/task/model/store";
 import { BoardColumn } from "@/widgets/board-column/ui/BoardColumn/BoardColumn";
 import { TaskDetailsSidebar } from "@/widgets/task-sidebar/ui/TaskDetailsSidebar/TaskDetailsSidebar";
-import { Input, Spin } from "antd";
+import { Spin } from "antd";
 import styles from "./BoardPage.module.css";
 import { AddTask } from "@/features/task-management/ui/add-task";
 import { Col } from "@/shared/ui/col";
 import { Row } from "@/shared/ui/row";
+import { Input } from "@/shared/ui/input";
 
 export const BoardPage = () => {
   const columns = useBoardStore((state) => state.columns);
@@ -27,19 +28,22 @@ export const BoardPage = () => {
 
   return (
     <div className={styles.container}>
-      <Col gap={10}>
-        <Row>
-          <AddTask onSubmit={(title) => addTask("", title)} />
-          <Input.Search color="red" />
-        </Row>
-
-        {columns.length && (
-          <Row gap={20}>
-            {columns.map((col, index) => (
-              <BoardColumn key={col.id} column={col} index={index} />
-            ))}
+      <Col gap={16} align="stretch" justify="start">
+        {/* Top Bar with Add Task and Search */}
+        <div style={{ padding: "32px 48px 0 48px" }}>
+          <Row justify="between" align="center">
+            <AddTask onSubmit={(title) => addTask("todo", title)} />
+            <div style={{ width: '250px' }}>
+              <Input.Search placeholder="Search tasks..." />
+            </div>
           </Row>
-        )}
+        </div>
+
+        <div className={styles.columnsArea}>
+          {columns.map((col, index) => (
+            <BoardColumn key={col.id} column={col} index={index} />
+          ))}
+        </div>
       </Col>
 
       <TaskDetailsSidebar

@@ -1,4 +1,6 @@
 import { EllipsisOutlined, PlusOutlined } from "@ant-design/icons";
+import { Row } from "@/shared/ui/row";
+import { Col } from "@/shared/ui/col";
 import styles from './DashboardPage.module.css';
 
 const Card = ({
@@ -17,11 +19,13 @@ const Card = ({
   style?: React.CSSProperties;
 }) => (
   <div className={styles.card} style={{ background: bg, color: textColor, ...style }}>
-    <div className={styles.cardHeader}>
-      {title && <div className={styles.cardTitle}>{title}</div>}
-      {icon && <div className={styles.cardIcon}>{icon}</div>}
-    </div>
-    {value && <div className={styles.cardValue}>{value}</div>}
+    <Col justify="between" style={{ height: '100%' }}>
+      <Row justify="between" align="start">
+        {title && <div className={styles.cardTitle}>{title}</div>}
+        {icon && <div className={styles.cardIcon}>{icon}</div>}
+      </Row>
+      {value && <div className={styles.cardValue}>{value}</div>}
+    </Col>
   </div>
 );
 
@@ -75,10 +79,10 @@ export const DashboardPage = () => {
           bg="var(--color-green)"
           textColor="var(--color-text-dark)"
           icon={
-            <div className={styles.incomeIcon}>
+            <Row gap={8} className={styles.incomeIcon}>
               <span className={styles.daily}>Daily</span>
               <span className={styles.weekly}>Weekly</span>
-            </div>
+            </Row>
           }
         />
         <Card
@@ -86,9 +90,9 @@ export const DashboardPage = () => {
           bg="var(--color-dark-grey)"
           textColor="var(--color-text-light)"
           icon={
-            <div className={styles.addIcon}>
+            <Row align="center" justify="center" className={styles.addIcon}>
               <PlusOutlined style={{ fontSize: "14px" }} />
-            </div>
+            </Row>
           }
           style={{ justifyContent: "flex-end" }}
         />

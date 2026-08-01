@@ -10,9 +10,9 @@ import { useBoardStore } from '@/entities/task/model/store';
 import type { Task } from '@/entities/task/model/store';
 import { getMockTaskMeta } from '@/shared/lib/utils/mockData';
 import styles from './TaskCard.module.css';
-
-// Action slot for FSD (features passed as prop or imported, but here we pass actions as children or directly to keep it simple, wait, the user asked for careful FSD. Features should handle actions. But let's just keep TaskActions import for now and fix paths)
 import { TaskActions } from '@/features/task-management/ui/TaskActions';
+import { Row } from '@/shared/ui/row';
+import { Col } from '@/shared/ui/col';
 
 interface Props {
   task: Task;
@@ -45,16 +45,17 @@ export const TaskCard = ({ task, columnIndex }: Props) => {
     : meta.tags;
 
   return (
-    <div
-      onClick={() => setActiveTask(task.id)}
+    <Col
+      gap={12}
+      className={styles.card}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
-      className={styles.card}
+      onClick={() => setActiveTask(task.id)}
     >
-      <div className={styles.dateRow}>
+      <Row align="center" gap={6} className={styles.dateRow}>
         <ClockCircleOutlined />
         <span>{dueDate}</span>
-      </div>
+      </Row>
 
       <div className={styles.title}>
         {task.title}
@@ -66,7 +67,7 @@ export const TaskCard = ({ task, columnIndex }: Props) => {
         </div>
       )}
 
-      <div className={styles.tagsContainer}>
+      <Row gap={6} wrap className={styles.tagsContainer}>
         {displayTags.map(tag => (
           <div key={tag.name} className={styles.tag} style={{
             color: tag.color,
@@ -76,18 +77,18 @@ export const TaskCard = ({ task, columnIndex }: Props) => {
             {tag.name}
           </div>
         ))}
-      </div>
+      </Row>
 
-      <div className={styles.footer}>
-        <div className={styles.footerMeta}>
+      <Row align="center" gap={12} className={styles.footer}>
+        <Row align="center" gap={4} className={styles.footerMeta}>
           <MessageFilled className={styles.footerIcon} /> {comments}
-        </div>
-        <div className={styles.footerMeta}>
+        </Row>
+        <Row align="center" gap={4} className={styles.footerMeta}>
           <FolderFilled className={styles.footerIcon} /> {attachments}
-        </div>
-        <div className={styles.footerMeta}>
+        </Row>
+        <Row align="center" gap={4} className={styles.footerMeta}>
           <CheckSquareFilled className={styles.footerIcon} /> {checklist}
-        </div>
+        </Row>
 
         <div className={styles.avatars}>
           <Avatar.Group size="small" maxCount={2} maxStyle={{ color: '#f56a00', backgroundColor: '#fde3cf' }}>
@@ -96,7 +97,7 @@ export const TaskCard = ({ task, columnIndex }: Props) => {
             <Avatar src="https://i.pravatar.cc/150?img=5" />
           </Avatar.Group>
         </div>
-      </div>
+      </Row>
 
       {isHovered && (
         <div className={styles.actionsOverlay}>
@@ -107,6 +108,6 @@ export const TaskCard = ({ task, columnIndex }: Props) => {
           />
         </div>
       )}
-    </div>
+    </Col>
   );
 };

@@ -17,17 +17,8 @@
 .card {
   border-radius: 16px;
   padding: 24px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
   min-height: 160px;
   position: relative;
-}
-
-.cardHeader {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
 }
 
 .cardTitle {
@@ -48,8 +39,6 @@
 }
 
 .incomeIcon {
-  display: flex;
-  gap: 8px;
   border: 1px solid rgba(0,0,0,0.2);
   border-radius: 20px;
   padding: 2px 8px;
@@ -69,8 +58,5 @@
   height: 24px;
   border-radius: 50%;
   background: var(--color-orange);
-  display: flex;
-  align-items: center;
-  justify-content: center;
   color: var(--color-dark);
 }
