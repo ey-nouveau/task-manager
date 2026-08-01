@@ -32,9 +32,9 @@ export const TaskInput = ({ onSubmit, placeholder }: Props) => {
         placeholder={placeholder}
       />
       <Button 
-        type="primary" 
+        type="default" 
         onClick={handleSubmit}
-        style={{ background: 'var(--color-purple)', border: 'none' }}
+        style={{ background: 'transparent', border: '1px solid var(--color-purple)', color: 'var(--color-purple)' }}
       >
         Add
       </Button>

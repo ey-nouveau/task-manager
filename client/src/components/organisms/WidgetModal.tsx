@@ -66,6 +66,7 @@ export const WidgetModal = () => {
 
   return (
     <Modal
+      centered
       open={isModalOpen}
       onCancel={handleClose}
       footer={null}
@@ -238,26 +239,28 @@ export const WidgetModal = () => {
 
             <div style={{ display: "flex", gap: "8px", marginTop: "8px" }}>
               <Button
-                type="text"
+                type="default"
                 onClick={() => setStep(1)}
                 style={{
                   flex: 1,
                   height: "40px",
                   color: "var(--color-text-light)",
-                  background: "rgba(255,255,255,0.05)",
+                  background: "transparent",
+                  border: "1px solid rgba(255,255,255,0.2)"
                 }}
               >
                 Back
               </Button>
               <Button
-                type="primary"
+                type="default"
                 onClick={handleAdd}
                 disabled={!title}
                 style={{
                   flex: 1,
                   height: "40px",
-                  background: "var(--color-purple)",
-                  border: "none",
+                  background: "transparent",
+                  border: "1px solid var(--color-purple)",
+                  color: "var(--color-purple)"
                 }}
               >
                 Create Widget

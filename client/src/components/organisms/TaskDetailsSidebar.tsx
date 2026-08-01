@@ -163,17 +163,17 @@ export const TaskDetailsSidebar = ({ task, isOpen, onClose }: Props) => {
         {/* Footer Actions */}
         <div style={{ display: 'flex', gap: '12px', marginTop: '24px', paddingTop: '24px', borderTop: '1px solid rgba(255,255,255,0.05)' }}>
           <Button 
-            type="primary" 
+            type="default" 
             onClick={handleSave} 
-            style={{ flex: 1, background: 'var(--color-purple)', border: 'none', fontWeight: 500, height: '36px' }}
+            style={{ flex: 1, background: 'transparent', border: '1px solid var(--color-purple)', color: 'var(--color-purple)', fontWeight: 500, height: '36px' }}
           >
             Save Changes
           </Button>
           <Button 
             danger 
-            type="text"
+            type="default"
             onClick={handleDelete}
-            style={{ fontWeight: 500, color: 'var(--color-salmon)', height: '36px', background: 'color-mix(in srgb, var(--color-salmon) 10%, transparent)' }}
+            style={{ fontWeight: 500, color: 'var(--color-salmon)', border: '1px solid var(--color-salmon)', height: '36px', background: 'transparent' }}
           >
             Delete
           </Button>
