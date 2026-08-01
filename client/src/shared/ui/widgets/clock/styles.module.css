@@ -20,10 +20,10 @@
   width: 160px;
   height: 160px;
   border-radius: 50%;
-  /* The key to Neumorphism Concave effect */
   background: rgba(10, 10, 10, 0.4);
-  box-shadow: inset 8px 8px 24px rgba(0, 0, 0, 0.9), 
-              inset -8px -8px 24px rgba(255, 255, 255, 0.03);
+  box-shadow:
+    inset 8px 8px 24px rgba(0, 0, 0, 0.9),
+    inset -8px -8px 24px rgba(255, 255, 255, 0.03);
   position: relative;
   display: flex;
   justify-content: center;

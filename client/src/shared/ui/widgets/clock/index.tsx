@@ -1,5 +1,5 @@
-import { useTime } from "@/shared/lib/hooks/useTime";
-import s from "./ClockWidget.module.css";
+import { useTime } from "@/shared/lib/hooks/use-time";
+import s from "./styles.module.css";
 
 const Hand = ({
   width,
@@ -50,13 +50,27 @@ export const ClockWidget = () => {
   return (
     <div className={s.widgetContainer}>
       <div className={s.cityTitle}>New York</div>
-      
+
       <div className={s.clockFace}>
-        <Hand width={4} height={40} color="var(--color-text-light)" rotation={hrRotation} />
-        <Hand width={3} height={60} color="var(--color-text-light)" rotation={minRotation} />
-        <Hand width={2} height={70} color="var(--color-purple)" rotation={secRotation} />
-        
-        {/* Center Pivot */}
+        <Hand
+          width={4}
+          height={40}
+          color="var(--color-text-light)"
+          rotation={hrRotation}
+        />
+        <Hand
+          width={3}
+          height={60}
+          color="var(--color-text-light)"
+          rotation={minRotation}
+        />
+        <Hand
+          width={2}
+          height={70}
+          color="var(--color-purple)"
+          rotation={secRotation}
+        />
+
         <div className={s.centerPivot} />
       </div>
 

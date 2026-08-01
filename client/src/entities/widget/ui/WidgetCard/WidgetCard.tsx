@@ -1,7 +1,7 @@
 import { useWidgetStore } from '@/entities/widget/model/store';
 import type { Widget } from '@/entities/widget/model/store';
 import { Trash2 } from 'lucide-react';
-import { ClockWidget } from '@/entities/widget/ui/ClockWidget';
+import { ClockWidget } from '@/shared/ui/widgets/clock';
 import styles from './WidgetCard.module.css';
 import { Row } from '@/shared/ui/row';
 import { Col } from '@/shared/ui/col';

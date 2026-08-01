@@ -1,4 +1,4 @@
-import { useIsMobile } from '@/shared/lib/hooks/useIsMobile';
+import { useIsMobile } from '@/shared/lib/hooks/use-is-mobile';
 import type { ReactNode } from 'react';
 
 export type ResponsiveLayout = 'mobile' | 'desktop';
