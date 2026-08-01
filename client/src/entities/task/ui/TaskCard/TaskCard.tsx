@@ -5,7 +5,7 @@ import {
   FolderFilled, 
   CheckSquareFilled 
 } from '@ant-design/icons';
-import { Avatar } from 'antd';
+import { Avatar } from '@/shared/ui/avatar';
 import { useBoardStore } from '@/entities/task/model/store';
 import type { Task } from '@/entities/task/model/store';
 import { getMockTaskMeta } from '@/shared/lib/utils/mockData';
@@ -91,7 +91,7 @@ export const TaskCard = ({ task, columnIndex }: Props) => {
         </Row>
 
         <div className={styles.avatars}>
-          <Avatar.Group size="small" maxCount={2} maxStyle={{ color: '#f56a00', backgroundColor: '#fde3cf' }}>
+          <Avatar.Group size={24} maxCount={2}>
             <Avatar src="https://i.pravatar.cc/150?img=32" />
             <Avatar src="https://i.pravatar.cc/150?img=12" />
             <Avatar src="https://i.pravatar.cc/150?img=5" />

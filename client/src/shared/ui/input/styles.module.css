@@ -1,26 +1,45 @@
-.wrapper :global(.ant-input),
-.wrapper :global(.ant-input-affix-wrapper) {
-  background: rgba(0, 0, 0, 0.3) !important;
-  border-radius: 10px !important;
-  border: 1px solid rgba(255, 255, 255, 0.08) !important;
-  color: var(--color-text-light) !important;
-  font-size: 14px !important;
-  transition: all 0.2s ease !important;
+.wrapper {
+  position: relative;
+  display: inline-flex;
+  width: 100%;
 }
 
-.wrapper :global(.ant-input-affix-wrapper:focus),
-.wrapper :global(.ant-input-affix-wrapper-focused),
-.wrapper :global(.ant-input:focus) {
-  border-color: var(--color-purple) !important;
-  background: rgba(0, 0, 0, 0.4) !important;
+.input {
+  width: 100%;
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: var(--color-text-light);
+  font-size: 14px;
+  padding: 8px 12px;
+  transition: all 0.2s ease;
+  outline: none;
+  font-family: inherit;
 }
 
-.wrapper :global(.ant-input::placeholder) {
-  color: rgba(255, 255, 255, 0.2) !important;
+.input:focus {
+  border-color: var(--color-purple);
+  background: rgba(0, 0, 0, 0.4);
 }
 
-.wrapper :global(.ant-input-prefix),
-.wrapper :global(.ant-input-suffix),
-.wrapper :global(.ant-input-search-icon) {
-  color: var(--color-text-muted) !important;
+.input::placeholder {
+  color: rgba(255, 255, 255, 0.2);
+}
+
+.textarea {
+  resize: none;
+  min-height: 100px;
+}
+
+.searchWrapper {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.searchIcon {
+  position: absolute;
+  right: 12px;
+  color: var(--color-text-muted);
+  pointer-events: none;
 }

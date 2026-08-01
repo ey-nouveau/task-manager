@@ -21,7 +21,7 @@ export const BoardPage = () => {
   if (isLoading && tasks.length === 0) {
     return (
       <div className={styles.loader}>
-        <Spin size="large" />
+        <Spin  />
       </div>
     );
   }

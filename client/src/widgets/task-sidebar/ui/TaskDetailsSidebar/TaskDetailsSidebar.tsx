@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Button } from "antd";
+import { Button } from "@/shared/ui/button";
 import {
   CloseOutlined,
   PlaySquareOutlined,
@@ -84,7 +84,7 @@ export const TaskDetailsSidebar = ({ task, isOpen, onClose }: Props) => {
         <Row justify="between" align="center" className={styles.headerControls}>
           <div className={styles.headerTitle}>Task Details</div>
           <Button
-            type="text"
+            variant="text"
             size="small"
             icon={
               <CloseOutlined style={{ color: "var(--color-text-muted)" }} />
@@ -158,7 +158,7 @@ export const TaskDetailsSidebar = ({ task, isOpen, onClose }: Props) => {
 
         <Row gap={12} className={styles.footer}>
           <Button
-            type="default"
+            variant="default"
             onClick={handleSave}
             className={styles.saveButton}
           >
@@ -166,7 +166,7 @@ export const TaskDetailsSidebar = ({ task, isOpen, onClose }: Props) => {
           </Button>
           <Button
             danger
-            type="default"
+            variant="default"
             onClick={handleDelete}
             className={styles.deleteButton}
           >

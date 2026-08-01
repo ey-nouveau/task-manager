@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Modal, Button, Tooltip } from "antd";
+import { Tooltip } from "antd";
 import { useWidgetStore } from "@/entities/widget/model/store";
 import {
   GlobalOutlined,
@@ -7,9 +7,11 @@ import {
   FileTextOutlined,
   ClockCircleOutlined,
 } from "@ant-design/icons";
+import { Button } from "@/shared/ui/button";
+import { Modal } from "@/shared/ui/modal";
+import { Input } from "@/shared/ui/input";
 import { Col } from "@/shared/ui/col";
 import { Row } from "@/shared/ui/row";
-import { Input } from "@/shared/ui/input";
 import styles from './WidgetModal.module.css';
 
 const WIDGET_TYPES = [
@@ -82,24 +84,9 @@ export const WidgetModal = () => {
 
   return (
     <Modal
-      centered
       open={isModalOpen}
       onCancel={handleClose}
-      footer={null}
-      closable={false}
       width={400}
-      modalRender={(node) => (
-        <div className={styles.modalWrapper}>
-          {node}
-        </div>
-      )}
-      styles={{
-        body: { padding: "24px" },
-        mask: { backdropFilter: "blur(4px)", background: "rgba(0,0,0,0.4)" },
-      }}
-      className="glass-modal"
-      wrapClassName="glass-modal-wrap"
-      rootClassName="glass-modal-root"
     >
       <div className={styles.content}>
         <h2 className={styles.title}>
@@ -121,19 +108,21 @@ export const WidgetModal = () => {
                 color="rgba(0,0,0,0.8)"
                 overlayInnerStyle={{ backdropFilter: 'blur(12px)', borderRadius: '8px', border: '1px solid rgba(255,255,255,0.1)' }}
               >
-                <div
+                <Row
+                  align="center"
+                  justify="center"
                   onClick={() => handleTypeSelect(type.id)}
                   className={styles.typeButton}
                 >
                   {type.icon}
-                </div>
+                </Row>
               </Tooltip>
             ))}
           </div>
         )}
 
         {step === 2 && (
-          <Col gap={16}>
+          <Col gap={16} className={styles.formContainer}>
             {selectedType !== "clock" && selectedType !== "native_chart" && selectedType !== "text_note" && (
               <Col gap={6}>
                 <div className={styles.label}>Widget Title</div>
@@ -156,16 +145,16 @@ export const WidgetModal = () => {
               </Col>
             )}
 
-            <Row gap={8} style={{ marginTop: '8px' }}>
+            <Row gap={8} className={styles.buttonsRow}>
               <Button
-                type="default"
+                variant="default"
                 onClick={() => setStep(1)}
                 className={styles.backButton}
               >
                 Back
               </Button>
               <Button
-                type="default"
+                variant="primary"
                 onClick={handleAdd}
                 disabled={selectedType === 'iframe' ? (!title || !url) : false}
                 className={styles.createButton}
