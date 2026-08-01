@@ -12,7 +12,7 @@ const BG_IMAGE_CHANGE_INTERVAL = 1000 * 60;
 export const HomePage = () => {
   const theme = useTheme();
   const [bgImage, setBgImage] = useState(() => getRandomImage(theme));
-
+  console.log(bgImage)
   useEffect(() => {
     const intervalId = setInterval(() => {
       setBgImage(getRandomImage(theme));
