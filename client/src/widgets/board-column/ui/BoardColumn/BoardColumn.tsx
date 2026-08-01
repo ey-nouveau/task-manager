@@ -2,6 +2,8 @@ import { useBoardStore } from "@/entities/task/model/store";
 import type { Column } from "@/entities/task/model/store";
 import { TaskCard } from "@/entities/task/ui/TaskCard";
 import { PlusOutlined, EllipsisOutlined } from "@ant-design/icons";
+import { Col } from "@/shared/ui/col";
+import { Row } from "@/shared/ui/row";
 import styles from "./BoardColumn.module.css";
 
 interface Props {
@@ -26,26 +28,26 @@ export const BoardColumn = ({ column, index }: Props) => {
   const accentColor = COLUMN_COLORS[column.id] || "var(--color-purple)";
 
   return (
-    <div className={styles.column}>
-      <div className={styles.header}>
+    <Col className={styles.column}>
+      <Row align="center" gap={12} className={styles.header}>
         <div className={styles.indicator} style={{ background: accentColor }} />
         <div className={styles.title}>{column.title}</div>
         <div className={styles.count}>{tasks.length}</div>
 
-        <div className={styles.actions}>
+        <Row align="center" gap={12} className={styles.actions}>
           <PlusOutlined
             className={styles.actionIcon}
             onClick={() => addTask(column.id, "New Task")}
           />
           <EllipsisOutlined className={styles.actionIcon} />
-        </div>
-      </div>
+        </Row>
+      </Row>
 
-      <div className={styles.tasksArea}>
+      <Col gap={12} className={styles.tasksArea}>
         {tasks.map((task) => (
           <TaskCard key={task.id} task={task} columnIndex={index} />
         ))}
-      </div>
-    </div>
+      </Col>
+    </Col>
   );
 };

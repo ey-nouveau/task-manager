@@ -1,6 +1,8 @@
 import { useState } from "react";
 import type { KeyboardEvent } from "react";
-import { Input, Button } from "antd";
+import { Button } from "antd";
+import { Input } from "@/shared/ui/input";
+import { Row } from "@/shared/ui/row";
 import styles from "./styles.module.css";
 
 interface Props {
@@ -22,18 +24,17 @@ export const AddTask = ({ onSubmit }: Props) => {
   };
 
   return (
-    <div className={styles.container}>
+    <Row gap={8} align="stretch" className={styles.container}>
       <Input
-        variant="filled"
-        className={styles.input}
         value={value}
         onChange={(e) => setValue(e.target.value)}
         onKeyDown={onKeyDown}
-        placeholder={"Add new task..."}
+        placeholder="Add new task..."
+        style={{ flex: 1 }}
       />
       <Button type="default" onClick={handleSubmit} className={styles.button}>
         Add
       </Button>
-    </div>
+    </Row>
   );
 };

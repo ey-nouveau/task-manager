@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Input, Button } from "antd";
+import { Button } from "antd";
 import {
   CloseOutlined,
   PlaySquareOutlined,
@@ -10,6 +10,9 @@ import {
 import { useBoardStore } from "@/entities/task/model/store";
 import type { Task } from "@/entities/task/model/store";
 import { getMockTaskMeta } from "@/shared/lib/utils/mockData";
+import { Input } from "@/shared/ui/input";
+import { Row } from "@/shared/ui/row";
+import { Col } from "@/shared/ui/col";
 import styles from "./TaskDetailsSidebar.module.css";
 
 interface Props {
@@ -29,17 +32,19 @@ const PropertyRow = ({
   value: React.ReactNode;
   valueColor?: string;
 }) => (
-  <div className={styles.propertyRow}>
-    <div className={styles.propertyLabel}>
+  <Row align="center" className={styles.propertyRow}>
+    <Row align="center" gap={8} className={styles.propertyLabel}>
       {icon} <span>{label}</span>
-    </div>
-    <div
+    </Row>
+    <Row
+      align="center"
+      gap={8}
       className={styles.propertyValue}
       style={{ color: valueColor || "var(--color-text-light)" }}
     >
       {value}
-    </div>
-  </div>
+    </Row>
+  </Row>
 );
 
 export const TaskDetailsSidebar = ({ task, isOpen, onClose }: Props) => {
@@ -74,9 +79,9 @@ export const TaskDetailsSidebar = ({ task, isOpen, onClose }: Props) => {
     : meta.tags;
 
   return (
-    <div className={styles.sidebar}>
-      <div className={styles.inner}>
-        <div className={styles.headerControls}>
+    <Col className={styles.sidebar}>
+      <Col className={styles.inner}>
+        <Row justify="between" align="center" className={styles.headerControls}>
           <div className={styles.headerTitle}>Task Details</div>
           <Button
             type="text"
@@ -86,18 +91,17 @@ export const TaskDetailsSidebar = ({ task, isOpen, onClose }: Props) => {
             }
             onClick={onClose}
           />
-        </div>
+        </Row>
 
         <Input.TextArea
           autoSize
-          variant="borderless"
           className={styles.titleInput}
           value={title}
-          onChange={(e) => setTitle(e.target.value)}
+          onChange={(e: any) => setTitle(e.target.value)}
           placeholder="Untitled"
         />
 
-        <div className={styles.properties}>
+        <Col gap={8} className={styles.properties}>
           <PropertyRow
             icon={<PlaySquareOutlined />}
             label="Status"
@@ -131,29 +135,28 @@ export const TaskDetailsSidebar = ({ task, isOpen, onClose }: Props) => {
             icon={<TagsOutlined />}
             label="Tags"
             value={
-              <div className={styles.tagsContainer}>
+              <Row gap={6} className={styles.tagsContainer}>
                 {displayTags.map((t) => (
                   <span key={t.name} style={{ color: t.color }}>
                     {t.name}
                   </span>
                 ))}
-              </div>
+              </Row>
             }
           />
-        </div>
+        </Col>
 
         <div className={styles.bodyContainer}>
           <Input.TextArea
-            variant="borderless"
             autoSize={{ minRows: 10 }}
             className={styles.descriptionInput}
             value={description}
-            onChange={(e) => setDescription(e.target.value)}
+            onChange={(e: any) => setDescription(e.target.value)}
             placeholder="Add details, acceptance criteria, or notes..."
           />
         </div>
 
-        <div className={styles.footer}>
+        <Row gap={12} className={styles.footer}>
           <Button
             type="default"
             onClick={handleSave}
@@ -169,8 +172,8 @@ export const TaskDetailsSidebar = ({ task, isOpen, onClose }: Props) => {
           >
             Delete
           </Button>
-        </div>
-      </div>
-    </div>
+        </Row>
+      </Col>
+    </Col>
   );
 };
