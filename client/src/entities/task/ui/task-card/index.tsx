@@ -1,13 +1,13 @@
-import { useState } from 'react';
-import { Clock, MessageSquare, Folder, CheckSquare } from 'lucide-react';
-import { Avatar } from '@/shared/ui/avatar';
-import { useBoardStore } from '@/entities/task/model/store';
-import type { Task } from '@/entities/task/model/store';
-import { getMockTaskMeta } from '@/shared/lib/utils/mockData';
-import styles from './TaskCard.module.css';
-import { TaskActions } from '@/features/task-management/ui/TaskActions';
-import { Row } from '@/shared/ui/row';
-import { Col } from '@/shared/ui/col';
+import { useState } from "react";
+import { Clock, MessageSquare, Folder, CheckSquare } from "lucide-react";
+import { Avatar } from "@/shared/ui/avatar";
+import { useBoardStore } from "@/entities/task/model/store";
+import type { Task } from "@/entities/task/model/store";
+import { getMockTaskMeta } from "@/shared/lib/utils/mockData";
+import styles from "./styles.module.css";
+import { TaskActions } from "@/features/task-management/ui/TaskActions";
+import { Row } from "@/shared/ui/row";
+import { Col } from "@/shared/ui/col";
 
 interface Props {
   task: Task;
@@ -19,7 +19,7 @@ export const TaskCard = ({ task, columnIndex }: Props) => {
   const moveTask = useBoardStore((state) => state.moveTask);
   const deleteTask = useBoardStore((state) => state.deleteTask);
   const setActiveTask = useBoardStore((state) => state.setActiveTask);
-  
+
   const [isHovered, setIsHovered] = useState(false);
 
   const canMoveLeft = columnIndex > 0;
@@ -34,9 +34,9 @@ export const TaskCard = ({ task, columnIndex }: Props) => {
   const comments = task.commentsCount || meta.comments;
   const attachments = task.attachmentsCount || meta.attachments;
   const checklist = task.checklist || meta.checklist;
-  
-  const displayTags = task.tags 
-    ? task.tags.map(t => ({ name: t, color: 'var(--color-sky)' }))
+
+  const displayTags = task.tags
+    ? task.tags.map((t) => ({ name: t, color: "var(--color-sky)" }))
     : meta.tags;
 
   return (
@@ -52,23 +52,23 @@ export const TaskCard = ({ task, columnIndex }: Props) => {
         <span>{dueDate}</span>
       </Row>
 
-      <div className={styles.title}>
-        {task.title}
-      </div>
-      
+      <div className={styles.title}>{task.title}</div>
+
       {task.description && (
-        <div className={styles.description}>
-          {task.description}
-        </div>
+        <div className={styles.description}>{task.description}</div>
       )}
 
       <Row gap={6} wrap className={styles.tagsContainer}>
-        {displayTags.map(tag => (
-          <div key={tag.name} className={styles.tag} style={{
-            color: tag.color,
-            border: `1px solid color-mix(in srgb, ${tag.color} 30%, transparent)`,
-            background: `color-mix(in srgb, ${tag.color} 10%, transparent)`
-          }}>
+        {displayTags.map((tag) => (
+          <div
+            key={tag.name}
+            className={styles.tag}
+            style={{
+              color: tag.color,
+              border: `1px solid color-mix(in srgb, ${tag.color} 30%, transparent)`,
+              background: `color-mix(in srgb, ${tag.color} 10%, transparent)`,
+            }}
+          >
             {tag.name}
           </div>
         ))}

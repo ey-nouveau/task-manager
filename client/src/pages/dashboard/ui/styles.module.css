@@ -39,7 +39,7 @@
 }
 
 .incomeIcon {
-  border: 1px solid rgba(0,0,0,0.2);
+  border: 1px solid rgba(0, 0, 0, 0.2);
   border-radius: 20px;
   padding: 2px 8px;
   font-size: 10px;
@@ -59,4 +59,15 @@
   border-radius: 50%;
   background: var(--color-orange);
   color: var(--color-dark);
+}
+
+
+:global([data-theme="light"]) .card {
+  border: 3px solid var(--accent-color);
+  background: transparent;
+}
+
+:global([data-theme="dark"]) .card {
+  background: var(--accent-color);
+  border-color: transparent;
 }

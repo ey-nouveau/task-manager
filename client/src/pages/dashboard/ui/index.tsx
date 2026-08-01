@@ -1,7 +1,7 @@
-import { MoreHorizontal, Plus } from 'lucide-react';
+import { MoreHorizontal, Plus } from "lucide-react";
 import { Row } from "@/shared/ui/row";
 import { Col } from "@/shared/ui/col";
-import styles from './DashboardPage.module.css';
+import styles from "./styles.module.css";
 
 const Card = ({
   title,
@@ -9,7 +9,7 @@ const Card = ({
   bg,
   textColor,
   icon,
-  style = {},
+  style,
 }: {
   title?: string;
   value?: string | React.ReactNode;
@@ -18,8 +18,17 @@ const Card = ({
   icon?: React.ReactNode;
   style?: React.CSSProperties;
 }) => (
-  <div className={styles.card} style={{ background: bg, color: textColor, ...style }}>
-    <Col justify="between" style={{ height: '100%' }}>
+  <div
+    className={styles.card}
+    style={
+      {
+        "--accent-color": bg,
+        color: textColor,
+        ...style,
+      } as React.CSSProperties
+    }
+  >
+    <Col justify="between" style={{ height: "100%" }}>
       <Row justify="between" align="start">
         {title && <div className={styles.cardTitle}>{title}</div>}
         {icon && <div className={styles.cardIcon}>{icon}</div>}
@@ -68,7 +77,7 @@ export const DashboardPage = () => {
             title={s.title}
             value={s.value}
             bg={s.bg}
-            textColor="var(--color-text-dark)"
+            textColor="var(--text)"
             icon={<MoreHorizontal size={18} />}
           />
         ))}
@@ -77,7 +86,7 @@ export const DashboardPage = () => {
           title="Income"
           value="$7,312"
           bg="var(--color-green)"
-          textColor="var(--color-text-dark)"
+          textColor="var(--text)"
           icon={
             <Row gap={8} className={styles.incomeIcon}>
               <span className={styles.daily}>Daily</span>
@@ -85,6 +94,7 @@ export const DashboardPage = () => {
             </Row>
           }
         />
+
         <Card
           value="Add"
           bg="var(--color-dark-grey)"
@@ -94,7 +104,6 @@ export const DashboardPage = () => {
               <Plus size={14} />
             </Row>
           }
-          style={{ justifyContent: "flex-end" }}
         />
       </div>
     </div>

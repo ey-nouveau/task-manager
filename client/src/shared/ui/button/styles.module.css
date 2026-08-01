@@ -51,7 +51,7 @@
 .variant-primary {
   background: var(--color-purple);
   border: 1px solid var(--color-purple);
-  color: var(--color-text-dark);
+  color: var(--text);
 }
 .variant-primary:hover:not(:disabled) {
   opacity: 0.8;
