@@ -59,7 +59,7 @@ export const MainLayout = () => {
                       to={item.path}
                       className="nav-pill-item"
                       style={{
-                        background: isActive ? 'rgba(0,0,0,0.05)' : 'transparent'
+                        background: isActive ? 'rgba(255,255,255,0.1)' : 'transparent'
                       }}
                     >
                       {item.icon}
@@ -87,7 +87,7 @@ export const MainLayout = () => {
                       to={item.path}
                       className="nav-pill-item"
                       style={{
-                        background: isActive ? 'rgba(0,0,0,0.05)' : 'transparent'
+                        background: isActive ? 'rgba(255,255,255,0.1)' : 'transparent'
                       }}
                     >
                       {item.icon}
