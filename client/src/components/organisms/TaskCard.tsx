@@ -1,6 +1,3 @@
-import { useBoardStore } from '../../store/useBoardStore';
-import type { Task } from '../../store/useBoardStore';
-import { TaskActions } from '../molecules/TaskActions';
 import { useState } from 'react';
 import { 
   ClockCircleOutlined, 
@@ -9,22 +6,16 @@ import {
   CheckSquareFilled 
 } from '@ant-design/icons';
 import { Avatar } from 'antd';
+import { useBoardStore } from '../../store/useBoardStore';
+import type { Task } from '../../store/useBoardStore';
+import { TaskActions } from '../molecules/TaskActions';
+import { getMockTaskMeta } from '../../utils/mockData';
 
 interface Props {
   task: Task;
   columnIndex: number;
   accentColor?: string;
 }
-
-// Fallback tags array if DB doesn't have them, mapped to pastel colors
-const MOCK_TAGS = [
-  { name: 'Web', color: 'var(--color-blue)' },
-  { name: 'SaaS', color: 'var(--color-purple)' },
-  { name: 'App', color: 'var(--color-orange)' },
-  { name: 'Research', color: 'var(--color-mint)' },
-  { name: 'Copywrite', color: 'var(--color-sage)' },
-  { name: 'Redesign', color: 'var(--color-yellow)' }
-];
 
 export const TaskCard = ({ task, columnIndex }: Props) => {
   const columns = useBoardStore((state) => state.columns);
@@ -41,17 +32,16 @@ export const TaskCard = ({ task, columnIndex }: Props) => {
   const handleMoveRight = () => moveTask(task.id, columns[columnIndex + 1].id);
   const handleDelete = () => deleteTask(task.id);
 
-  // Mock data mapping if empty
-  const dueDate = task.dueDate || '24 Sep - 5 Oct';
-  const comments = task.commentsCount || Math.floor(Math.random() * 5);
-  const attachments = task.attachmentsCount || Math.floor(Math.random() * 8);
-  const checklist = task.checklist || `${Math.floor(Math.random() * 3)}/5`;
+  // Use deterministic mock data so it doesn't jump on hover
+  const meta = getMockTaskMeta(task.id);
+  const dueDate = task.dueDate || meta.dueDate;
+  const comments = task.commentsCount || meta.comments;
+  const attachments = task.attachmentsCount || meta.attachments;
+  const checklist = task.checklist || meta.checklist;
   
   const displayTags = task.tags 
     ? task.tags.map(t => ({ name: t, color: 'var(--color-sky)' }))
-    : [MOCK_TAGS[Math.floor(Math.random() * MOCK_TAGS.length)], MOCK_TAGS[Math.floor(Math.random() * MOCK_TAGS.length)]];
-  // ensure unique displayTags
-  const uniqueTags = displayTags.filter((v, i, a) => a.findIndex(t => (t.name === v.name)) === i);
+    : meta.tags;
 
   return (
     <div
@@ -59,16 +49,16 @@ export const TaskCard = ({ task, columnIndex }: Props) => {
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       style={{
-        background: '#1c1a1f', // Slightly lighter than the dark bg
+        background: 'rgba(255,255,255,0.03)', 
         borderRadius: '12px',
         padding: '16px',
         cursor: 'pointer',
         border: '1px solid',
-        borderColor: isHovered ? 'rgba(255,255,255,0.15)' : 'rgba(255,255,255,0.03)',
+        borderColor: isHovered ? 'rgba(255,255,255,0.15)' : 'rgba(255,255,255,0.05)',
         display: 'flex',
         flexDirection: 'column',
         gap: '12px',
-        transition: 'border-color 0.2s ease',
+        transition: 'border-color 0.2s ease, background 0.2s ease',
         position: 'relative'
       }}
     >
@@ -92,12 +82,13 @@ export const TaskCard = ({ task, columnIndex }: Props) => {
 
       {/* Tags */}
       <div style={{ display: 'flex', gap: '6px', flexWrap: 'wrap', marginTop: '2px' }}>
-        {uniqueTags.map(tag => (
+        {displayTags.map(tag => (
           <div key={tag.name} style={{
-            background: `color-mix(in srgb, ${tag.color} 15%, transparent)`,
             color: tag.color,
+            border: `1px solid color-mix(in srgb, ${tag.color} 30%, transparent)`,
+            background: `color-mix(in srgb, ${tag.color} 10%, transparent)`,
             padding: '2px 8px',
-            borderRadius: '4px',
+            borderRadius: '12px',
             fontSize: '11px',
             fontWeight: 500
           }}>
@@ -109,13 +100,13 @@ export const TaskCard = ({ task, columnIndex }: Props) => {
       {/* Footer: Meta & Avatars */}
       <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginTop: '8px', color: 'var(--color-text-muted)', fontSize: '13px' }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
-          <MessageFilled style={{ opacity: 0.6 }} /> {comments}
+          <MessageFilled style={{ opacity: 0.5 }} /> {comments}
         </div>
         <div style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
-          <FolderFilled style={{ opacity: 0.6 }} /> {attachments}
+          <FolderFilled style={{ opacity: 0.5 }} /> {attachments}
         </div>
         <div style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
-          <CheckSquareFilled style={{ opacity: 0.6 }} /> {checklist}
+          <CheckSquareFilled style={{ opacity: 0.5 }} /> {checklist}
         </div>
 
         <div style={{ marginLeft: 'auto' }}>
@@ -138,7 +129,8 @@ export const TaskCard = ({ task, columnIndex }: Props) => {
           borderRadius: '8px',
           boxShadow: '0 4px 12px rgba(0,0,0,0.5)',
           display: 'flex',
-          zIndex: 10
+          zIndex: 10,
+          border: '1px solid rgba(255,255,255,0.1)'
         }}>
           <TaskActions
             onMoveLeft={canMoveLeft ? handleMoveLeft : undefined}

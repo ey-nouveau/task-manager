@@ -1,8 +1,9 @@
 import { useState, useEffect } from 'react';
-import { Input, Button, Divider } from 'antd';
+import { Input, Button } from 'antd';
 import { CloseOutlined, PlaySquareOutlined, UserOutlined, CalendarOutlined, TagsOutlined } from '@ant-design/icons';
 import { useBoardStore } from '../../store/useBoardStore';
 import type { Task } from '../../store/useBoardStore';
+import { getMockTaskMeta } from '../../utils/mockData';
 
 interface Props {
   task: Task | null;
@@ -10,12 +11,12 @@ interface Props {
   onClose: () => void;
 }
 
-const PropertyRow = ({ icon, label, value }: { icon: React.ReactNode, label: string, value: string }) => (
-  <div style={{ display: 'flex', alignItems: 'center', fontSize: '14px', minHeight: '32px' }}>
-    <div style={{ width: '120px', color: 'var(--color-text-muted)', display: 'flex', alignItems: 'center', gap: '8px' }}>
+const PropertyRow = ({ icon, label, value, valueColor }: { icon: React.ReactNode, label: string, value: React.ReactNode, valueColor?: string }) => (
+  <div style={{ display: 'flex', alignItems: 'center', minHeight: '36px', borderBottom: '1px solid rgba(255,255,255,0.02)' }}>
+    <div style={{ width: '130px', color: 'var(--color-text-muted)', display: 'flex', alignItems: 'center', gap: '8px', fontSize: '13px' }}>
       {icon} <span>{label}</span>
     </div>
-    <div style={{ flex: 1, color: 'var(--color-text-light)', fontWeight: 500 }}>
+    <div style={{ flex: 1, color: valueColor || 'var(--color-text-light)', fontSize: '13px', fontWeight: 500, display: 'flex', alignItems: 'center', gap: '8px' }}>
       {value}
     </div>
   </div>
@@ -47,23 +48,32 @@ export const TaskDetailsSidebar = ({ task, isOpen, onClose }: Props) => {
     onClose();
   };
 
+  const meta = getMockTaskMeta(task.id);
+  const displayTags = task.tags 
+    ? task.tags.map(t => ({ name: t, color: 'var(--color-sky)' }))
+    : meta.tags;
+
   return (
     <div style={{
-      width: '400px',
+      width: '450px',
       height: '100%',
       flexShrink: 0,
-      borderLeft: '1px solid rgba(255,255,255,0.05)',
-      background: 'var(--color-bg-outer)',
+      borderLeft: '1px solid rgba(255,255,255,0.06)',
+      background: 'var(--color-dark)',
       display: 'flex',
       flexDirection: 'column',
       overflowY: 'auto'
     }}>
-      <div style={{ padding: '32px', display: 'flex', flexDirection: 'column', height: '100%' }}>
+      <div style={{ padding: '32px 40px', display: 'flex', flexDirection: 'column', height: '100%' }}>
         
         {/* Header Controls */}
-        <div style={{ display: 'flex', justifyContent: 'flex-end', marginBottom: '16px' }}>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '24px' }}>
+          <div style={{ fontSize: '12px', color: 'var(--color-text-muted)', fontWeight: 500, letterSpacing: '0.05em', textTransform: 'uppercase' }}>
+            Task Details
+          </div>
           <Button 
             type="text" 
+            size="small"
             icon={<CloseOutlined style={{ color: 'var(--color-text-muted)' }} />} 
             onClick={onClose} 
           />
@@ -74,27 +84,63 @@ export const TaskDetailsSidebar = ({ task, isOpen, onClose }: Props) => {
           autoSize
           variant="borderless"
           style={{ 
-            fontSize: '32px', 
-            fontWeight: 700, 
+            fontSize: '28px', 
+            fontWeight: 600, 
             padding: 0, 
             color: 'var(--color-text-light)',
             resize: 'none',
-            lineHeight: 1.2
+            lineHeight: 1.2,
+            marginBottom: '32px'
           }}
           value={title}
           onChange={(e) => setTitle(e.target.value)}
           placeholder="Untitled"
         />
 
-        {/* Properties (Notion Style) */}
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', marginTop: '24px' }}>
-          <PropertyRow icon={<PlaySquareOutlined />} label="Status" value={task.status} />
-          <PropertyRow icon={<UserOutlined />} label="Assignee" value={task.assigned_to || 'Empty'} />
-          <PropertyRow icon={<CalendarOutlined />} label="Due date" value={task.dueDate || 'Empty'} />
-          <PropertyRow icon={<TagsOutlined />} label="Tags" value={task.tags?.join(', ') || 'Empty'} />
+        {/* Properties (Notion/Linear Style) */}
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', marginBottom: '40px' }}>
+          <PropertyRow 
+            icon={<PlaySquareOutlined />} 
+            label="Status" 
+            value={
+              <div style={{ 
+                background: 'rgba(255,255,255,0.05)', 
+                padding: '2px 8px', 
+                borderRadius: '6px', 
+                color: 'var(--color-text-light)' 
+              }}>
+                {task.status.replace('-', ' ')}
+              </div>
+            } 
+          />
+          <PropertyRow 
+            icon={<UserOutlined />} 
+            label="Assignee" 
+            value={
+              <>
+                <img src="https://i.pravatar.cc/150?img=32" alt="assignee" style={{ width: '18px', height: '18px', borderRadius: '50%' }} />
+                {task.assigned_to || 'Shawn Soares'}
+              </>
+            } 
+          />
+          <PropertyRow 
+            icon={<CalendarOutlined />} 
+            label="Due date" 
+            value={task.dueDate || meta.dueDate} 
+            valueColor="var(--color-text-muted)"
+          />
+          <PropertyRow 
+            icon={<TagsOutlined />} 
+            label="Tags" 
+            value={
+              <div style={{ display: 'flex', gap: '6px' }}>
+                {displayTags.map(t => (
+                  <span key={t.name} style={{ color: t.color }}>{t.name}</span>
+                ))}
+              </div>
+            } 
+          />
         </div>
-
-        <Divider style={{ borderColor: 'rgba(255,255,255,0.05)' }} />
 
         {/* Description Body */}
         <div style={{ flex: 1 }}>
@@ -110,16 +156,16 @@ export const TaskDetailsSidebar = ({ task, isOpen, onClose }: Props) => {
             }}
             value={description}
             onChange={(e) => setDescription(e.target.value)}
-            placeholder="Empty page. Type here..."
+            placeholder="Add details, acceptance criteria, or notes..."
           />
         </div>
 
         {/* Footer Actions */}
-        <div style={{ display: 'flex', gap: '12px', marginTop: '24px', paddingTop: '24px' }}>
+        <div style={{ display: 'flex', gap: '12px', marginTop: '24px', paddingTop: '24px', borderTop: '1px solid rgba(255,255,255,0.05)' }}>
           <Button 
             type="primary" 
             onClick={handleSave} 
-            style={{ background: 'var(--color-purple)', border: 'none', fontWeight: 500 }}
+            style={{ flex: 1, background: 'var(--color-purple)', border: 'none', fontWeight: 500, height: '36px' }}
           >
             Save Changes
           </Button>
@@ -127,7 +173,7 @@ export const TaskDetailsSidebar = ({ task, isOpen, onClose }: Props) => {
             danger 
             type="text"
             onClick={handleDelete}
-            style={{ fontWeight: 500, color: 'var(--color-salmon)' }}
+            style={{ fontWeight: 500, color: 'var(--color-salmon)', height: '36px', background: 'color-mix(in srgb, var(--color-salmon) 10%, transparent)' }}
           >
             Delete
           </Button>
