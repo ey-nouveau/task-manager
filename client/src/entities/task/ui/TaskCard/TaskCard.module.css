@@ -1,0 +1,89 @@
+.card {
+  background: #1c1a1f;
+  border-radius: 12px;
+  padding: 16px;
+  cursor: pointer;
+  border: 1px solid rgba(255, 255, 255, 0.03);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  transition: border-color 0.2s ease, background 0.2s ease;
+  position: relative;
+}
+
+.card:hover {
+  border-color: rgba(255, 255, 255, 0.15);
+}
+
+.dateRow {
+  color: var(--color-text-muted);
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.title {
+  color: var(--color-text-light);
+  font-weight: 500;
+  font-size: 15px;
+  line-height: 1.4;
+}
+
+.description {
+  color: var(--color-text-muted);
+  font-size: 13px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.tagsContainer {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  margin-top: 2px;
+}
+
+.tag {
+  padding: 2px 8px;
+  border-radius: 12px;
+  font-size: 11px;
+  font-weight: 500;
+}
+
+.footer {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 8px;
+  color: var(--color-text-muted);
+  font-size: 13px;
+}
+
+.footerMeta {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.footerIcon {
+  opacity: 0.5;
+}
+
+.avatars {
+  margin-left: auto;
+}
+
+.actionsOverlay {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: var(--color-dark);
+  padding: 4px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+  display: flex;
+  z-index: 10;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}

@@ -1,0 +1,60 @@
+.column {
+  min-width: 320px;
+  max-width: 320px;
+  display: flex;
+  flex-direction: column;
+  background: rgba(255,255,255,0.02);
+  border-radius: 20px;
+  padding: 20px;
+  height: 100%;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
+  padding: 0 4px;
+}
+
+.indicator {
+  width: 4px;
+  height: 20px;
+  border-radius: 4px;
+}
+
+.title {
+  font-weight: 500;
+  font-size: 16px;
+  color: var(--color-text-light);
+}
+
+.count {
+  background: var(--color-dark-grey);
+  padding: 2px 8px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--color-text-muted);
+}
+
+.actions {
+  margin-left: auto;
+  display: flex;
+  gap: 12px;
+  color: var(--color-text-muted);
+}
+
+.actionIcon {
+  cursor: pointer;
+}
+
+.tasksArea {
+  flex: 1;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding-right: 4px;
+  padding-bottom: 12px;
+}
