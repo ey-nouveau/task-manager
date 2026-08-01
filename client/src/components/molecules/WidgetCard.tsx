@@ -6,7 +6,6 @@ import { ClockWidget } from "../widgets/clock";
 export const WidgetCard = ({ widget }: { widget: Widget }) => {
   const { removeWidget } = useWidgetStore();
 
-  return <ClockWidget />;
   return (
     <div
       style={{
@@ -82,6 +81,8 @@ export const WidgetCard = ({ widget }: { widget: Widget }) => {
             loading="lazy"
             referrerPolicy="no-referrer-when-downgrade"
           />
+        ) : widget.type === "clock" ? (
+          <ClockWidget />
         ) : (
           <div
             style={{
