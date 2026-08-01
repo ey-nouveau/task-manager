@@ -20,40 +20,7 @@ export const HomePage = () => {
       padding: '120px 48px 48px 48px' // offset for header
     }}>
       
-      {widgets.length === 0 ? (
-        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100%' }}>
-          <div 
-            onClick={() => setModalOpen(true)}
-            style={{
-              width: '64px',
-              height: '64px',
-              borderRadius: '50%',
-              background: 'rgba(20, 20, 20, 0.4)',
-              backdropFilter: 'blur(16px)',
-              WebkitBackdropFilter: 'blur(16px)',
-              border: '1px solid rgba(255, 255, 255, 0.1)',
-              boxShadow: '0 16px 32px rgba(0,0,0,0.3)',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              color: 'var(--color-text-light)',
-              fontSize: '24px',
-              cursor: 'pointer',
-              transition: 'all 0.3s ease'
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.transform = 'scale(1.1)';
-              e.currentTarget.style.background = 'rgba(255, 255, 255, 0.1)';
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.transform = 'scale(1)';
-              e.currentTarget.style.background = 'rgba(20, 20, 20, 0.4)';
-            }}
-          >
-            <PlusOutlined />
-          </div>
-        </div>
-      ) : (
+      {widgets.length > 0 && (
         <div style={{
           display: 'grid',
           gridTemplateColumns: 'repeat(auto-fill, minmax(350px, 1fr))',
@@ -64,38 +31,48 @@ export const HomePage = () => {
           {widgets.map(w => (
             <WidgetCard key={w.id} widget={w} />
           ))}
-          
-          {/* Add Widget Button (Grid Item) */}
-          <div 
-            onClick={() => setModalOpen(true)}
-            style={{
-              height: '350px',
-              background: 'rgba(20, 20, 20, 0.2)',
-              backdropFilter: 'blur(16px)',
-              WebkitBackdropFilter: 'blur(16px)',
-              border: '1px dashed rgba(255, 255, 255, 0.15)',
-              borderRadius: '24px',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              color: 'rgba(255,255,255,0.5)',
-              fontSize: '24px',
-              cursor: 'pointer',
-              transition: 'all 0.2s ease'
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.background = 'rgba(20, 20, 20, 0.4)';
-              e.currentTarget.style.color = 'var(--color-text-light)';
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.background = 'rgba(20, 20, 20, 0.2)';
-              e.currentTarget.style.color = 'rgba(255,255,255,0.5)';
-            }}
-          >
-            <PlusOutlined />
-          </div>
         </div>
       )}
+
+      {/* Floating Action Button (FAB) Bottom Right */}
+      <div 
+        onClick={() => setModalOpen(true)}
+        style={{
+          position: 'fixed',
+          bottom: '48px',
+          right: '48px',
+          width: '56px',
+          height: '56px',
+          borderRadius: '50%',
+          background: 'rgba(20, 20, 20, 0.45)',
+          backdropFilter: 'blur(24px)',
+          WebkitBackdropFilter: 'blur(24px)',
+          border: '1px solid rgba(255, 255, 255, 0.25)',
+          boxShadow: '0 0 0 4px rgba(255, 255, 255, 0.05), 0 16px 32px rgba(0,0,0,0.4)',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          color: 'var(--color-text-light)',
+          fontSize: '20px',
+          cursor: 'pointer',
+          transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+          zIndex: 100
+        }}
+        onMouseEnter={(e) => {
+          e.currentTarget.style.transform = 'scale(1.05) translateY(-4px)';
+          e.currentTarget.style.background = 'rgba(255, 255, 255, 0.15)';
+          e.currentTarget.style.borderColor = 'var(--color-text-light)';
+          e.currentTarget.style.boxShadow = '0 0 0 6px rgba(255, 255, 255, 0.1), 0 20px 40px rgba(0,0,0,0.5)';
+        }}
+        onMouseLeave={(e) => {
+          e.currentTarget.style.transform = 'scale(1) translateY(0)';
+          e.currentTarget.style.background = 'rgba(20, 20, 20, 0.45)';
+          e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.25)';
+          e.currentTarget.style.boxShadow = '0 0 0 4px rgba(255, 255, 255, 0.05), 0 16px 32px rgba(0,0,0,0.4)';
+        }}
+      >
+        <PlusOutlined />
+      </div>
 
       <WidgetModal />
     </div>
