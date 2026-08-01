@@ -2,6 +2,7 @@ import { useBoardStore } from '../../store/useBoardStore';
 import type { Column } from '../../store/useBoardStore';
 import { TaskInput } from '../molecules/TaskInput';
 import { TaskCard } from './TaskCard';
+import { PlusOutlined, EllipsisOutlined } from '@ant-design/icons';
 
 interface Props {
   column: Column;
@@ -10,8 +11,8 @@ interface Props {
 
 const COLUMN_COLORS: Record<string, string> = {
   'todo': 'var(--color-sky)',
-  'in-progress': 'var(--color-peach)',
-  'done': 'var(--color-mint)'
+  'in-progress': 'var(--color-yellow)',
+  'done': 'var(--color-purple)'
 };
 
 export const BoardColumn = ({ column, index }: Props) => {
@@ -30,40 +31,38 @@ export const BoardColumn = ({ column, index }: Props) => {
       maxWidth: '320px', 
       display: 'flex', 
       flexDirection: 'column', 
-      background: 'rgba(255,255,255,0.02)', 
-      borderRadius: '20px', 
-      padding: '20px',
       height: '100%'
     }}>
-      {/* Header */}
-      <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '20px' }}>
-        <div style={{ width: '10px', height: '10px', borderRadius: '50%', background: accentColor }} />
-        <div style={{ fontWeight: 600, fontSize: '15px', color: 'var(--color-text-light)' }}>
+      {/* Header - No background, minimal padding */}
+      <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '20px', padding: '0 4px' }}>
+        <div style={{ width: '4px', height: '20px', borderRadius: '4px', background: accentColor }} />
+        <div style={{ fontWeight: 500, fontSize: '16px', color: 'var(--color-text-light)' }}>
           {column.title}
         </div>
         <div style={{ 
-          marginLeft: 'auto', 
-          background: 'rgba(255,255,255,0.05)', 
-          padding: '2px 10px', 
-          borderRadius: '12px', 
+          background: 'var(--color-dark-grey)', 
+          padding: '2px 8px', 
+          borderRadius: '6px', 
           fontSize: '12px', 
           fontWeight: 600,
           color: 'var(--color-text-muted)' 
         }}>
           {tasks.length}
         </div>
+
+        <div style={{ marginLeft: 'auto', display: 'flex', gap: '12px', color: 'var(--color-text-muted)' }}>
+          <PlusOutlined style={{ cursor: 'pointer' }} onClick={() => addTask(column.id, 'New Task')} />
+          <EllipsisOutlined style={{ cursor: 'pointer' }} />
+        </div>
       </div>
 
       {/* Tasks Area */}
       <div style={{ flex: 1, overflowY: 'auto', display: 'flex', flexDirection: 'column', gap: '12px', paddingRight: '4px', paddingBottom: '12px' }}>
+        <TaskInput onSubmit={(title) => addTask(column.id, title)} placeholder="Add new task..." />
+        
         {tasks.map((task) => (
           <TaskCard key={task.id} task={task} columnIndex={index} accentColor={accentColor} />
         ))}
-      </div>
-      
-      {/* Add Task Input */}
-      <div style={{ paddingTop: '12px', borderTop: '1px solid rgba(255,255,255,0.05)' }}>
-        <TaskInput onSubmit={(title) => addTask(column.id, title)} placeholder="Add new task..." />
       </div>
     </div>
   );

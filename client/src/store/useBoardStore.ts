@@ -9,6 +9,11 @@ export interface Task {
   created_at?: string;
   created_by?: string;
   assigned_to?: string;
+  tags?: string[];
+  dueDate?: string;
+  commentsCount?: number;
+  attachmentsCount?: number;
+  checklist?: string;
 }
 
 export interface Column {

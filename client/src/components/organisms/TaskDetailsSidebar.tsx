@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
-import { Drawer, Input, Button } from 'antd';
-import { CloseOutlined } from '@ant-design/icons';
+import { Input, Button, Divider } from 'antd';
+import { CloseOutlined, PlaySquareOutlined, UserOutlined, CalendarOutlined, TagsOutlined } from '@ant-design/icons';
 import { useBoardStore } from '../../store/useBoardStore';
 import type { Task } from '../../store/useBoardStore';
 
@@ -9,6 +9,17 @@ interface Props {
   isOpen: boolean;
   onClose: () => void;
 }
+
+const PropertyRow = ({ icon, label, value }: { icon: React.ReactNode, label: string, value: string }) => (
+  <div style={{ display: 'flex', alignItems: 'center', fontSize: '14px', minHeight: '32px' }}>
+    <div style={{ width: '120px', color: 'var(--color-text-muted)', display: 'flex', alignItems: 'center', gap: '8px' }}>
+      {icon} <span>{label}</span>
+    </div>
+    <div style={{ flex: 1, color: 'var(--color-text-light)', fontWeight: 500 }}>
+      {value}
+    </div>
+  </div>
+);
 
 export const TaskDetailsSidebar = ({ task, isOpen, onClose }: Props) => {
   const updateTask = useBoardStore((state) => state.updateTask);
@@ -24,7 +35,7 @@ export const TaskDetailsSidebar = ({ task, isOpen, onClose }: Props) => {
     }
   }, [task, isOpen]);
 
-  if (!task) return null;
+  if (!isOpen || !task) return null;
 
   const handleSave = () => {
     updateTask(task.id, { title, description });
@@ -37,65 +48,78 @@ export const TaskDetailsSidebar = ({ task, isOpen, onClose }: Props) => {
   };
 
   return (
-    <Drawer
-      open={isOpen}
-      onClose={onClose}
-      placement="right"
-      width={450}
-      closable={false}
-      styles={{
-        body: { background: 'var(--color-dark)', padding: '32px' },
-        mask: { backdropFilter: 'blur(4px)' }
-      }}
-    >
-      <div style={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
-        {/* Header */}
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '32px' }}>
-          <div style={{ color: 'var(--color-purple)', fontSize: '13px', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.05em' }}>
-            Edit Task
-          </div>
-          <div 
+    <div style={{
+      width: '400px',
+      height: '100%',
+      flexShrink: 0,
+      borderLeft: '1px solid rgba(255,255,255,0.05)',
+      background: 'var(--color-bg-outer)',
+      display: 'flex',
+      flexDirection: 'column',
+      overflowY: 'auto'
+    }}>
+      <div style={{ padding: '32px', display: 'flex', flexDirection: 'column', height: '100%' }}>
+        
+        {/* Header Controls */}
+        <div style={{ display: 'flex', justifyContent: 'flex-end', marginBottom: '16px' }}>
+          <Button 
+            type="text" 
+            icon={<CloseOutlined style={{ color: 'var(--color-text-muted)' }} />} 
             onClick={onClose} 
-            style={{ width: '32px', height: '32px', borderRadius: '50%', background: 'rgba(255,255,255,0.05)', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', transition: 'background 0.2s' }}
-            onMouseEnter={(e) => e.currentTarget.style.background = 'rgba(255,255,255,0.1)'}
-            onMouseLeave={(e) => e.currentTarget.style.background = 'rgba(255,255,255,0.05)'}
-          >
-            <CloseOutlined style={{ color: 'var(--color-text-light)' }} />
-          </div>
+          />
         </div>
 
-        {/* Content */}
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '32px', flex: 1 }}>
-          <div>
-            <div style={{ fontSize: '12px', color: 'var(--color-text-muted)', marginBottom: '8px' }}>Task Title</div>
-            <Input
-              variant="borderless"
-              style={{ fontSize: '20px', fontWeight: 500, padding: '8px 12px', color: 'var(--color-text-light)', background: 'var(--color-dark-grey)', borderRadius: '8px' }}
-              value={title}
-              onChange={(e) => setTitle(e.target.value)}
-              placeholder="What needs to be done?"
-            />
-          </div>
+        {/* Title */}
+        <Input.TextArea
+          autoSize
+          variant="borderless"
+          style={{ 
+            fontSize: '32px', 
+            fontWeight: 700, 
+            padding: 0, 
+            color: 'var(--color-text-light)',
+            resize: 'none',
+            lineHeight: 1.2
+          }}
+          value={title}
+          onChange={(e) => setTitle(e.target.value)}
+          placeholder="Untitled"
+        />
 
-          <div>
-            <div style={{ fontSize: '12px', color: 'var(--color-text-muted)', marginBottom: '8px' }}>Description</div>
-            <Input.TextArea
-              variant="borderless"
-              rows={8}
-              style={{ padding: '12px', color: 'var(--color-text-light)', background: 'var(--color-dark-grey)', borderRadius: '8px', resize: 'none' }}
-              value={description}
-              onChange={(e) => setDescription(e.target.value)}
-              placeholder="Add details, acceptance criteria..."
-            />
-          </div>
+        {/* Properties (Notion Style) */}
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', marginTop: '24px' }}>
+          <PropertyRow icon={<PlaySquareOutlined />} label="Status" value={task.status} />
+          <PropertyRow icon={<UserOutlined />} label="Assignee" value={task.assigned_to || 'Empty'} />
+          <PropertyRow icon={<CalendarOutlined />} label="Due date" value={task.dueDate || 'Empty'} />
+          <PropertyRow icon={<TagsOutlined />} label="Tags" value={task.tags?.join(', ') || 'Empty'} />
         </div>
 
-        {/* Footer */}
-        <div style={{ display: 'flex', gap: '12px', marginTop: '32px', paddingTop: '24px', borderTop: '1px solid rgba(255,255,255,0.05)' }}>
+        <Divider style={{ borderColor: 'rgba(255,255,255,0.05)' }} />
+
+        {/* Description Body */}
+        <div style={{ flex: 1 }}>
+          <Input.TextArea
+            variant="borderless"
+            autoSize={{ minRows: 10 }}
+            style={{ 
+              padding: 0, 
+              color: 'var(--color-text-light)', 
+              resize: 'none',
+              fontSize: '15px',
+              lineHeight: 1.6
+            }}
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
+            placeholder="Empty page. Type here..."
+          />
+        </div>
+
+        {/* Footer Actions */}
+        <div style={{ display: 'flex', gap: '12px', marginTop: '24px', paddingTop: '24px' }}>
           <Button 
             type="primary" 
             onClick={handleSave} 
-            style={{ flex: 1, background: 'var(--color-purple)', border: 'none', height: '40px', fontWeight: 500 }}
+            style={{ background: 'var(--color-purple)', border: 'none', fontWeight: 500 }}
           >
             Save Changes
           </Button>
@@ -103,12 +127,12 @@ export const TaskDetailsSidebar = ({ task, isOpen, onClose }: Props) => {
             danger 
             type="text"
             onClick={handleDelete}
-            style={{ height: '40px', fontWeight: 500, background: 'rgba(255,0,0,0.1)' }}
+            style={{ fontWeight: 500, color: 'var(--color-salmon)' }}
           >
             Delete
           </Button>
         </div>
       </div>
-    </Drawer>
+    </div>
   );
 };
