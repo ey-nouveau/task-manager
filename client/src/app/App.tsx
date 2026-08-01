@@ -1,4 +1,3 @@
-import { ConfigProvider } from "antd";
 import { HashRouter, Routes, Route } from "react-router-dom";
 import { BoardPage } from "@/pages/board/ui/BoardPage";
 import { DashboardPage } from "@/pages/dashboard/ui/DashboardPage";
@@ -15,26 +14,15 @@ export const App = () => {
   }, [fetchTasks]);
 
   return (
-    <ConfigProvider
-      theme={{
-        token: {
-          colorPrimary: "var(--color-purple)",
-          borderRadius: 8,
-          colorBgContainer: "#ffffff",
-          colorBorder: "var(--color-light-grey)",
-        },
-      }}
-    >
-      <HashRouter>
-        <Routes>
-          <Route element={<MainLayout />}>
-            <Route path="/" element={<HomePage />} />
-            <Route path="/dashboard" element={<DashboardPage />} />
-            <Route path="/board" element={<BoardPage />} />
-          </Route>
-        </Routes>
-      </HashRouter>
-    </ConfigProvider>
+    <HashRouter>
+      <Routes>
+        <Route element={<MainLayout />}>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/dashboard" element={<DashboardPage />} />
+          <Route path="/board" element={<BoardPage />} />
+        </Route>
+      </Routes>
+    </HashRouter>
   );
 };
 

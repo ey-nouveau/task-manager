@@ -1,14 +1,9 @@
 import { useState } from "react";
-import { Tooltip } from "antd";
 import { useWidgetStore } from "@/entities/widget/model/store";
-import {
-  GlobalOutlined,
-  LineChartOutlined,
-  FileTextOutlined,
-  ClockCircleOutlined,
-} from "@ant-design/icons";
+import { Globe, LineChart, FileText, Clock } from "lucide-react";
 import { Button } from "@/shared/ui/button";
 import { Modal } from "@/shared/ui/modal";
+import { Tooltip } from "@/shared/ui/tooltip";
 import { Input } from "@/shared/ui/input";
 import { Col } from "@/shared/ui/col";
 import { Row } from "@/shared/ui/row";
@@ -18,25 +13,25 @@ const WIDGET_TYPES = [
   {
     id: "clock",
     label: "World Clock",
-    icon: <ClockCircleOutlined />,
+    icon: <Clock size={24} />,
     desc: "Neumorphic minimalist clock",
   },
   {
     id: "iframe",
     label: "Web Embed",
-    icon: <GlobalOutlined />,
+    icon: <Globe size={24} />,
     desc: "Embed any website or tool via URL",
   },
   {
     id: "native_chart",
     label: "Native Chart",
-    icon: <LineChartOutlined />,
+    icon: <LineChart size={24} />,
     desc: "Internal analytics metrics",
   },
   {
     id: "text_note",
     label: "Sticky Note",
-    icon: <FileTextOutlined />,
+    icon: <FileText size={24} />,
     desc: "Quick notes & reminders",
   },
 ];
@@ -105,8 +100,6 @@ export const WidgetModal = () => {
                     <div className={styles.tooltipDesc}>{type.desc}</div>
                   </div>
                 }
-                color="rgba(0,0,0,0.8)"
-                overlayInnerStyle={{ backdropFilter: 'blur(12px)', borderRadius: '8px', border: '1px solid rgba(255,255,255,0.1)' }}
               >
                 <Row
                   align="center"

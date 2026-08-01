@@ -27,7 +27,7 @@ export const AddTask = ({ onSubmit }: Props) => {
     <Row gap={8} align="stretch" className={styles.container}>
       <Input
         value={value}
-        onChange={(e) => setValue(e.target.value)}
+        onChange={(e: any) => setValue(e.target.value)}
         onKeyDown={onKeyDown}
         placeholder="Add new task..."
         style={{ flex: 1 }}

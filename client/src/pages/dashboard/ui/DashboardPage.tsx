@@ -1,4 +1,4 @@
-import { EllipsisOutlined, PlusOutlined } from "@ant-design/icons";
+import { MoreHorizontal, Plus } from 'lucide-react';
 import { Row } from "@/shared/ui/row";
 import { Col } from "@/shared/ui/col";
 import styles from './DashboardPage.module.css';
@@ -69,7 +69,7 @@ export const DashboardPage = () => {
             value={s.value}
             bg={s.bg}
             textColor="var(--color-text-dark)"
-            icon={<EllipsisOutlined />}
+            icon={<MoreHorizontal size={18} />}
           />
         ))}
 
@@ -91,7 +91,7 @@ export const DashboardPage = () => {
           textColor="var(--color-text-light)"
           icon={
             <Row align="center" justify="center" className={styles.addIcon}>
-              <PlusOutlined style={{ fontSize: "14px" }} />
+              <Plus size={14} />
             </Row>
           }
           style={{ justifyContent: "flex-end" }}

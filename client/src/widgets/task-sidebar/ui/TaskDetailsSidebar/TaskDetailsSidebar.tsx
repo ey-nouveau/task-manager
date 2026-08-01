@@ -1,18 +1,12 @@
 import { useState, useEffect } from "react";
-import { Button } from "@/shared/ui/button";
-import {
-  CloseOutlined,
-  PlaySquareOutlined,
-  UserOutlined,
-  CalendarOutlined,
-  TagsOutlined,
-} from "@ant-design/icons";
 import { useBoardStore } from "@/entities/task/model/store";
 import type { Task } from "@/entities/task/model/store";
 import { getMockTaskMeta } from "@/shared/lib/utils/mockData";
 import { Input } from "@/shared/ui/input";
 import { Row } from "@/shared/ui/row";
 import { Col } from "@/shared/ui/col";
+import { Button } from "@/shared/ui/button";
+import { X, PlaySquare, User, Calendar, Tags } from 'lucide-react';
 import styles from "./TaskDetailsSidebar.module.css";
 
 interface Props {
@@ -85,10 +79,7 @@ export const TaskDetailsSidebar = ({ task, isOpen, onClose }: Props) => {
           <div className={styles.headerTitle}>Task Details</div>
           <Button
             variant="text"
-            size="small"
-            icon={
-              <CloseOutlined style={{ color: "var(--color-text-muted)" }} />
-            }
+            icon={<X size={16} color="var(--color-text-muted)" />}
             onClick={onClose}
           />
         </Row>
@@ -103,7 +94,7 @@ export const TaskDetailsSidebar = ({ task, isOpen, onClose }: Props) => {
 
         <Col gap={8} className={styles.properties}>
           <PropertyRow
-            icon={<PlaySquareOutlined />}
+            icon={<PlaySquare size={14} />}
             label="Status"
             value={
               <div className={styles.statusPill}>
@@ -112,7 +103,7 @@ export const TaskDetailsSidebar = ({ task, isOpen, onClose }: Props) => {
             }
           />
           <PropertyRow
-            icon={<UserOutlined />}
+            icon={<User size={14} />}
             label="Assignee"
             value={
               <>
@@ -126,13 +117,13 @@ export const TaskDetailsSidebar = ({ task, isOpen, onClose }: Props) => {
             }
           />
           <PropertyRow
-            icon={<CalendarOutlined />}
+            icon={<Calendar size={14} />}
             label="Due date"
             value={task.dueDate || meta.dueDate}
             valueColor="var(--color-text-muted)"
           />
           <PropertyRow
-            icon={<TagsOutlined />}
+            icon={<Tags size={14} />}
             label="Tags"
             value={
               <Row gap={6} className={styles.tagsContainer}>

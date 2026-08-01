@@ -1,6 +1,6 @@
 import { useWidgetStore } from '@/entities/widget/model/store';
 import type { Widget } from '@/entities/widget/model/store';
-import { DeleteOutlined } from '@ant-design/icons';
+import { Trash2 } from 'lucide-react';
 import { ClockWidget } from '@/entities/widget/ui/ClockWidget';
 import styles from './WidgetCard.module.css';
 import { Row } from '@/shared/ui/row';
@@ -19,7 +19,7 @@ export const WidgetCard = ({ widget }: { widget: Widget }) => {
           onClick={() => removeWidget(widget.id)}
           className={styles.seamlessDelete}
         >
-          <DeleteOutlined style={{ fontSize: "14px" }} />
+          <Trash2 size={14} />
         </Row>
       </div>
     );
@@ -30,7 +30,7 @@ export const WidgetCard = ({ widget }: { widget: Widget }) => {
       <Row justify="between" align="center" className={styles.header}>
         <div className={styles.title}>{widget.title}</div>
         <Row align="center" justify="center" onClick={() => removeWidget(widget.id)} className={styles.delete}>
-          <DeleteOutlined style={{ fontSize: "13px" }} />
+          <Trash2 size={13} />
         </Row>
       </Row>
 

@@ -1,10 +1,5 @@
 import { useState } from 'react';
-import { 
-  ClockCircleOutlined, 
-  MessageFilled, 
-  FolderFilled, 
-  CheckSquareFilled 
-} from '@ant-design/icons';
+import { Clock, MessageSquare, Folder, CheckSquare } from 'lucide-react';
 import { Avatar } from '@/shared/ui/avatar';
 import { useBoardStore } from '@/entities/task/model/store';
 import type { Task } from '@/entities/task/model/store';
@@ -53,7 +48,7 @@ export const TaskCard = ({ task, columnIndex }: Props) => {
       onClick={() => setActiveTask(task.id)}
     >
       <Row align="center" gap={6} className={styles.dateRow}>
-        <ClockCircleOutlined />
+        <Clock size={12} />
         <span>{dueDate}</span>
       </Row>
 
@@ -81,13 +76,13 @@ export const TaskCard = ({ task, columnIndex }: Props) => {
 
       <Row align="center" gap={12} className={styles.footer}>
         <Row align="center" gap={4} className={styles.footerMeta}>
-          <MessageFilled className={styles.footerIcon} /> {comments}
+          <MessageSquare size={13} className={styles.footerIcon} /> {comments}
         </Row>
         <Row align="center" gap={4} className={styles.footerMeta}>
-          <FolderFilled className={styles.footerIcon} /> {attachments}
+          <Folder size={13} className={styles.footerIcon} /> {attachments}
         </Row>
         <Row align="center" gap={4} className={styles.footerMeta}>
-          <CheckSquareFilled className={styles.footerIcon} /> {checklist}
+          <CheckSquare size={13} className={styles.footerIcon} /> {checklist}
         </Row>
 
         <div className={styles.avatars}>

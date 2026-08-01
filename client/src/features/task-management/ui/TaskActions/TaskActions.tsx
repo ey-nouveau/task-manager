@@ -1,6 +1,6 @@
 import { Button } from '@/shared/ui/button';
 import { Row } from '@/shared/ui/row';
-import { ArrowLeftOutlined, ArrowRightOutlined, DeleteOutlined } from '@ant-design/icons';
+import { ArrowLeft, ArrowRight, Trash2 } from 'lucide-react';
 import type { MouseEvent } from 'react';
 
 interface Props {
@@ -17,9 +17,9 @@ export const TaskActions = ({ onMoveLeft, onMoveRight, onDelete }: Props) => {
 
   return (
     <Row >
-      {onMoveLeft && <Button variant="text"  icon={<ArrowLeftOutlined style={{ color: 'var(--color-text-muted)' }}/>} onClick={handle(onMoveLeft)} />}
-      {onMoveRight && <Button variant="text"  icon={<ArrowRightOutlined style={{ color: 'var(--color-text-muted)' }}/>} onClick={handle(onMoveRight)} />}
-      <Button variant="text"  danger icon={<DeleteOutlined />} onClick={handle(onDelete)} />
+      {onMoveLeft && <Button variant="text"  icon={<ArrowLeft size={14} color="var(--color-text-muted)" />} onClick={handle(onMoveLeft)} />}
+      {onMoveRight && <Button variant="text"  icon={<ArrowRight size={14} color="var(--color-text-muted)" />} onClick={handle(onMoveRight)} />}
+      <Button variant="text"  danger icon={<Trash2 size={14} />} onClick={handle(onDelete)} />
     </Row>
   );
 };

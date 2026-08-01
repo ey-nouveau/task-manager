@@ -1,4 +1,4 @@
-import { PlusOutlined } from '@ant-design/icons';
+import { Plus } from 'lucide-react';
 import { useWidgetStore } from '@/entities/widget/model/store';
 import { WidgetModal } from '@/features/widget-management/ui/WidgetModal/WidgetModal';
 import { WidgetCard } from '@/entities/widget/ui/WidgetCard/WidgetCard';
@@ -19,7 +19,7 @@ export const HomePage = () => {
       )}
 
       <div className={styles.fab} onClick={() => setModalOpen(true)}>
-        <PlusOutlined />
+        <Plus size={24} />
       </div>
 
       <WidgetModal />

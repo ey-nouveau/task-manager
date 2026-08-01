@@ -1,7 +1,7 @@
 import { useBoardStore } from "@/entities/task/model/store";
 import type { Column } from "@/entities/task/model/store";
 import { TaskCard } from "@/entities/task/ui/TaskCard";
-import { PlusOutlined, EllipsisOutlined } from "@ant-design/icons";
+import { Plus, MoreHorizontal } from 'lucide-react';
 import { Col } from "@/shared/ui/col";
 import { Row } from "@/shared/ui/row";
 import styles from "./BoardColumn.module.css";
@@ -35,11 +35,11 @@ export const BoardColumn = ({ column, index }: Props) => {
         <div className={styles.count}>{tasks.length}</div>
 
         <Row align="center" gap={12} className={styles.actions}>
-          <PlusOutlined
+          <Plus size={16}
             className={styles.actionIcon}
             onClick={() => addTask(column.id, "New Task")}
           />
-          <EllipsisOutlined className={styles.actionIcon} />
+          <MoreHorizontal size={16} className={styles.actionIcon} />
         </Row>
       </Row>
 

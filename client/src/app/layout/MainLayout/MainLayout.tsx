@@ -1,11 +1,5 @@
 import { Link, Outlet, useLocation } from 'react-router-dom';
-import { 
-  AppstoreOutlined, 
-  HomeOutlined, 
-  LinkOutlined, 
-  SettingOutlined, 
-  CodeSandboxOutlined 
-} from '@ant-design/icons';
+import { LayoutGrid, Home, Link as LinkIcon, Settings, Box } from 'lucide-react';
 import { useState } from 'react';
 import { Responsive } from '@/shared/ui/responsive';
 import { Row } from '@/shared/ui/row';
@@ -13,11 +7,11 @@ import { Col } from '@/shared/ui/col';
 import styles from './MainLayout.module.css';
 
 const navItems = [
-  { path: '/', label: 'Home', icon: <HomeOutlined /> },
-  { path: '/dashboard', label: 'Dashboard', icon: <AppstoreOutlined /> },
-  { path: '/board', label: 'Task Board', icon: <AppstoreOutlined /> },
-  { path: '#', label: 'Integrations', icon: <LinkOutlined /> },
-  { path: '#', label: 'Preferences', icon: <SettingOutlined /> },
+  { path: '/', label: 'Home', icon: <Home size={18} /> },
+  { path: '/dashboard', label: 'Dashboard', icon: <LayoutGrid size={18} /> },
+  { path: '/board', label: 'Task Board', icon: <LayoutGrid size={18} /> },
+  { path: '#', label: 'Integrations', icon: <LinkIcon size={18} /> },
+  { path: '#', label: 'Preferences', icon: <Settings size={18} /> },
 ];
 
 const chartBars = [
@@ -49,7 +43,7 @@ export const MainLayout = () => {
         <div className={getTopSectionClass()}>
           <Row justify="between" align="center" wrap className={styles.mainHeader}>
             <div style={{ fontSize: '24px' }}>
-              <CodeSandboxOutlined />
+              <Box size={28} />
             </div>
 
             <Responsive layout="desktop">

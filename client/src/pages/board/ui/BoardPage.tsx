@@ -1,7 +1,7 @@
 import { useBoardStore } from "@/entities/task/model/store";
 import { BoardColumn } from "@/widgets/board-column/ui/BoardColumn/BoardColumn";
 import { TaskDetailsSidebar } from "@/widgets/task-sidebar/ui/TaskDetailsSidebar/TaskDetailsSidebar";
-import { Spin } from "antd";
+import { Spin } from "@/shared/ui/spin";
 import styles from "./BoardPage.module.css";
 import { AddTask } from "@/features/task-management/ui/add-task";
 import { Col } from "@/shared/ui/col";
