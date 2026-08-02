@@ -58,7 +58,7 @@ export const TaskCard = ({ task, columnIndex }: Props) => {
         <div className={styles.description}>{task.description}</div>
       )}
 
-      <Row gap={6} wrap className={styles.tagsContainer}>
+      <Row gap={6} flexWrap="wrap" className={styles.tagsContainer}>
         {displayTags.map((tag) => (
           <div
             key={tag.name}

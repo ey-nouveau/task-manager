@@ -3,11 +3,11 @@
   align-items: center;
   justify-content: center;
   gap: 8px;
-  border-radius: 8px;
+  border-radius: var(--radius-sm);
   font-weight: 500;
   font-family: inherit;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: all var(--motion-fast) var(--motion-easing);
   white-space: nowrap;
   outline: none;
 }
@@ -19,42 +19,43 @@
 
 .size-small {
   height: 24px;
-  padding: 0 7px;
-  font-size: 13px;
-  border-radius: 6px;
+  padding: 0 8px;
+  font-size: 14px;
 }
 
 .size-medium {
   height: 32px;
-  padding: 4px 15px;
-  font-size: 14px;
+  padding: 4px 16px;
+  font-size: 16px;
+  border-radius: var(--radius-md);
 }
 
 .size-large {
-  height: 40px;
-  padding: 6px 15px;
-  font-size: 14px;
+  height: 48px;
+  padding: 8px 24px;
+  font-size: 20px;
+  border-radius: var(--radius-lg);
 }
 
-/* Variant: Default (Outlined) */
+/* Variant: Default (Surface) */
 .variant-default {
-  background: transparent;
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: var(--color-bg-surface);
+  border: 1px solid var(--color-border);
   color: var(--color-text-light);
+  box-shadow: var(--shadow-card);
 }
 .variant-default:hover:not(:disabled) {
-  border-color: var(--color-purple);
-  color: var(--color-purple);
+  background: var(--color-bg-outer);
 }
 
 /* Variant: Primary */
 .variant-primary {
-  background: var(--color-purple);
-  border: 1px solid var(--color-purple);
-  color: var(--text);
+  background: var(--color-primary);
+  border: 1px solid var(--color-primary);
+  color: var(--color-on-primary);
 }
 .variant-primary:hover:not(:disabled) {
-  opacity: 0.8;
+  opacity: 0.9;
 }
 
 /* Variant: Text */
@@ -64,7 +65,7 @@
   color: var(--color-text-light);
 }
 .variant-text:hover:not(:disabled) {
-  background: rgba(255, 255, 255, 0.05);
+  background: var(--color-border);
 }
 
 /* Variant: Danger */

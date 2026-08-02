@@ -1,0 +1,12 @@
+@import "../tokens/index.css";
+
+:root[data-theme="light"] {
+  --color-primary: #27251e;
+  --color-on-primary: #ffffff;
+  --color-bg-outer: #fcfcf9;
+  --color-bg-surface: #fdfbfa;
+  --color-text-light: #000000;
+  --color-text-muted: #27251e;
+  
+  --color-border: rgba(0, 0, 0, 0.05);
+}

@@ -1,2 +1,51 @@
-@import "./primitives.css";
-@import "./shapes.css";
+:root {
+  --color-purple: #8f5ff1;
+  --color-orange: #f18b6e;
+  --color-yellow: #ebd560;
+  --color-green: #7fce89;
+  --color-light-grey: #a5ada4;
+  --color-dark-grey: #272528;
+  --color-pink: #f1b3d6;
+  --color-blue: #a3c4f3;
+  --color-mint: #9ce6d4;
+  --color-peach: #ffdca8;
+  --color-lilac: #d1c4e9;
+  --color-salmon: #ffadad;
+  --color-lavender: #b5a1e5;
+  --color-sage: #b3c9b7;
+  --color-sky: #a0c4ff;
+  --color-coral: #ffb5a7;
+  --color-melon: #ffc2a1;
+  --color-vanilla: #fdf5c9;
+  --color-rose: #f8b4c4;
+  --color-periwinkle: #c8b6ff;
+  --color-pistachio: #a9d9c2;
+  --color-butter: #fcf4d9;
+  --color-sand: #e6c8a7;
+  --color-apricot: #ffc9b5;
+  --color-blush: #f4acb7;
+  --color-olive: #cbd3a3;
+  --color-powder: #bde0fe;
+  --color-stone: #d4cfcc;
+  --color-dusty-blue: #93a8c1;
+  --color-crepe: #f6dfcd;
+
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-pill: 9999px;
+  
+  --spacing-base: 4px;
+
+  --shadow-card: rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0.08) 0px 1px 2px 0px;
+  --shadow-elevated: rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0.08) 0px 1px 2px 0px;
+
+  --motion-fast: 75ms;
+  --motion-base: 300ms;
+  --motion-slow: 1200ms;
+  --motion-easing: cubic-bezier(0.4, 0, 0.2, 1);
+  
+  --font-family-base: "pplxSans", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-size-base: 24px;
+  --line-height-base: 1.33;
+}

@@ -3,8 +3,6 @@
 
 * {
   box-sizing: border-box;
-  scrollbar-width: thin;
-  scrollbar-color: rgba(255, 255, 255, 0.1) transparent;
   margin: 0;
   padding: 0;
 }
@@ -20,26 +18,17 @@ body {
 }
 
 body {
-  background-color: transparent;
-  font-family: "Inter", sans-serif;
+  background-color: var(--color-bg-outer);
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-base);
+  line-height: var(--line-height-base);
   color: var(--color-text-light);
+  transition: background-color var(--motion-base) var(--motion-easing);
 }
 
-.section-title {
-  font-size: 16px;
-  color: var(--color-text-muted);
-  margin-bottom: 8px;
-  font-weight: 400;
-}
-
-[data-theme="dark"] {
-  --text: #ffffff;
-  --bg: #000000;
-  --bg-shadow: ;
-}
-
-[data-theme="light"] {
-  --text: #000000;
-  --bg: #ffffff;
-  --bg-shadow: ;
+/* Reset buttons and inputs */
+button {
+  font-family: inherit;
+  font-size: inherit;
+  color: inherit;
 }
