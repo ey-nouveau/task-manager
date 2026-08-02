@@ -8,7 +8,7 @@ export default defineConfig({
   base: '/task-manager/',
   resolve: {
     alias: {
-      '@': path.resolve(import.meta.dirname, './src')
+      '@': path.resolve(__dirname, './src')
     }
   }
 });
