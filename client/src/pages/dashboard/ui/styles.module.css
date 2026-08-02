@@ -73,4 +73,15 @@
 
 .titleChartContainer {
   background-color: var(--color-purple);
+  flex-basis: 35%;
+  padding-inline: 24px;
+  padding-bottom: 24px;
+}
+
+.mainTitle {
+  font-size: 64px;
+  font-weight: 500;
+  margin: 0;
+  letter-spacing: -0.02em;
+  line-height: 1;
 }

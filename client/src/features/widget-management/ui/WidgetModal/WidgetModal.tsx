@@ -50,9 +50,9 @@ export const WidgetModal = ({
         <h2 className={styles.title}>Select Widget</h2>
 
         <div className={styles.grid}>
-          {WIDGET_TYPES.map((type) => (
+          {WIDGET_TYPES.map((type, index) => (
             <Tooltip
-              key={type.id}
+              key={index}
               placement="bottom"
               title={
                 <div className={styles.tooltipContainer}>
