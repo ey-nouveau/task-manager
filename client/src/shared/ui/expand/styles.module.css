@@ -15,6 +15,8 @@
   font-family: inherit;
   font-size: inherit;
   outline: none;
+  width: 100%;
+  justify-content: space-between;
 }
 
 .triggerIcon {
@@ -22,10 +24,9 @@
   align-items: center;
   justify-content: center;
   transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-  margin-right: 8px;
 }
 
-.triggerIcon.expanded {
+.expanded {
   transform: rotate(90deg);
 }
 
@@ -35,7 +36,7 @@
   transition: grid-template-rows 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.contentWrapper.expandedContent {
+.expandedContent {
   grid-template-rows: 1fr;
 }
 
