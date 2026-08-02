@@ -24,7 +24,6 @@ export default tseslint.config(
       'react-hooks/refs': 'off',
       'react-hooks/immutability': 'off',
       'react-hooks/exhaustive-deps': 'off',
-      // Minimalist strictness: Catch obvious bugs, ignore opinionated React patterns
       'no-console': ['warn', { allow: ['warn', 'error', 'info'] }],
       '@typescript-eslint/no-explicit-any': 'off',
       '@typescript-eslint/no-empty-object-type': 'off',

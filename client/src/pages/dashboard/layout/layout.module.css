@@ -1,0 +1,10 @@
+.header {
+  padding: 12px 24px;
+  background-color: #ffffff;
+}
+
+.children {
+  padding: 32px 24px;
+  height: 100%;
+  width: 100%;
+}

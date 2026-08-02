@@ -6,6 +6,7 @@ import cn from "classnames";
 import { useHeaderLinks } from "./use-header-links";
 import { Link } from "react-router-dom";
 import { useIsMobile } from "@/shared/lib/hooks/use-is-mobile";
+import { Responsive } from "@/shared/ui/responsive";
 
 const MAX_SHOWN_LINKS_MOBILE = 3;
 
@@ -28,10 +29,14 @@ export const AppHeader = () => {
     : headerLinks;
 
   return (
-    <Row justify="between" align="center" className={styles.mainHeader}>
-      <div style={{ fontSize: "24px" }}>
+    <Row
+      justify={isMobile ? "center" : "between"}
+      align="center"
+      className={styles.mainHeader}
+    >
+      <Responsive layout="desktop">
         <Box size={28} />
-      </div>
+      </Responsive>
 
       <Row align="center" className={styles.navPillContainer}>
         {visibleLinks.map((item, index) => {
@@ -51,7 +56,9 @@ export const AppHeader = () => {
         })}
       </Row>
 
-      <ThemeToggle />
+      <Responsive layout="desktop">
+        <ThemeToggle />
+      </Responsive>
     </Row>
   );
 };

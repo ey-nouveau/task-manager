@@ -20,7 +20,7 @@ body {
 }
 
 body {
-  background-color: var(--color-bg-outer);
+  background-color: transparent;
   font-family: "Inter", sans-serif;
   color: var(--color-text-light);
 }

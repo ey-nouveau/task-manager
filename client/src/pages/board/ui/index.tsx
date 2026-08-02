@@ -2,7 +2,7 @@ import { useBoardStore } from "@/entities/task/model/store";
 import { BoardColumn } from "@/widgets/board-column/ui/BoardColumn/BoardColumn";
 import { TaskDetailsSidebar } from "@/widgets/task-sidebar/ui/TaskDetailsSidebar/TaskDetailsSidebar";
 import { Spin } from "@/shared/ui/spin";
-import styles from "./BoardPage.module.css";
+import styles from "./styles.module.css";
 import { AddTask } from "@/features/task-management/ui/add-task";
 import { Col } from "@/shared/ui/col";
 import { Row } from "@/shared/ui/row";
@@ -21,7 +21,7 @@ export const BoardPage = () => {
   if (isLoading && tasks.length === 0) {
     return (
       <div className={styles.loader}>
-        <Spin  />
+        <Spin />
       </div>
     );
   }
@@ -29,11 +29,11 @@ export const BoardPage = () => {
   return (
     <div className={styles.container}>
       <Col gap={16} align="stretch" justify="start">
-        {/* Top Bar with Add Task and Search */}
         <div style={{ padding: "32px 48px 0 48px" }}>
           <Row justify="between" align="center">
             <AddTask onSubmit={(title) => addTask("todo", title)} />
-            <div style={{ width: '250px' }}>
+              
+            <div style={{ width: "250px" }}>
               <Input.Search placeholder="Search tasks..." />
             </div>
           </Row>
