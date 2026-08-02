@@ -2,7 +2,6 @@ import { MoreHorizontal, Plus } from "lucide-react";
 import { Row } from "@/shared/ui/row";
 import { Col } from "@/shared/ui/col";
 import styles from "./styles.module.css";
-import { Responsive } from "@/shared/ui/responsive";
 
 const Card = ({
   title,
@@ -39,12 +38,6 @@ const Card = ({
   </div>
 );
 
-const chartBars = [
-  4, 6, 8, 5, 9, 12, 15, 10, 18, 22, 35, 40, 50, 45, 60, 80, 100, 95, 85, 70,
-  65, 80, 75, 60, 50, 40, 30, 25, 20, 15, 10, 8, 12, 10, 5, 8, 4, 10, 15, 18,
-  25, 20,
-];
-
 const stats = [
   { title: "Visits", value: "8,920", bg: "var(--color-orange)" },
   { title: "Transactions", value: "1,345", bg: "var(--color-peach)" },
@@ -76,34 +69,9 @@ const stats = [
 
 export const DashboardPage = () => {
   return (
-    <Col flex={1} style={{ height: "100%" }}>
-      <Row
-        justify="between"
-        align="end"
-        wrap
-        gap={16}
-        className={styles.titleChartContainer}
-      >
+    <Col flex={1} className={styles.wrapper}>
+      <Row justify="start" align="end" className={styles.titleChartContainer}>
         <h1 className={styles.mainTitle}>{"Dashboard"}</h1>
-
-        <Responsive layout="desktop">
-          {location.pathname === "/dashboard" && (
-            <Row align="end" gap={4} className={styles.chartContainer}>
-              <div className={styles.chartTooltip}>
-                1345 transactions
-                <div className={styles.chartTooltipArrow} />
-              </div>
-
-              {chartBars.map((h, i) => (
-                <div
-                  key={i}
-                  className={styles.chartBar}
-                  style={{ height: `${h}%` }}
-                />
-              ))}
-            </Row>
-          )}
-        </Responsive>
       </Row>
 
       <div className={styles.container}>

@@ -6,14 +6,12 @@ import { AppHeader } from "@/widgets/app-header";
 
 export const MainLayout = () => {
   return (
-    <div className={styles.appContainer}>
-      <Col className={styles.appWindow}>
-        <AppHeader />
+    <Col className={styles.appWindow}>
+      <AppHeader />
 
-        <div className={styles.bottomSection}>
-          <Outlet />
-        </div>
+      <Col flex={1} className={styles.children}>
+        <Outlet />
       </Col>
-    </div>
+    </Col>
   );
 };

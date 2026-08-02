@@ -1,18 +1,22 @@
-@import './tokens/index.css';
-@import './themes/index.css';
+@import "./tokens/index.css";
+@import "./themes/index.css";
 
 * {
   box-sizing: border-box;
   scrollbar-width: thin;
   scrollbar-color: rgba(255, 255, 255, 0.1) transparent;
-}
-
-html,
-body {
   margin: 0;
   padding: 0;
-  height: 100vh;
+}
+
+html {
+  height: 100dvh;
   overflow: hidden;
+}
+
+#root,
+body {
+  height: 100%;
 }
 
 body {

@@ -1,10 +1,13 @@
+.wrapper {
+  height: 100%;
+}
+
 .container {
   display: flex;
   flex-direction: column;
   height: 100%;
   padding: 32px 48px;
   overflow-y: auto;
-  box-sizing: border-box;
 }
 
 .titleChartContainer {
@@ -58,27 +61,10 @@
 
 .chartBar {
   width: 3px;
-  background: rgba(0,0,0,0.4);
+  background: rgba(0, 0, 0, 0.4);
   border-radius: 2px;
   transition: height 0.3s ease;
   flex-shrink: 0;
-}
-
-@media (max-width: 1024px) {
-  .mainTitle {
-    font-size: 48px;
-  }
-}
-
-@media (max-width: 600px) {
-  .titleChartContainer {
-    padding: 24px;
-    flex-direction: column;
-    align-items: flex-start;
-  }
-  .chartContainer {
-    width: 100%;
-  }
 }
 
 .grid {
@@ -137,7 +123,7 @@
 
 :global([data-theme="light"]) .card {
   border: 3px solid var(--accent-color);
-  background: transparent !important;
+  background: transparent;
 }
 
 :global([data-theme="dark"]) .card {

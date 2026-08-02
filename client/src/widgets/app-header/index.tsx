@@ -28,7 +28,7 @@ export const AppHeader = () => {
     : headerLinks;
 
   return (
-    <Row justify="between" align="center" wrap className={styles.mainHeader}>
+    <Row justify="between" align="center" className={styles.mainHeader}>
       <div style={{ fontSize: "24px" }}>
         <Box size={28} />
       </div>

@@ -1,3 +1,4 @@
+import { CSSProperties } from "react";
 import s from "./styles.module.css";
 
 type Props = {
@@ -6,7 +7,7 @@ type Props = {
   justify?: "start" | "center" | "end" | "between" | "around";
   align?: "start" | "center" | "end" | "stretch";
   flex?: 1 | 0;
-  wrap?: boolean;
+  flexWrap?: CSSProperties["flexWrap"];
   className?: string;
   style?: React.CSSProperties;
   onClick?: (e: React.MouseEvent) => void;
@@ -20,7 +21,7 @@ export const Col = ({
   children,
   justify,
   align,
-  wrap,
+  flexWrap,
   className = "",
   style,
   onClick,
@@ -35,7 +36,7 @@ export const Col = ({
         flex,
         justifyContent: justify,
         alignItems: align,
-        flexWrap: wrap ? "wrap" : "nowrap",
+        flexWrap,
         ...style,
       }}
       onClick={onClick}
