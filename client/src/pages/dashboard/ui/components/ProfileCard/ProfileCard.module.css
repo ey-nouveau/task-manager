@@ -1,0 +1,87 @@
+.card {
+  background: white;
+  border-radius: 16px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.04);
+}
+
+:global([data-theme="dark"]) .card {
+  background: rgba(255,255,255,0.03);
+  box-shadow: none;
+  border: 1px solid rgba(255,255,255,0.05);
+}
+
+.avatarWrapper {
+  position: relative;
+  margin-bottom: 16px;
+}
+
+.avatarRing {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  padding: 3px;
+  background: linear-gradient(135deg, rgba(200,200,200,0.5), rgba(240,240,240,0.5));
+}
+
+:global([data-theme="dark"]) .avatarRing {
+  background: linear-gradient(135deg, rgba(255,255,255,0.1), rgba(255,255,255,0.02));
+}
+
+.avatarImg {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid white;
+}
+
+:global([data-theme="dark"]) .avatarImg {
+  border-color: var(--color-dark);
+}
+
+.editBadge {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 24px;
+  height: 24px;
+  background: #1a73e8;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid white;
+  color: white;
+  cursor: pointer;
+}
+
+:global([data-theme="dark"]) .editBadge {
+  background: var(--color-purple);
+  border-color: var(--color-dark);
+}
+
+.nameRow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 4px;
+}
+
+.name {
+  font-size: 20px;
+  font-weight: 600;
+  color: #121212;
+}
+
+:global([data-theme="dark"]) .name {
+  color: var(--color-text-light);
+}
+
+.subtitle {
+  font-size: 13px;
+  color: #888;
+}
