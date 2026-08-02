@@ -61,7 +61,6 @@
   color: var(--color-dark);
 }
 
-
 :global([data-theme="light"]) .card {
   border: 3px solid var(--accent-color);
   background: transparent;
@@ -70,4 +69,8 @@
 :global([data-theme="dark"]) .card {
   background: var(--accent-color);
   border-color: transparent;
+}
+
+.titleChartContainer {
+  background-color: var(--color-purple);
 }

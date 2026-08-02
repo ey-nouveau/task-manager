@@ -5,6 +5,7 @@ type Props = {
   children: React.ReactNode;
   justify?: "start" | "center" | "end" | "between" | "around";
   align?: "start" | "center" | "end" | "stretch";
+  flex?: 1 | 0;
   wrap?: boolean;
   className?: string;
   style?: React.CSSProperties;
@@ -13,16 +14,29 @@ type Props = {
   onMouseLeave?: (e: React.MouseEvent) => void;
 };
 
-export const Col = ({ gap, children, justify, align, wrap, className = '', style, onClick, onMouseEnter, onMouseLeave }: Props) => {
+export const Col = ({
+  flex,
+  gap,
+  children,
+  justify,
+  align,
+  wrap,
+  className = "",
+  style,
+  onClick,
+  onMouseEnter,
+  onMouseLeave,
+}: Props) => {
   return (
     <div
       className={`${s.col} ${className}`}
       style={{
         gap,
+        flex,
         justifyContent: justify,
         alignItems: align,
         flexWrap: wrap ? "wrap" : "nowrap",
-        ...style
+        ...style,
       }}
       onClick={onClick}
       onMouseEnter={onMouseEnter}
