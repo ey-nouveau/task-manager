@@ -10,6 +10,8 @@ type Props = {
   flexWrap?: CSSProperties["flexWrap"];
   className?: string;
   style?: React.CSSProperties;
+  stretchY?: boolean;
+  stretchX?: boolean;
   onClick?: (e: React.MouseEvent) => void;
   onMouseEnter?: (e: React.MouseEvent) => void;
   onMouseLeave?: (e: React.MouseEvent) => void;
@@ -21,6 +23,8 @@ export const Col = ({
   children,
   justify,
   align,
+  stretchX,
+  stretchY,
   flexWrap,
   className = "",
   style,
@@ -37,6 +41,8 @@ export const Col = ({
         justifyContent: justify,
         alignItems: align,
         flexWrap,
+        width: stretchX ? "100%" : undefined,
+        height: stretchY ? "100%" : undefined,
         ...style,
       }}
       onClick={onClick}

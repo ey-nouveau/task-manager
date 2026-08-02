@@ -3,77 +3,44 @@ import s from "./styles.module.css";
 import { Col } from "@/shared/ui/col";
 import { useIsMobile } from "@/shared/lib/hooks/use-is-mobile";
 import { Responsive } from "@/shared/ui/responsive";
-import { ActivityCard } from "./ui/activity-card";
+import { Typography } from "./ui/typography";
+import { ProductivityScore } from "./ui/productivity-score";
+import { DailyTasks } from "./ui/daily-tasks";
+import { Habits } from "./ui/habits";
+import { TopStreaks } from "./ui/top-streaks";
 
 export const DashboardPage = () => {
   const isMobile = useIsMobile();
 
   return (
-    <Row>
+    <Row stretchY>
       <Responsive layout="desktop">
         <aside className={s.sidebar}></aside>
       </Responsive>
 
       {isMobile ? (
-        <Col gap={24}>
-          <Col gap={4}>
-            <span
-              style={{
-                color: "#6B7280",
-              }}
-            >
-              THURSDAY, OCTOBER 24
-            </span>
-            <span
-              style={{
-                color: "#111827",
-              }}
-            >
-              Good morning, Ivan
-            </span>
-            <span
-              style={{
-                color: "#6B7280",
-              }}
-            >
-              You have 4 tasks to focus on today.
-            </span>
+        <Col stretchX stretchY gap={24}>
+          <Col>
+            <Typography
+              color="primary60"
+              variant="captionBold"
+              text="THURSDAY, OCTOBER 24"
+            />
+            <Typography variant="display" text="Good morning, Ivan" />
+            <Typography
+              variant="body"
+              color="primary60"
+              text="You have 4 tasks to focus on today."
+            />
           </Col>
 
-          <ActivityCard>
-            <Col gap={16} align="center">
-              <Col
-                align="center"
-                justify="center"
-                className={s.circle}
-                style={{ color: "blue" }}
-              >
-                <div>70%</div>
-                <div>Daily</div>
-              </Col>
+          <ProductivityScore />
 
-              <Col>
-                <span
-                  style={{
-                    color: "#111827",
-                  }}
-                >
-                  Productivity Score
-                </span>
-                <span
-                  style={{
-                    color: "#6B7280",
-                  }}
-                >
-                  You're doing better than 85% of peers
-                </span>
-              </Col>
-            </Col>
-          </ActivityCard>
+          <DailyTasks />
 
-          <ActivityCard>
-            <Col>1</Col>
-          </ActivityCard>
+          <Habits />
+
+          <TopStreaks />
         </Col>
       ) : (
         <></>

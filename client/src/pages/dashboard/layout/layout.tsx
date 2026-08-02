@@ -10,7 +10,7 @@ export const DashboardPageLayout = () => {
 
   if (isMobile) {
     return (
-      <Col>
+      <Col stretchY>
         <header className={s.header}>
           <Row>
             <Row gap={12}>

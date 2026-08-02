@@ -1,5 +1,5 @@
-import { ReactNode, Children } from 'react';
-import styles from './styles.module.css';
+import { ReactNode, Children } from "react";
+import styles from "./styles.module.css";
 
 interface AvatarProps {
   src?: string;
@@ -8,10 +8,15 @@ interface AvatarProps {
   className?: string;
 }
 
-export const Avatar = ({ src, size = 24, children, className = '' }: AvatarProps) => {
+export const Avatar = ({
+  src,
+  size = 24,
+  children,
+  className = "",
+}: AvatarProps) => {
   return (
-    <div 
-      className={`${styles.avatar} ${className}`} 
+    <div
+      className={`${styles.avatar} ${className}`}
       style={{ width: size, height: size, fontSize: size * 0.4 }}
     >
       {src ? <img src={src} alt="avatar" className={styles.img} /> : children}

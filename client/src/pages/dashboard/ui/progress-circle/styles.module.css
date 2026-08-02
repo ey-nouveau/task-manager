@@ -1,0 +1,21 @@
+.circle {
+  --progress: 0%;
+
+  width: 128px;
+  height: 128px;
+  border-radius: 50%;
+
+  background: conic-gradient(
+    #27251e var(--progress),
+    #27251e33 var(--progress)
+  );
+
+  position: relative;
+}
+
+.content {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  background-color: white;
+}

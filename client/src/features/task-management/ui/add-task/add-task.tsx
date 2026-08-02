@@ -32,7 +32,11 @@ export const AddTask = ({ onSubmit }: Props) => {
         placeholder="Add new task..."
         style={{ flex: 1 }}
       />
-      <Button variant="default" onClick={handleSubmit} className={styles.button}>
+      <Button
+        variant="default"
+        onClick={handleSubmit}
+        className={styles.button}
+      >
         Add
       </Button>
     </Row>

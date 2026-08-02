@@ -1,0 +1,43 @@
+.wrapper {
+  display: inline-flex;
+  cursor: pointer;
+}
+
+.input {
+  position: absolute;
+  opacity: 0;
+}
+
+.checkbox {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: 2px solid rgba(39, 37, 30, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: 0.15s ease;
+}
+
+.checked {
+  background: #27251e;
+  border-color: #27251e;
+}
+
+.icon {
+  width: 12px;
+  height: 7px;
+  border-left: 3px solid #fff;
+  border-bottom: 3px solid #fff;
+  transform: rotate(-45deg) translateY(-1px);
+}
+
+.input:focus-visible + .checkbox {
+  outline: 2px solid #27251e;
+  outline-offset: 2px;
+}
+
+.input:disabled + .checkbox {
+  opacity: 0.4;
+  cursor: not-allowed;
+}

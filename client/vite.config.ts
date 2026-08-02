@@ -8,7 +8,8 @@ export default defineConfig({
   base: '/task-manager/',
   resolve: {
     alias: {
-      '@': path.resolve(__dirname, './src')
+      '@': path.resolve(__dirname, './src'),
+      '@app-storybook': path.resolve(__dirname, './.storybook/'),
     }
   }
 });

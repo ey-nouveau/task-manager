@@ -1,0 +1,57 @@
+.text {
+  font-weight: 400;
+  color: #27251e;
+}
+
+.caption {
+  font-size: 12px;
+  line-height: 16px;
+}
+
+.captionBold {
+  font-size: 12px;
+  line-height: 16px;
+  font-weight: 700;
+}
+
+.bodySmall {
+  font-size: 14px;
+  line-height: 20px;
+}
+
+.body {
+  font-size: 16px;
+  line-height: 24px;
+}
+
+.subtitle {
+  font-size: 18px;
+  line-height: 28px;
+}
+
+.subtitleBold {
+  font-size: 20px;
+  line-height: 30px;
+  font-weight: 600;
+}
+
+.title {
+  font-size: 24px;
+  line-height: 36px;
+  font-weight: 500;
+}
+
+.display {
+  font-size: 32px;
+  line-height: 40px;
+  font-weight: 600;
+  letter-spacing: -0.5px;
+}
+
+.primary {
+  color: #27251e;
+}
+
+.primary60 {
+  color: rgba(39, 37, 30, 0.6);
+}
