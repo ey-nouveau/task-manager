@@ -1,6 +1,7 @@
 import { ReactNode, useState } from 'react';
 import { ChevronRight } from 'lucide-react';
 import styles from './styles.module.css';
+import { Row } from '../row';
 
 interface ExpandProps {
   header: ReactNode;
@@ -20,10 +21,10 @@ export const Expand = ({ header, children, defaultExpanded = false, className = 
         onClick={() => setExpanded((prev) => !prev)}
         type="button"
       >
+        <Row align="center" style={{ flex: 1 }}>{header}</Row>
         <span className={`${styles.triggerIcon} ${expanded ? styles.expanded : ''}`}>
           <ChevronRight size={16} />
         </span>
-        {header}
       </button>
       <div className={`${styles.contentWrapper} ${expanded ? styles.expandedContent : ''}`}>
         <div className={styles.content}>
